@@ -35,13 +35,18 @@ final class PackageServerUtil {
 	 * @param array $content
 	 */
 	public static function writeAuthFile(array $content) {
+		// generate temporary auth file
+		$temporaryFile = FileUtil::getTemporaryFilename();
+		$file = new File($temporaryFile); 
+		$file->write(JSON::encode($content)); 
+		$file->close();
+		
+		// move to self::getPackageServerPath().self::AUTH_FILENAME
 		if (file_exists(self::getPackageServerPath().self::AUTH_FILENAME)) {
 			@unlink(self::getPackageServerPath().self::AUTH_FILENAME); 
 		}
 		
-		$file = new File(self::getPackageServerPath().self::AUTH_FILENAME); 
-		$file->write(JSON::encode($content)); 
-		$file->close();
+		rename($temporaryFile, self::getPackageServerPath().self::AUTH_FILENAME); 
 	}
 	
 	/**
