@@ -59,7 +59,7 @@ final class PackageServerUtil {
 	
 	/**
 	 * get the current auth file as array
-	 * if there isn't a auth file, the method returns null
+	 * if there isn't a auth file, the method returns a empty auth-array
 	 * 
 	 * @return array<mixed>
 	 */
@@ -68,7 +68,11 @@ final class PackageServerUtil {
 			return JSON::decode(file_get_contents(), true);
 		}
 		
-		return null; 
+		return array(
+			self::USERS_DIR => array(), 
+			self::GROUPS_DIR => array(), 
+			self::PACKAGES_DIR => array()
+		); 
 	}
 	
 	/**
