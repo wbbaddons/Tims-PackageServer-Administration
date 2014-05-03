@@ -65,7 +65,7 @@ final class PackageServerUtil {
 	 */
 	public static function getAuthFileArray() {
 		if (file_exists(self::getPackageServerPath().self::AUTH_FILENAME)) {
-			return JSON::decode(file_get_contents(), true);
+			return JSON::decode(file_get_contents(self::getPackageServerPath().self::AUTH_FILENAME), true);
 		}
 		
 		return array(
