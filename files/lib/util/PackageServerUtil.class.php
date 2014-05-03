@@ -1,11 +1,10 @@
 <?php
-namespace wcf\util; 
-
-use wcf\data\user\group\UserGroup; 
-use wcf\data\user\UserList; 
-use wcf\system\io\File; 
-use wcf\util\JSON; 
-use wcf\util\FileUtil; 
+namespace wcf\util;
+use wcf\data\user\group\UserGroup;
+use wcf\data\user\UserList;
+use wcf\system\io\File;
+use wcf\util\FileUtil;
+use wcf\util\JSON;
 
 /**
  * Contains functions, which are related for "Tims-PackageServer".
@@ -74,9 +73,9 @@ final class PackageServerUtil {
 	 */
 	public static function buildAuth() {
 		return array(
-		    self::USERS_DIR => self::buildUsersAuth(), 
-		    self::GROUPS_DIR => array(), 
-		    self::PACKAGES_DIR => array()
+			self::USERS_DIR => self::buildUsersAuth(), 
+			self::GROUPS_DIR => array(), 
+			self::PACKAGES_DIR => array()
 		); 
 	}
 	
@@ -104,9 +103,9 @@ final class PackageServerUtil {
 	 */
 	public static function buildUserAuth(\wcf\data\user\User $user) {
 		return array(
-		    'passwd' => $user->password, 
-		    'groups' => self::getGroupIdentifersByIDs($user->getGroupIDs(true)), 
-		    'packages' => array(), // @TODO 
+			'passwd' => $user->password, 
+			'groups' => self::getGroupIdentifersByIDs($user->getGroupIDs(true)), 
+			'packages' => array(), // @TODO 
 		); 
 	}
 	
