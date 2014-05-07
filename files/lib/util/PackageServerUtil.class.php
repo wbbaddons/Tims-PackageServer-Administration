@@ -38,11 +38,6 @@ final class PackageServerUtil {
 		$temporaryFile = FileUtil::getTemporaryFilename();
 		file_put_contents($temporaryFile, JSON::encode($content));
 		
-		// move to self::getPackageServerPath().self::AUTH_FILENAME
-		if (file_exists(self::getPackageServerPath().self::AUTH_FILENAME)) {
-			@unlink(self::getPackageServerPath().self::AUTH_FILENAME); 
-		}
-		
 		rename($temporaryFile, self::getPackageServerPath().self::AUTH_FILENAME); 
 	}
 	
