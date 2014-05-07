@@ -26,7 +26,8 @@ class PackageServerUserChangeListener implements IEventListener {
 				// we should change this in the future to an efficient method
 				if (isset($parameters['username'])) {
 					PackageServerUtil::generateAuthFile();
-				} else if (isset($parameters['removeGroups'])) {
+				}
+				else if (isset($parameters['removeGroups']) || isset($parameters['password'])) {
 					foreach ($eventObj->getObjects() as $user) {
 						PackageServerUtil::updateUserAuth($user);
 					}
