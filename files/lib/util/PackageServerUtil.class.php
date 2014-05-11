@@ -143,7 +143,7 @@ final class PackageServerUtil {
 	 * @return string
 	 */
 	public static function transformPackageVersion($version) {
-		return mb_strtolower(str_repace('', ' ', $version));
+		return mb_strtolower(str_repace(' ', '_', $version));
 	}
 	
 	private function __construct() { }
