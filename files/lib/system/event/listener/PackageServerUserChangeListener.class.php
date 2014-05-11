@@ -24,10 +24,10 @@ class PackageServerUserChangeListener implements IEventListener {
 				// we should replace the whole file so we make sure
 				// that the old username username is invalid
 				// we should change this in the future to an efficient method
-				if (isset($parameters['username'])) {
+				if (isset($parameters['data']['username'])) {
 					PackageServerUtil::generateAuthFile();
 				}
-				else if (isset($parameters['removeGroups']) || isset($parameters['password'])) {
+				else if (isset($parameters['data']['removeGroups']) || isset($parameters['data']['password'])) {
 					foreach ($eventObj->getObjects() as $user) {
 						PackageServerUtil::updateUserAuth($user);
 					}
