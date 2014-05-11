@@ -2,7 +2,6 @@
 namespace wcf\util;
 use wcf\data\user\group\UserGroup;
 use wcf\data\user\UserList;
-use wcf\system\io\File;
 use wcf\util\FileUtil;
 use wcf\util\JSON;
 
