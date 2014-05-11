@@ -136,5 +136,15 @@ final class PackageServerUtil {
 		return self::GROUPID_PREFIX.$group->getObjectID(); 
 	}
 	
+	/**
+	 * transform the package version into a filename
+	 * 
+	 * @param string $version
+	 * @return string
+	 */
+	public static function transformPackageVersion($version) {
+		return mb_strtolower(str_repace('', ' ', $version));
+	}
+	
 	private function __construct() { }
 }
