@@ -36,14 +36,7 @@ final class PackageServerUtil {
 	public static function writeAuthFile(array $content) {
 		// generate temporary auth file
 		$temporaryFile = FileUtil::getTemporaryFilename();
-		$file = new File($temporaryFile); 
-		$file->write(JSON::encode($content)); 
-		$file->close();
-		
-		// move to self::getPackageServerPath().self::AUTH_FILENAME
-		if (file_exists(self::getPackageServerPath().self::AUTH_FILENAME)) {
-			@unlink(self::getPackageServerPath().self::AUTH_FILENAME); 
-		}
+		file_put_contents($temporaryFile, JSON::encode($content));
 		
 		rename($temporaryFile, self::getPackageServerPath().self::AUTH_FILENAME); 
 	}
@@ -113,7 +106,9 @@ final class PackageServerUtil {
 	public static function buildUserAuth(\wcf\data\user\User $user) {
 		return array(
 			'passwd' => $user->password, 
-			'groups' => self::getGroupIdentifersByIDs($user->getGroupIDs(true)), 
+			'groups' => array_map(function ($group) {
+				return self::GROUPID_PREFIX.intval($group);
+			}, $user->getGroupIDs(true)), 
 			'packages' => array(), // @TODO 
 		); 
 	}
@@ -139,22 +134,6 @@ final class PackageServerUtil {
 	 */
 	public static function getGroupIdentifer(UserGroup $group) {
 		return self::GROUPID_PREFIX.$group->getObjectID(); 
-	}
-	
-	/**
-	 * returns group identifers for groups
-	 * 
-	 * @param array<integer> $groupIDs
-	 * @return array<string>
-	 */
-	public static function getGroupIdentifersByIDs(array $groupIDs) {
-		$groups = array(); 
-		
-		foreach ($groupIDs as $group) {
-			$groups[] = self::GROUPID_PREFIX.intval($group);
-		}
-		
-		return $groups; 
 	}
 	
 	private function __construct() { }
