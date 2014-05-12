@@ -16,7 +16,7 @@
 
 </div>
 
-<form enctype="multipart/form-data" method="post" action="{link controller='PackageAdd' application="jps"}{/link}">
+<form enctype="multipart/form-data" method="post" action="{link controller='PackageAdd'}{/link}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.package{/lang}</legend>
