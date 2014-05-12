@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd" languagecode="de">
+	<category name="wcf.acp.packageserver">
+		<item name="wcf.acp.packageserver.package"><![CDATA[Paket]]></item>
+		<item name="wcf.acp.packageserver.packages"><![CDATA[Pakete]]></item>
+		
+		<item name="wcf.acp.packageserver.package.add"><![CDATA[Paket hinzufügen]]></item>
+		
+		<item name="wcf.acp.packageserver.package.fail.upload"><![CDATA[Die Datei konnte nicht hochgeladen werden.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.empty"><![CDATA[Es wurde keine Datei ausgewählt.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.tar"><![CDATA[Der Paketserver unterstützt derzeit nur unkomprimierte tar-Archive.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.validation"><![CDATA[Das angegebene Archiv ist kein gültiges Plugin.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.double"><![CDATA[Das angegebene Paket existiert bereits auf dem Server.]]></item>
+	</category>
 </language>
