@@ -46,7 +46,7 @@ final class PackageServerUtil {
 	 * @return string
 	 */
 	public static function getPackageServerPath() {
-		return FileUtil::addTrailingSlash(PACKAGESERVER_DIR);
+		return RELATIVE_WCF_DIR . FileUtil::addTrailingSlash(PACKAGESERVER_DIR);
 	}
 	
 	/**
