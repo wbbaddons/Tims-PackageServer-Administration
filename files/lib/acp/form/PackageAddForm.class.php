@@ -5,6 +5,7 @@ use wcf\form\AbstractForm;
 use wcf\system\exception\UserInputException; 
 use wcf\system\exception\SystemException; 
 use wcf\system\package\PackageArchive; 
+use wcf\system\WCF; 
 use wcf\util\PackageServerUtil; 
 use wcf\util\FileUtil; 
 
@@ -63,7 +64,8 @@ class PackageAddForm extends AbstractForm {
 		
 		// @TODO validate whether the file is a .tar-file
 		// compressed files are not allowed
-		$extension = array_pop(explode('.', $this->upload['name']));
+		$extensionPaths = explode('.', $this->upload['name']); 
+		$extension = array_pop($extensionPaths); // because php is to stupid :(
 		
 		if ($extension != 'tar') {
 			throw new UserInputException('package', 'tar');
