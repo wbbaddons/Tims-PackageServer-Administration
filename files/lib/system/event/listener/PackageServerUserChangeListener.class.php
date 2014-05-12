@@ -16,6 +16,8 @@ class PackageServerUserChangeListener implements IEventListener {
 	 * @see	\wcf\system\event\IEventListener::execute()
 	 */
 	public function execute($eventObj, $className, $eventName) {
+		if (!PACKAGESERVER_BUILDAUTH) return; 
+		
 		$parameters = $eventObj->getParameters(); 
 		
 		switch ($eventObj->getActionName()) {
