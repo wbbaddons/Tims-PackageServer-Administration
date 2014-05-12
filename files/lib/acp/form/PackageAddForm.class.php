@@ -17,7 +17,8 @@ use wcf\util\FileUtil;
  * @package		be.bastelstu.josh.ps
  */
 class PackageAddForm extends AbstractForm {
-	
+	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.add';
+	public $neededPermissions = array('admin.packageServer.canAddPackage');
 	/**
 	 * the temporary package-file
 	 * 

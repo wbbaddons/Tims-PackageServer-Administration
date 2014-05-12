@@ -6,9 +6,9 @@
 			<permissions>admin.packageServer.canAddPackage</permissions>
 		</acpmenuitem>
 		
-		<acpmenuitem name="dns.acp.menu.link.packageserver.add">
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.add">
 			<controller><![CDATA[wcf\acp\form\PackageAddForm]]></controller>
-			<parent>dns.acp.menu.link.packageserver</parent>
+			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPackage</permissions>
 			<showorder>1</showorder>
 		</acpmenuitem>
