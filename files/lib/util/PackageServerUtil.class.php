@@ -2,7 +2,6 @@
 namespace wcf\util;
 use wcf\data\user\group\UserGroup;
 use wcf\data\user\UserList;
-use wcf\system\io\File;
 use wcf\util\FileUtil;
 use wcf\util\JSON;
 
@@ -47,7 +46,7 @@ final class PackageServerUtil {
 	 * @return string
 	 */
 	public static function getPackageServerPath() {
-		return FileUtil::addTrailingSlash(PACKAGESERVER_DIR);
+		return RELATIVE_WCF_DIR . FileUtil::addTrailingSlash(PACKAGESERVER_DIR);
 	}
 	
 	/**
@@ -134,6 +133,16 @@ final class PackageServerUtil {
 	 */
 	public static function getGroupIdentifer(UserGroup $group) {
 		return self::GROUPID_PREFIX.$group->getObjectID(); 
+	}
+	
+	/**
+	 * transform the package version into a filename
+	 * 
+	 * @param string $version
+	 * @return string
+	 */
+	public static function transformPackageVersion($version) {
+		return mb_strtolower(str_replace(' ', '_', $version));
 	}
 	
 	private function __construct() { }
