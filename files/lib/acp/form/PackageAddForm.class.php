@@ -2,12 +2,12 @@
 namespace wcf\acp\form;
 use wcf\data\package\Package; 
 use wcf\form\AbstractForm;
-use wcf\system\exception\UserInputException; 
 use wcf\system\exception\SystemException; 
+use wcf\system\exception\UserInputException; 
 use wcf\system\package\PackageArchive; 
 use wcf\system\WCF; 
-use wcf\util\PackageServerUtil; 
 use wcf\util\FileUtil; 
+use wcf\util\PackageServerUtil; 
 
 /**
  * A form for uploading packages
@@ -17,7 +17,8 @@ use wcf\util\FileUtil;
  * @package		be.bastelstu.josh.ps
  */
 class PackageAddForm extends AbstractForm {
-	
+	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.add';
+	public $neededPermissions = array('admin.packageServer.canAddPackage');
 	/**
 	 * the temporary package-file
 	 * 
@@ -82,7 +83,8 @@ class PackageAddForm extends AbstractForm {
 
 		try {
 			$this->archive->openArchive();
-		} catch (SystemException $e) {
+		}
+		catch (SystemException $e) {
 			throw new UserInputException('package', 'validation');
 		}
 
