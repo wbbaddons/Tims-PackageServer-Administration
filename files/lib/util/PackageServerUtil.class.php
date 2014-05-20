@@ -4,6 +4,7 @@ use wcf\data\user\group\UserGroup;
 use wcf\data\user\UserList;
 use wcf\util\FileUtil;
 use wcf\util\JSON;
+use wcf\system\WCF; 
 
 /**
  * Contains functions, which are related for "Tims-PackageServer".
@@ -75,8 +76,8 @@ final class PackageServerUtil {
 	public static function buildAuth() {
 		return array(
 			self::USERS_DIR => self::buildUsersAuth(), 
-			self::GROUPS_DIR => array(), 
-			self::PACKAGES_DIR => array()
+			self::GROUPS_DIR => self::buildGroupsAuth(), 
+			self::PACKAGES_DIR => self::buildPackagesAuth()
 		); 
 	}
 	
@@ -94,6 +95,38 @@ final class PackageServerUtil {
 		}  
 		
 		return $users; 
+	}
+	
+	/**
+	 * build a array for the auth.json with all group-permissions
+	 */
+	public static function buildGroupsAuth() {
+		$stmt = WCF::getDB()->prepareStatement("SELECT * FROM wcf". WCF_N ."_packageserver_package_to_group");
+		$stmt->execute(); 
+		
+		$groups = array(); 
+		
+		while ($row = $stmt->fetchArray()) {
+			$groups[self::GROUPID_PREFIX.$row['groupID']][$row['packageIdentifier']] = $row['permissions'];
+		}
+		    
+		return $groups;
+	}
+	
+	/**
+	 * build a array for the auth.json with all general permissions
+	 */
+	public static function buildPackagesAuth() {
+		$stmt = WCF::getDB()->prepareStatement("SELECT * FROM wcf". WCF_N ."_packageserver_package_permission_general");
+		$stmt->execute(); 
+		
+		$general = array(); 
+		
+		while ($row = $stmt->fetchArray()) {
+			$general[$row['packageIdentifier']] = $row['permissions'];
+		}
+		    
+		return $general;
 	}
 	
 	/**
