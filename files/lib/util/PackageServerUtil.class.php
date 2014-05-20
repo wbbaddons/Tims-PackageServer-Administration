@@ -2,9 +2,9 @@
 namespace wcf\util;
 use wcf\data\user\group\UserGroup;
 use wcf\data\user\UserList;
+use wcf\system\WCF; 
 use wcf\util\FileUtil;
 use wcf\util\JSON;
-use wcf\system\WCF; 
 
 /**
  * Contains functions, which are related for "Tims-PackageServer".
