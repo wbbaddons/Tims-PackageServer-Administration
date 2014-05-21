@@ -136,12 +136,21 @@ final class PackageServerUtil {
 	 * @return array<mixed>
 	 */
 	public static function buildUserAuth(\wcf\data\user\User $user) {
+		$stmt = WCF::getDB()->prepareStatement("SELECT * FROM wcf". WCF_N ."_packageserver_package_to_user WHERE userID = ?");
+		$stmt->execute(array($user->getObjectID()));
+		
+		$permssions = array(); 
+		
+		while ($row = $stmt->fetchArray()) {
+			$permssions[$row['packageIdentifier']] = $row['permissions'];
+		}
+		
 		return array(
 			'passwd' => $user->password, 
 			'groups' => array_map(function ($group) {
 				return self::GROUPID_PREFIX.intval($group);
 			}, $user->getGroupIDs(true)), 
-			'packages' => array(), // @TODO 
+			'packages' => $permssions
 		); 
 	}
 	
