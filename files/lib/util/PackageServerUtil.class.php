@@ -85,7 +85,7 @@ final class PackageServerUtil {
 	 * build a array for the auth.json with all users
 	 */
 	public static function buildUsersAuth() {
-		$list = new UserList(); 
+		$list = new UserList();
 		$list->readObjects(); 
 		
 		$users = array(); 
@@ -146,7 +146,7 @@ final class PackageServerUtil {
 		}
 		
 		return array(
-			'passwd' => $user->password, 
+			'passwd' => ($user->isBanned) ? '-' : $user->password, 
 			'groups' => array_map(function ($group) {
 				return self::GROUPID_PREFIX.intval($group);
 			}, $user->getGroupIDs(true)), 
