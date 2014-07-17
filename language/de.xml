@@ -12,4 +12,11 @@
 		<item name="wcf.acp.packageserver.package.fail.validation"><![CDATA[Das angegebene Archiv ist kein gültiges Plugin.]]></item>
 		<item name="wcf.acp.packageserver.package.fail.double"><![CDATA[Das angegebene Paket existiert bereits auf dem Server.]]></item>
 	</category>
+	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.packageserver"><![CDATA[Paketserver]]></item>
+		<item name="wcf.acp.option.category.packageserver.general"><![CDATA[Allgemein]]></item>
+		<item name="wcf.acp.option.packageserver_buildauth"><![CDATA[auth.json generieren]]></item>
+		<item name="wcf.acp.option.packageserver_dir"><![CDATA[Pfad zum Paketserver]]></item>
+	</category>
 </language>

@@ -30,8 +30,8 @@ class PackageUserPermissionAddForm extends AbstractForm {
 	public function readData() {
 		parent::readData();
 		
-		if (isset($_GET['packageIdentifer'])) {
-			$this->packageIdentifer = $_GET['packageIdentifer']; 
+		if (isset($_GET['package'])) {
+			$this->packageIdentifer = $_GET['package']; 
 		}
 	}
 	
@@ -41,8 +41,12 @@ class PackageUserPermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['packageIdentifer'])) {
-			$this->packageIdentifer = $_POST['packageIdentifer']; 
+		if (isset($_POST['package'])) {
+			$this->packageIdentifer = $_POST['package']; 
+		}
+		
+		if (isset($_POST['permission'])) {
+			$this->permission = $_POST['permission']; 
 		}
 		
 		if (isset($_POST['username'])) {
@@ -67,11 +71,31 @@ class PackageUserPermissionAddForm extends AbstractForm {
 	public function validate() {
 		parent::validate();
 		
-		foreach ($this->user as $username => $object) {
-			if ($object->getObjectID() == 0) {
-				throw new \wcf\system\exception\UserInputException('username', $username);
-			}
-		} 
+		try {
+			foreach ($this->user as $username => $object) {
+				if ($object->getObjectID() == 0) {
+					throw new \wcf\system\exception\UserInputException('username', $username);
+				}
+			} 
+		} catch (\wcf\system\exception\UserInputException $e) {
+			// remove all invalid objects for the template
+			foreach ($this->user as $username => $object) {
+				if ($object->getObjectID() == 0) {
+					unset($this->user[$username]); 
+				}
+			} 
+			
+			// throw up :)
+			throw $e; 
+		}
+		
+		if (empty($this->packageIdentifer)) {
+			throw new \wcf\system\exception\UserInputException('package');
+		}
+		
+		if (empty($this->permission)) {
+			throw new \wcf\system\exception\UserInputException('permission');
+		}
 	}
 	
 	/**
@@ -96,7 +120,21 @@ class PackageUserPermissionAddForm extends AbstractForm {
 	public function saved() {
 		parent::saved();
 		
+		$this->packageIdentifer = $this->permission = ""; 
+		
+		$this->user = array(); 
+		
 		// show success
 		WCF::getTPL()->assign('success', true);
+	}
+	
+	public function assignVariables() {
+		parent::assignVariables();
+		
+		WCF::getTPL()->assign(array(
+		    'permission' => $this->permission,
+		    'package' => $this->packageIdentifer, 
+		    'user' => $this->user
+		)); 
 	}
 }

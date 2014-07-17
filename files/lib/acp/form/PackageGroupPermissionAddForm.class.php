@@ -24,15 +24,19 @@ class PackagePermissionAddForm extends AbstractForm {
 	
 	public $groups = array(); 
 	
+	public $groupList = array(); 
+	
 	/**
 	 * @see	\wcf\page\IPage::readData()
 	 */
 	public function readData() {
 		parent::readData();
 		
-		if (isset($_GET['packageIdentifer'])) {
-			$this->packageIdentifer = $_GET['packageIdentifer']; 
+		if (isset($_GET['package'])) {
+			$this->packageIdentifer = $_GET['package']; 
 		}
+		
+		$this->groupList = new \wcf\data\user\group\UserGroupList(); 
 	}
 	
 	/**
@@ -41,8 +45,12 @@ class PackagePermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['packageIdentifer'])) {
-			$this->packageIdentifer = $_POST['packageIdentifer']; 
+		if (isset($_POST['permission'])) {
+			$this->permission = $_POST['permission']; 
+		}
+		
+		if (isset($_POST['package'])) {
+			$this->packageIdentifer = $_POST['package']; 
 		}
 		
 		if (isset($_POST['groups'])) {
@@ -57,11 +65,23 @@ class PackagePermissionAddForm extends AbstractForm {
 	public function validate() {
 		parent::validate();
 		
+		if (empty($this->groups)) {
+			throw new \wcf\system\exception\UserInputException('group');
+		}
+		
 		foreach ($this->groups as $group) {
 			if ($group->getObjectID() == 0) {
 				throw new \wcf\system\exception\UserInputException('group');
 			}
 		} 
+		
+		if (empty($this->packageIdentifer)) {
+			throw new \wcf\system\exception\UserInputException('package');
+		}
+		
+		if (empty($this->permission)) {
+			throw new \wcf\system\exception\UserInputException('permission');
+		}
 	}
 	
 	/**
@@ -86,7 +106,24 @@ class PackagePermissionAddForm extends AbstractForm {
 	public function saved() {
 		parent::saved();
 		
+		$this->packageIdentifer = $this->permission = ""; 
+		
+		$this->groups = array(); 
+		
 		// show success
 		WCF::getTPL()->assign('success', true);
+	}
+	
+	public function assignVariables() {
+		parent::assignVariables();
+		
+		$this->groupList->readObjects(); 
+		
+		WCF::getTPL()->assign(array(
+		    'permission' => $this->permission,
+		    'package' => $this->packageIdentifer, 
+		    'group' => $this->groups, 
+		    'groups' => $this->groupList->getObjects()
+		)); 
 	}
 }

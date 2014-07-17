@@ -26,8 +26,8 @@ class PackagePermissionAddForm extends AbstractForm {
 	public function readData() {
 		parent::readData();
 		
-		if (isset($_GET['packageIdentifer'])) {
-			$this->packageIdentifer = $_GET['packageIdentifer']; 
+		if (isset($_GET['package'])) {
+			$this->packageIdentifer = $_GET['package']; 
 		}
 	}
 	
@@ -37,8 +37,24 @@ class PackagePermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['packageIdentifer'])) {
-			$this->packageIdentifer = $_POST['packageIdentifer']; 
+		if (isset($_POST['package'])) {
+			$this->packageIdentifer = $_POST['package']; 
+		}
+		
+		if (isset($_POST['permission'])) {
+			$this->permission = $_POST['permission']; 
+		}
+	}
+	
+	public function validate() {
+		parent::validate();
+		
+		if (empty($this->packageIdentifer)) {
+			throw new \wcf\system\exception\UserInputException('package');
+		}
+		
+		if (empty($this->permission)) {
+			throw new \wcf\system\exception\UserInputException('permission');
 		}
 	}
 	
@@ -64,7 +80,18 @@ class PackagePermissionAddForm extends AbstractForm {
 	public function saved() {
 		parent::saved();
 		
+		$this->packageIdentifer = $this->permission = ""; 
+		
 		// show success
 		WCF::getTPL()->assign('success', true);
+	}
+	
+	public function assignVariables() {
+		parent::assignVariables();
+		
+		WCF::getTPL()->assign(array(
+		    'permission' => $this->permission,
+		    'package' => $this->packageIdentifer
+		)); 
 	}
 }
