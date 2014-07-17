@@ -10,14 +10,14 @@
 				<parent>packageserver</parent>
 			</category>
 		</categories>
-                
+		
 		<options>
 			<option name="packageserver_buildauth">
 				<categoryname>packageserver.general</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
-                        
+			
                         <option name="packageserver_dir">
 				<categoryname>packageserver.general</categoryname>
 				<optiontype>text</optiontype>
