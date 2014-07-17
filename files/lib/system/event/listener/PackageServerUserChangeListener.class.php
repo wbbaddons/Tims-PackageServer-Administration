@@ -31,7 +31,7 @@ class PackageServerUserChangeListener implements IEventListener {
 				}
 				else if (isset($parameters['data']['removeGroups']) || isset($parameters['data']['password'])) {
 					foreach ($eventObj->getObjects() as $user) {
-						PackageServerUtil::updateUserAuth($user);
+						PackageServerUtil::updateUserAuth($user->getDecoratedObject());
 					}
 				}
 				break; 
@@ -39,7 +39,7 @@ class PackageServerUserChangeListener implements IEventListener {
 			case 'create': 
 			case 'addToGroups':
 				foreach ($eventObj->getObjects() as $user) {
-					PackageServerUtil::updateUserAuth($user);
+					PackageServerUtil::updateUserAuth($user->getDecoratedObject());
 				}
 				break; 
 				
