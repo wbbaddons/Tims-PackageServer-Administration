@@ -66,7 +66,7 @@
 							{event name='buttons'}
 						</td>
 						<td class="columnTitle"><p>{$item.packageIdentifier}</p></td>
-						<td class="columnText "><p>{if $item.type == 'general'}{lang}wcf.acp.packageserver.permission.type.general{/lang}{elseif $item.type == 'user'}{lang}wcf.acp.packageserver.permission.user{/lang}{else}{lang}wcf.acp.packageserver.permission.type.group{/lang}{/if}</p></td>
+						<td class="columnText "><p>{lang}wcf.acp.packageserver.permission.type.{$item.type}{/lang}</p></td>
 
 						{event name='columns'}
 					</tr>
