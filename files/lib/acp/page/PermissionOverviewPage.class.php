@@ -16,7 +16,7 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 	/**
 	 * @see	wcf\page\AbstractPage::$activeMenuItem
 	 */
-	public $activeMenuItem = 'wcf.acp.menu.link.jcoins.premium.list';
+	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.permissionOverview';
 	
 	public $items = array(); 
 	
