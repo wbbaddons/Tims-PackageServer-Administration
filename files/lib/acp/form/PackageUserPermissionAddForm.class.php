@@ -77,7 +77,8 @@ class PackageUserPermissionAddForm extends AbstractForm {
 					throw new \wcf\system\exception\UserInputException('username', $username);
 				}
 			} 
-		} catch (\wcf\system\exception\UserInputException $e) {
+		}
+		catch (\wcf\system\exception\UserInputException $e) {
 			// remove all invalid objects for the template
 			foreach ($this->user as $username => $object) {
 				if ($object->getObjectID() == 0) {
@@ -132,9 +133,9 @@ class PackageUserPermissionAddForm extends AbstractForm {
 		parent::assignVariables();
 		
 		WCF::getTPL()->assign(array(
-		    'permission' => $this->permission,
-		    'package' => $this->packageIdentifer, 
-		    'user' => $this->user
+			'permission' => $this->permission,
+			'package' => $this->packageIdentifer, 
+			'user' => $this->user
 		)); 
 	}
 }

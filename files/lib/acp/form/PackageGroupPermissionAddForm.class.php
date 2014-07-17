@@ -120,10 +120,10 @@ class PackageGroupPermissionAddForm extends AbstractForm {
 		$this->groupList->readObjects(); 
 		
 		WCF::getTPL()->assign(array(
-		    'permission' => $this->permission,
-		    'package' => $this->packageIdentifer, 
-		    'group' => $this->groups, 
-		    'groups' => $this->groupList->getObjects()
+			'permission' => $this->permission,
+			'package' => $this->packageIdentifer, 
+			'group' => $this->groups, 
+			'groups' => $this->groupList->getObjects()
 		)); 
 	}
 }

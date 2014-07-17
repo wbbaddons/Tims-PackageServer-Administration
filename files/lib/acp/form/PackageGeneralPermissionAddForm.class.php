@@ -90,8 +90,8 @@ class PackageGeneralPermissionAddForm extends AbstractForm {
 		parent::assignVariables();
 		
 		WCF::getTPL()->assign(array(
-		    'permission' => $this->permission,
-		    'package' => $this->packageIdentifer
+			'permission' => $this->permission,
+			'package' => $this->packageIdentifer
 		)); 
 	}
 }

@@ -109,7 +109,7 @@ final class PackageServerUtil {
 		while ($row = $stmt->fetchArray()) {
 			$groups[self::GROUPID_PREFIX.$row['groupID']][$row['packageIdentifier']] = $row['permissions'];
 		}
-		    
+		
 		return $groups;
 	}
 	
@@ -125,7 +125,7 @@ final class PackageServerUtil {
 		while ($row = $stmt->fetchArray()) {
 			$general[$row['packageIdentifier']] = $row['permissions'];
 		}
-		    
+		
 		return $general;
 	}
 	
