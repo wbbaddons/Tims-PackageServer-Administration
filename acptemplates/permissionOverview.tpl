@@ -20,7 +20,7 @@
 						
 				<ul>
 					<li>
-						<a href="{link controller='PackageGeneralUserAdd'}{/link}" title="" class="button">
+						<a href="{link controller='PackageUserPermissionAdd'}{/link}" title="" class="button">
 							<span class="icon icon16 icon-plus"></span> 
 							<span>{lang}wcf.acp.packageserver.permission.adduser{/lang}</span>
 						</a>
@@ -29,7 +29,7 @@
 						
 				<ul>
 					<li>
-						<a href="{link controller='PackageGeneralGroupAdd'}{/link}" title="" class="button">
+						<a href="{link controller='PackageGroupPermissionAdd'}{/link}" title="" class="button">
 							<span class="icon icon16 icon-plus"></span> 
 							<span>{lang}wcf.acp.packageserver.permission.addgroup{/lang}</span>
 						</a>
@@ -54,6 +54,7 @@
 				<tr>
 					<th class="columnTitle">{lang}wcf.acp.packageserver.permission.package{/lang}</th>
 					<th class="columnText">{lang}wcf.acp.packageserver.permission.type{/lang}</th>
+					
 					{event name='headColumns'}
 				</tr>
 			</thead>
@@ -62,9 +63,6 @@
 				{content}
 				{foreach from=$items item=item}
 					<tr>
-						<td class="columnIcon">
-							{event name='buttons'}
-						</td>
 						<td class="columnTitle"><p>{$item.packageIdentifier}</p></td>
 						<td class="columnText "><p>{lang}wcf.acp.packageserver.permission.type.{$item.type}{/lang}</p></td>
 
