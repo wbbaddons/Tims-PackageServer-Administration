@@ -5,11 +5,11 @@ use wcf\data\user\group\UserGroup;
 use wcf\system\WCF;
 
 /**
- * Represents a list of all premium-groups.
+ * Represents a list of all permissions
  * 
- * @author	Joshua Rüsweg
- * @package	de.joshsboard.jcoins
- * @subpackage	acp.page
+ * @author		Joshua Rüsweg
+ * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @package		be.bastelstu.josh.ps
  */
 class PermissionOverviewPage extends \wcf\page\AbstractPage {
 
@@ -18,8 +18,15 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.permissionOverview';
 	
+	/**
+	 * all permission items
+	 * @var array<mixed> 
+	 */
 	public $items = array(); 
 	
+	/**
+	 * @see	\wcf\page\IPage::readData()
+	 */
 	public function readData() {
 		parent::readData();
 		
@@ -46,6 +53,9 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 		}
 	}
 	
+	/**
+	 * @see	\wcf\page\IPage::assignVariables()
+	 */
 	public function assignVariables() {
 		parent::assignVariables();
 		
