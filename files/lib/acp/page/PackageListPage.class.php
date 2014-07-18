@@ -17,8 +17,15 @@ class PackageListPage extends \wcf\page\AbstractPage {
 	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.packageList';
 	
+	/**
+	 * all packages with versions
+	 * @var array<mixed> 
+	 */
 	public $items = array(); 
 	
+	/**
+	 * @see	\wcf\page\IPage::readData()
+	 */
 	public function readData() {
 		parent::readData();
 		
@@ -47,6 +54,9 @@ class PackageListPage extends \wcf\page\AbstractPage {
 		}
 	}
 	
+	/**
+	 * @see	\wcf\page\IPage::assignVariables()
+	 */
 	public function assignVariables() {
 		parent::assignVariables();
 		
