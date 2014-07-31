@@ -14,7 +14,6 @@ use wcf\util\JSON;
  * @package		be.bastelstu.josh.ps
  */
 final class PackageServerUtil {
-	
 	const AUTH_FILENAME = 'auth.json';
 	const GROUPID_PREFIX = 'group-';
 	const USERS_DIR = 'users';
@@ -22,16 +21,16 @@ final class PackageServerUtil {
 	const PACKAGES_DIR = 'packages'; 
 	
 	/**
-	 * generates and save the auth.json-file
+	 * Generates and save the auth.json-file.
 	 */
 	public static function generateAuthFile() {
 		self::writeAuthFile(self::buildAuth());
 	}
 	
 	/**
-	 * writes an auth file with the given content
+	 * Performs an atomic write to the authentication file.
 	 * 
-	 * @param array $content
+	 * @param	array	$content
 	 */
 	public static function writeAuthFile(array $content) {
 		// generate temporary auth file
@@ -42,7 +41,7 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * returns the packageServer-dir with trailing slash
+	 * Returns the path to the packages folder of the package server.
 	 * 
 	 * @return string
 	 */
@@ -51,10 +50,10 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * get the current auth file as array
-	 * if there isn't a auth file, the method returns a empty auth-array
+	 * Returns the current authentication information. If
+	 * no authentication file exists yet, this methods returns empty records.
 	 * 
-	 * @return array<mixed>
+	 * @return array
 	 */
 	public static function getAuthFileArray() {
 		if (file_exists(self::getPackageServerPath().self::AUTH_FILENAME)) {
@@ -69,9 +68,9 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * build a auth-file-array
+	 * Returns all the authentication information.
 	 * 
-	 * @return array<mixed>
+	 * @return array
 	 */
 	public static function buildAuth() {
 		return array(
@@ -82,26 +81,31 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * build a array for the auth.json with all users
+	 * Returns all the user permission records.
+	 * 
+	 * @return	array
 	 */
 	public static function buildUsersAuth() {
 		$list = new UserList();
 		$list->readObjects(); 
 		
 		$users = array(); 
-		
-		foreach ($list->getObjects() as $user) {
+		foreach ($list as $user) {
 			$users[$user->username] = self::buildUserAuth($user); 
-		}  
+		}
 		
 		return $users; 
 	}
 	
 	/**
-	 * build a array for the auth.json with all group-permissions
+	 * Returns all the group permission records.
+	 * 
+	 * @return	array
 	 */
 	public static function buildGroupsAuth() {
-		$stmt = WCF::getDB()->prepareStatement("SELECT * FROM wcf". WCF_N ."_packageserver_package_to_group");
+		$sql = "SELECT	*
+			FROM	wcf".WCF_N."_packageserver_package_to_group";
+		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute(); 
 		
 		$groups = array(); 
@@ -114,10 +118,14 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * build a array for the auth.json with all general permissions
+	 * Returns the general permission record.
+	 *
+	 * @return	array<string>
 	 */
 	public static function buildPackagesAuth() {
-		$stmt = WCF::getDB()->prepareStatement("SELECT * FROM wcf". WCF_N ."_packageserver_package_permission_general");
+		$sql = "SELECT	*
+			FROM	wcf".WCF_N."_packageserver_package_permission_general";
+		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute(); 
 		
 		$general = array(); 
@@ -130,17 +138,19 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * returns the user auth array for the auth.json
+	 * Returns the user record for the given user.
 	 * 
-	 * @param \wcf\util\wcf\data\user\User $user
-	 * @return array<mixed>
+	 * @param	\wcf\data\user\User	$user
+	 * @return	array<mixed>
 	 */
 	public static function buildUserAuth(\wcf\data\user\User $user) {
-		$stmt = WCF::getDB()->prepareStatement("SELECT * FROM wcf". WCF_N ."_packageserver_package_to_user WHERE userID = ?");
+		$sql = "SELECT	*
+			FROM	wcf".WCF_N."_packageserver_package_to_user
+			WHERE	userID = ?";
+		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute(array($user->getObjectID()));
 		
 		$permssions = array(); 
-		
 		while ($row = $stmt->fetchArray()) {
 			$permssions[$row['packageIdentifier']] = $row['permissions'];
 		}
@@ -155,9 +165,9 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * updates the user in the auth.json
+	 * Updates a user record in auth.json
 	 * 
-	 * @param \wcf\data\user\User $user
+	 * @param	\wcf\data\user\User $user
 	 */
 	public static function updateUserAuth(\wcf\data\user\User $user) {
 		$auth = self::getAuthFileArray(); 
@@ -168,20 +178,20 @@ final class PackageServerUtil {
 	}
 	
 	/**
-	 * returns a identifer for usergroups
+	 * Returns a the internal name for the given user group.
 	 * 
-	 * @param \wcf\data\user\group\UserGroup $group
-	 * @return string
+	 * @param	\wcf\data\user\group\UserGroup $group
+	 * @return	string
 	 */
 	public static function getGroupIdentifer(UserGroup $group) {
 		return self::GROUPID_PREFIX.$group->getObjectID(); 
 	}
 	
 	/**
-	 * transform the package version into a filename
+	 * Transform the package version into a package filename.
 	 * 
-	 * @param string $version
-	 * @return string
+	 * @param	string	$version
+	 * @return	string
 	 */
 	public static function transformPackageVersion($version) {
 		return mb_strtolower(str_replace(' ', '_', $version));

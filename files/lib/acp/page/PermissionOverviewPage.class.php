@@ -12,7 +12,6 @@ use wcf\system\WCF;
  * @package		be.bastelstu.josh.ps
  */
 class PermissionOverviewPage extends \wcf\page\AbstractPage {
-
 	/**
 	 * @see	wcf\page\AbstractPage::$activeMenuItem
 	 */
@@ -33,21 +32,18 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 		// read first all general permissions
 		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'general' as type FROM wcf". WCF_N ."_packageserver_package_permission_general");
 		$stmt->execute();
-		
 		while ($row = $stmt->fetchArray()) {
 			$this->items[] = $row; 
 		}
 		
 		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'user' as type FROM wcf". WCF_N ."_packageserver_package_to_user");
 		$stmt->execute();
-		
 		while ($row = $stmt->fetchArray()) {
 			$this->items[] = $row;
 		}
 		
 		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'group' as type FROM wcf". WCF_N ."_packageserver_package_to_group");
 		$stmt->execute();
-		
 		while ($row = $stmt->fetchArray()) {
 			$this->items[] = $row; 
 		}
