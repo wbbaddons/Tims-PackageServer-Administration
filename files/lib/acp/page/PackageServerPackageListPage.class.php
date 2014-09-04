@@ -2,6 +2,7 @@
 namespace wcf\acp\page;
 
 use wcf\system\WCF;
+use wcf\util\PackageServerUtil; 
 
 /**
  * Represents a list of all permissions
