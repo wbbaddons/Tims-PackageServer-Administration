@@ -20,7 +20,7 @@
 	<div class="container containerPadding marginTop">
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.permission{/lang}</legend>
-
+			
 			<dl{if $errorField == 'package'} class="formError"{/if}>
 				<dt><label for="package">{lang}wcf.acp.packageserver.package{/lang}</label></dt>
 				<dd>
@@ -32,7 +32,7 @@
 					{/if}
 				</dd>
 			</dl>
-				
+			
 			<dl{if $errorField == 'permission'} class="formError"{/if}>
 				<dt><label for="permission">{lang}wcf.acp.packageserver.permission{/lang}</label></dt>
 				<dd>
@@ -44,7 +44,7 @@
 					{/if}
 				</dd>
 			</dl>
-				
+			
 			<dl{if $errorField == 'group'} class="formError"{/if}>
 				<dt><label for="group">{lang}wcf.acp.packageserver.group{/lang}</label></dt>
 				<dd>
@@ -61,13 +61,13 @@
 					{/if}
 				</dd>
 			</dl>
-	</fieldset>
-</div>
-
-<div class="formSubmit">
-	<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
-	{@SECURITY_TOKEN_INPUT_TAG}
-</div>
+		</fieldset>
+	</div>
+	
+	<div class="formSubmit">
+		<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
+		{@SECURITY_TOKEN_INPUT_TAG}
+	</div>
 </form>
 
 {include file='footer'}

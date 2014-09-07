@@ -13,14 +13,13 @@
 {/if}
 
 <div class="contentNavigation">
-
 </div>
 
 <form enctype="multipart/form-data" method="post" action="{link controller='PackageAdd'}{/link}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.package{/lang}</legend>
-
+			
 			<dl{if $errorField == 'package'} class="formError"{/if}>
 				<dt><label for="package">{lang}wcf.acp.packageserver.package{/lang}</label></dt>
 				<dd>
@@ -32,13 +31,13 @@
 					{/if}
 				</dd>
 			</dl>
-	</fieldset>
-</div>
-
-<div class="formSubmit">
-	<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
-	{@SECURITY_TOKEN_INPUT_TAG}
-</div>
+		</fieldset>
+	</div>
+	
+	<div class="formSubmit">
+		<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
+		{@SECURITY_TOKEN_INPUT_TAG}
+	</div>
 </form>
 
 {include file='footer'}
