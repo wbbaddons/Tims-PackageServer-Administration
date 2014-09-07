@@ -12,7 +12,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
 						</a>
 					</li>
@@ -73,7 +73,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
 						</a>
 					</li>

@@ -6,7 +6,7 @@ use wcf\system\WCF;
 
 /**
  * Represents a list of all permissions
- * 
+ *
  * @author		Joshua Rüsweg
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
@@ -19,9 +19,9 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 	
 	/**
 	 * all permission items
-	 * @var array<mixed> 
+	 * @var array<mixed>
 	 */
-	public $items = array(); 
+	public $items = array();
 	
 	/**
 	 * @see	\wcf\page\IPage::readData()
@@ -33,7 +33,7 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'general' as type FROM wcf". WCF_N ."_packageserver_package_permission_general");
 		$stmt->execute();
 		while ($row = $stmt->fetchArray()) {
-			$this->items[] = $row; 
+			$this->items[] = $row;
 		}
 		
 		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'user' as type FROM wcf". WCF_N ."_packageserver_package_to_user");
@@ -45,7 +45,7 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'group' as type FROM wcf". WCF_N ."_packageserver_package_to_group");
 		$stmt->execute();
 		while ($row = $stmt->fetchArray()) {
-			$this->items[] = $row; 
+			$this->items[] = $row;
 		}
 	}
 	

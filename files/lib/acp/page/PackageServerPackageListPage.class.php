@@ -7,7 +7,7 @@ use wcf\util\PackageServerUtil;
 
 /**
  * Represents a list of all permissions
- * 
+ *
  * @author	Joshua Rüsweg
  * @package	be.bastelstu.josh.ps
  * @subpackage	acp.page
@@ -21,7 +21,7 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 
 	/**
 	 * all packages with versions
-	 * @var array<mixed> 
+	 * @var array<mixed>
 	 */
 	public $items = array();
 

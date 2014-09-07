@@ -1,17 +1,17 @@
 <?php
 namespace wcf\acp\form;
-use wcf\data\package\Package; 
+use wcf\data\package\Package;
 use wcf\form\AbstractForm;
-use wcf\system\exception\SystemException; 
-use wcf\system\exception\UserInputException; 
-use wcf\system\package\PackageArchive; 
-use wcf\system\WCF; 
-use wcf\util\FileUtil; 
-use wcf\util\PackageServerUtil; 
+use wcf\system\exception\SystemException;
+use wcf\system\exception\UserInputException;
+use wcf\system\package\PackageArchive;
+use wcf\system\WCF;
+use wcf\util\FileUtil;
+use wcf\util\PackageServerUtil;
 
 /**
  * A form for uploading packages
- * 
+ *
  * @author		Joshua Rüsweg
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
@@ -21,22 +21,22 @@ class PackageAddForm extends AbstractForm {
 	public $neededPermissions = array('admin.packageServer.canAddPackage');
 	/**
 	 * the temporary package-file
-	 * 
-	 * @var String 
+	 *
+	 * @var String
 	 */
-	public $package = null; 
+	public $package = null;
 	
 	/**
 	 * the uploaded file
-	 * 
+	 *
 	 * @var array<mixed>
 	 */
-	public $upload = null; 
+	public $upload = null;
 	
 	/**
-	 * @var \wcf\system\package\PackageArchive 
+	 * @var \wcf\system\package\PackageArchive
 	 */
-	public $archive = null; 
+	public $archive = null;
 	
 	/**
 	 * @see	\wcf\page\IPage::readData()
@@ -65,7 +65,7 @@ class PackageAddForm extends AbstractForm {
 		
 		// @TODO validate whether the file is a .tar-file
 		// compressed files are not allowed
-		$extensionPaths = explode('.', $this->upload['name']); 
+		$extensionPaths = explode('.', $this->upload['name']);
 		$extension = array_pop($extensionPaths); // because php is to stupid :(
 		
 		if ($extension != 'tar') {
@@ -93,7 +93,7 @@ class PackageAddForm extends AbstractForm {
 		}
 		
 		if (is_file($this->buildPackageLink())) {
-			throw new UserInputException('package', 'double'); 
+			throw new UserInputException('package', 'double');
 		}
 	}
 
@@ -105,41 +105,41 @@ class PackageAddForm extends AbstractForm {
 		
 		if (!file_exists(PackageServerUtil::getPackageServerPath() . $this->archive->getPackageInfo('name'))) {
 			if (FileUtil::makePath(PackageServerUtil::getPackageServerPath() . $this->archive->getPackageInfo('name')) === false) {
-				throw new SystemException('cannot create package-dir'); 
+				throw new SystemException('cannot create package-dir');
 			}
 		}
 		
 		if (rename($this->package, $this->buildPackageLink()) === false) {
-			throw new SystemException('cannot move package'); 
+			throw new SystemException('cannot move package');
 		}
 		
 		$this->saved();
 		
 		// clean up
-		$this->archive->deleteArchive(); 
+		$this->archive->deleteArchive();
 		
 		// show success
 		WCF::getTPL()->assign('success', true);
 	}
 	
 	/**
-	 * build the link for the package, if $this->archive 
+	 * build the link for the package, if $this->archive
 	 * is null then the method returns null
-	 * 
+	 *
 	 * @return String
 	 */
 	public function buildPackageLink() {
 		if ($this->archive !== null) {
-			return $this->buildPackageDirLink() . PackageServerUtil::transformPackageVersion($this->archive->getPackageInfo('version')) . '.tar'; 
+			return $this->buildPackageDirLink() . PackageServerUtil::transformPackageVersion($this->archive->getPackageInfo('version')) . '.tar';
 		}
 		
-		return null; 
+		return null;
 	}
 	
 	/**
-	 * build the dir-link for the package, if $this->archive 
+	 * build the dir-link for the package, if $this->archive
 	 * is null then the method returns null
-	 * 
+	 *
 	 * @param boolean $trailingSlash
 	 * @return String
 	 */
@@ -148,6 +148,6 @@ class PackageAddForm extends AbstractForm {
 			return PackageServerUtil::getPackageServerPath() . $this->archive->getPackageInfo('name') . (($trailingSlash) ? '/' : '');
 		}
 		
-		return null; 
+		return null;
 	}
 }

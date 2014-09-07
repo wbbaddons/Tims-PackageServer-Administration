@@ -9,7 +9,7 @@
 {include file='formError'}
 
 {if $success|isset}
-	<p class="success">{lang}wcf.global.success.add{/lang}</p>	
+	<p class="success">{lang}wcf.global.success.add{/lang}</p>
 {/if}
 
 <div class="contentNavigation">
@@ -28,7 +28,7 @@
 					{if $errorField == 'package'}
 						<small class="innerError">
 							{lang}wcf.acp.packageserver.package.fail.{$errorType}{/lang}
-						</small> 
+						</small>
 					{/if}
 				</dd>
 			</dl>

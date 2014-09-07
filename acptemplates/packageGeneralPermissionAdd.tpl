@@ -9,7 +9,7 @@
 {include file='formError'}
 
 {if $success|isset}
-	<p class="success">{lang}wcf.global.success.add{/lang}</p>	
+	<p class="success">{lang}wcf.global.success.add{/lang}</p>
 {/if}
 
 <div class="contentNavigation">
@@ -28,7 +28,7 @@
 					{if $errorField == 'package'}
 						<small class="innerError">
 							{lang}wcf.global.form.error.empty{/lang}
-						</small> 
+						</small>
 					{/if}
 				</dd>
 			</dl>
@@ -40,7 +40,7 @@
 					{if $errorField == 'permission'}
 						<small class="innerError">
 							{lang}wcf.global.form.error.empty{/lang}
-						</small> 
+						</small>
 					{/if}
 				</dd>
 			</dl>

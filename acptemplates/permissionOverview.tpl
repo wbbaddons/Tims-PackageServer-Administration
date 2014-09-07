@@ -12,7 +12,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageGeneralPermissionAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.permission.addgeneral{/lang}</span>
 						</a>
 					</li>
@@ -21,7 +21,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageUserPermissionAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.permission.adduser{/lang}</span>
 						</a>
 					</li>
@@ -30,7 +30,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageGroupPermissionAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.permission.addgroup{/lang}</span>
 						</a>
 					</li>
@@ -86,7 +86,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageGeneralPermissionAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.permission.addgeneral{/lang}</span>
 						</a>
 					</li>
@@ -95,7 +95,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageGeneralUserAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.permission.adduser{/lang}</span>
 						</a>
 					</li>
@@ -104,7 +104,7 @@
 				<ul>
 					<li>
 						<a href="{link controller='PackageGeneralGroupAdd'}{/link}" title="" class="button">
-							<span class="icon icon16 icon-plus"></span> 
+							<span class="icon icon16 icon-plus"></span>
 							<span>{lang}wcf.acp.packageserver.permission.addgroup{/lang}</span>
 						</a>
 					</li>
