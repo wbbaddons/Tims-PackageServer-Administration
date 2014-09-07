@@ -28,6 +28,7 @@
 		<item name="wcf.acp.packageserver.package.permission.type.general"><![CDATA[General]]></item>
 		<item name="wcf.acp.packageserver.package.permission.type.user"><![CDATA[User]]></item>
 		<item name="wcf.acp.packageserver.package.permission.type.group"><![CDATA[Group]]></item>
+		<item name="wcf.acp.packageserver.package.permission.value"><![CDATA[Value]]></item>
 		
 		<item name="wcf.acp.packageserver.package.generalpermission.add"><![CDATA[Add General Permission]]></item>
 		<item name="wcf.acp.packageserver.package.userpermission.add"><![CDATA[Add User Permission]]></item>

@@ -50,6 +50,7 @@
 				<tr>
 					<th class="columnTitle">{lang}wcf.acp.packageserver.package.identifier{/lang}</th>
 					<th class="columnText">{lang}wcf.acp.packageserver.package.permission.type{/lang}</th>
+					<th class="columnText">{lang}wcf.acp.packageserver.package.permission.value{/lang}</th>
 					
 					{event name='headColumns'}
 				</tr>
@@ -61,6 +62,7 @@
 						<tr>
 							<td class="columnTitle"><p>{$item.packageIdentifier}</p></td>
 							<td class="columnText "><p>{lang}wcf.acp.packageserver.package.permission.type.{$item.type}{/lang}</p></td>
+							<td class="columnText"><p>{$item.permissions}</p></td>
 							
 							{event name='columns'}
 						</tr>
