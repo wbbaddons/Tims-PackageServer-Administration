@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd" languagecode="de">
+	<category name="wcf.acp.menu">
+		<item name="wcf.acp.menu.link.packageserver"><![CDATA[Paketserver]]></item>
+		<item name="wcf.acp.menu.link.packageserver.package.list"><![CDATA[Pakete auflisten]]></item>
+		<item name="wcf.acp.menu.link.packageserver.package.add"><![CDATA[Paket hinzufügen]]></item>
+		<item name="wcf.acp.menu.link.packageserver.package.permissionOverview"><![CDATA[Berechtigungsübersicht]]></item>
+		<item name="wcf.acp.menu.link.packageserver.package.addGeneralPermission"><![CDATA[Allgemeine Berechtigung hinzufügen]]></item>
+		<item name="wcf.acp.menu.link.packageserver.package.addUserPermission"><![CDATA[Nutzerberechtigung hinzufügen]]></item>
+		<item name="wcf.acp.menu.link.packageserver.package.addGroupPermission"><![CDATA[Gruppenberechtigung hinzufügen]]></item>
+	</category>
+	
 	<category name="wcf.acp.packageserver">
 		<item name="wcf.acp.packageserver.package"><![CDATA[Paket]]></item>
 		<item name="wcf.acp.packageserver.packages"><![CDATA[Pakete]]></item>
+		<item name="wcf.acp.packageserver.package.upload"><![CDATA[Paket hochladen]]></item>
+		
+		<item name="wcf.acp.packageserver.package.list"><![CDATA[Pakete]]></item>
+		<item name="wcf.acp.packageserver.package.identifier"><![CDATA[Paketbezeichner]]></item>
+		<item name="wcf.acp.packageserver.package.version"><![CDATA[Version]]></item>
 		
 		<item name="wcf.acp.packageserver.package.add"><![CDATA[Paket hinzufügen]]></item>
+		<item name="wcf.acp.packageserver.package.permissionOverview"><![CDATA[Berechtigungsübersicht]]></item>
 		
-		<item name="wcf.acp.packageserver.package.fail.upload"><![CDATA[Die Datei konnte nicht hochgeladen werden.]]></item>
+		<item name="wcf.acp.packageserver.package.permission"><![CDATA[Berechtigung]]></item>
+		<item name="wcf.acp.packageserver.package.permission.list"><![CDATA[Berechtigungen]]></item>
+		<item name="wcf.acp.packageserver.package.permission.type"><![CDATA[Typ]]></item>
+		<item name="wcf.acp.packageserver.package.permission.type.general"><![CDATA[Allgemein]]></item>
+		<item name="wcf.acp.packageserver.package.permission.type.user"><![CDATA[Benutzer]]></item>
+		<item name="wcf.acp.packageserver.package.permission.type.group"><![CDATA[Benutzergruppe]]></item>
+		
+		<item name="wcf.acp.packageserver.package.generalpermission.add"><![CDATA[Allgemeine Berechtigung hinzufügen]]></item>
+		<item name="wcf.acp.packageserver.package.userpermission.add"><![CDATA[Benutzerberechtigung hinzufügen]]></item>
+		<item name="wcf.acp.packageserver.package.grouppermission.add"><![CDATA[Gruppenberechtigung hinzufügen]]></item>
+		
+		<item name="wcf.acp.packageserver.package.fail.upload"><![CDATA[Beim Hochladen der Datei ist ein Fehler aufgetreten.]]></item>
 		<item name="wcf.acp.packageserver.package.fail.empty"><![CDATA[Es wurde keine Datei ausgewählt.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.tar"><![CDATA[Der Paketserver unterstützt derzeit nur unkomprimierte tar-Archive.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.validation"><![CDATA[Das angegebene Archiv ist kein gültiges Plugin.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.tar"><![CDATA[Derzeit unterstützt Tim’s PackageServer nur unkomprimierte tar-Archive.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.validation"><![CDATA[Das angegebene Archiv ist kein gültiges Paket.]]></item>
 		<item name="wcf.acp.packageserver.package.fail.double"><![CDATA[Das angegebene Paket existiert bereits auf dem Server.]]></item>
 	</category>
 	
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.packageserver"><![CDATA[Paketserver]]></item>
 		<item name="wcf.acp.option.category.packageserver.general"><![CDATA[Allgemein]]></item>
-		<item name="wcf.acp.option.packageserver_buildauth"><![CDATA[auth.json generieren]]></item>
-		<item name="wcf.acp.option.packageserver_dir"><![CDATA[Pfad zum Paketserver]]></item>
+		<item name="wcf.acp.option.packageserver_buildauth"><![CDATA[„auth.json“ automatisch generieren]]></item>
+		<item name="wcf.acp.option.packageserver_buildauth.description"><![CDATA[Generiert anhand der vergegenen Paketberechtigungen eine „auth.json“, die für die Authentifizierung am Paketserver dient.]]></item>
+		<item name="wcf.acp.option.packageserver_dir"><![CDATA[Pfad zu Tim’s PackageServer]]></item>
+		<item name="wcf.acp.option.packageserver_dir.description"><![CDATA[Geben Sie hier den Pfad zum „packages“-Ordner ihrer „Tim’s PackageServer“-Installation an.]]></item>
 	</category>
 </language>

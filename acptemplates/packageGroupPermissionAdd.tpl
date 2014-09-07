@@ -1,9 +1,7 @@
 {include file='header' pageTitle='wcf.acp.packageserver.package.grouppermission.add'}
 
 <header class="boxHeadline">
-	<hgroup>
-		<h1>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</h1>
-	</hgroup>
+	<h1>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</h1>
 </header>
 
 {include file='formError'}
@@ -12,17 +10,13 @@
 	<p class="success">{lang}wcf.global.success.add{/lang}</p>
 {/if}
 
-<div class="contentNavigation">
-
-</div>
-
 <form method="post" action="{link controller='PackageGroupPermissionAdd'}{/link}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
-			<legend>{lang}wcf.acp.packageserver.permission{/lang}</legend>
+			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
 			
 			<dl{if $errorField == 'package'} class="formError"{/if}>
-				<dt><label for="package">{lang}wcf.acp.packageserver.package{/lang}</label></dt>
+				<dt><label for="package">{lang}wcf.acp.packageserver.package.identifier{/lang}</label></dt>
 				<dd>
 					<input type="text" id="package" name="package" value="{$package}" required="required" class="medium" />
 					{if $errorField == 'package'}
@@ -34,7 +28,7 @@
 			</dl>
 			
 			<dl{if $errorField == 'permission'} class="formError"{/if}>
-				<dt><label for="permission">{lang}wcf.acp.packageserver.permission{/lang}</label></dt>
+				<dt><label for="permission">{lang}wcf.acp.packageserver.package.permission{/lang}</label></dt>
 				<dd>
 					<input type="text" id="permission" name="permission" value="{$permission}" required="required" class="medium" />
 					{if $errorField == 'permission'}
@@ -46,7 +40,7 @@
 			</dl>
 			
 			<dl{if $errorField == 'group'} class="formError"{/if}>
-				<dt><label for="group">{lang}wcf.acp.packageserver.group{/lang}</label></dt>
+				<dt><label for="group">{lang}wcf.user.group{/lang}</label></dt>
 				<dd>
 					<select name="groups[]" id="groups" multiple="multiple">
 						{foreach from=$groups item="group"}

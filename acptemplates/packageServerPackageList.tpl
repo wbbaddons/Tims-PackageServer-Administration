@@ -1,7 +1,7 @@
 {include file='header' pageTitle='wcf.acp.packageserver.package.list'}
 
 <header class="boxHeadline">
-	<h1>{lang}admin.packageServer.package.list{/lang}</h1>
+	<h1>{lang}wcf.acp.packageserver.package.list{/lang}</h1>
 </header>
 
 <div class="contentNavigation">
@@ -28,13 +28,13 @@
 {hascontent}
 	<div class="tabularBox tabularBoxTitle marginTop">
 		<header>
-			<h2>{lang}admin.packageServer.package.list{/lang}</h2>
+			<h2>{lang}wcf.acp.packageserver.packages{/lang} <span class="badge badgeInverse">{#$items|count}</span></h2>
 		</header>
 		
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="columnTitle" colspan="2">{lang}wcf.acp.packageserver.package.package{/lang}</th>
+					<th class="columnTitle" colspan="2">{lang}wcf.acp.packageserver.package.identifier{/lang}</th>
 					<th class="columnText">{lang}wcf.acp.packageserver.package.version{/lang}</th>
 					
 					{event name='headColumns'}

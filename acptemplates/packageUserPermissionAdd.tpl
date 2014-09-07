@@ -1,9 +1,7 @@
 {include file='header' pageTitle='wcf.acp.packageserver.package.userpermission.add'}
 
 <header class="boxHeadline">
-	<hgroup>
-		<h1>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</h1>
-	</hgroup>
+	<h1>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</h1>
 </header>
 
 {include file='formError'}
@@ -12,17 +10,13 @@
 	<p class="success">{lang}wcf.global.success.add{/lang}</p>
 {/if}
 
-<div class="contentNavigation">
-
-</div>
-
 <form method="post" action="{link controller='PackageUserPermissionAdd'}{/link}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
-			<legend>{lang}wcf.acp.packageserver.permission{/lang}</legend>
+			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
 
 			<dl{if $errorField == 'package'} class="formError"{/if}>
-				<dt><label for="package">{lang}wcf.acp.packageserver.package{/lang}</label></dt>
+				<dt><label for="package">{lang}wcf.acp.packageserver.package.identifier{/lang}</label></dt>
 				<dd>
 					<input type="text" id="package" value="{$package}" name="package" required="required" class="medium" />
 					{if $errorField == 'package'}
@@ -34,7 +28,7 @@
 			</dl>
 				
 			<dl{if $errorField == 'permission'} class="formError"{/if}>
-				<dt><label for="permission">{lang}wcf.acp.packageserver.permission{/lang}</label></dt>
+				<dt><label for="permission">{lang}wcf.acp.packageserver.package.permission{/lang}</label></dt>
 				<dd>
 					<input type="text" id="permission" value="{$permission}" name="permission" required="required" class="medium" />
 					{if $errorField == 'permission'}
@@ -46,7 +40,7 @@
 			</dl>
 				
 			<dl{if $errorField == 'username'} class="formError"{/if}>
-				<dt><label for="username">{lang}wcf.acp.packageserver.username{/lang}</label></dt>
+				<dt><label for="username">{lang}wcf.user.username{/lang}</label></dt>
 				<dd>
 					<input type="text" id="username" name="username" value="{foreach from=$user item=$u}{$u->username}, {/foreach}" required="required" class="medium" />
 					{if $errorField == 'username'}

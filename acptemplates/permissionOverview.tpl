@@ -13,21 +13,21 @@
 						<li>
 							<a href="{link controller='PackageGeneralPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.addgeneral{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.package.generalpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageUserPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.adduser{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageGroupPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.addgroup{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</span>
 							</a>
 						</li>
 					</ul>
@@ -42,14 +42,14 @@
 {hascontent}
 	<div class="tabularBox tabularBoxTitle marginTop">
 		<header>
-			<h2>{lang}wcf.acp.packageserver.permission.list{/lang}</h2>
+			<h2>{lang}wcf.acp.packageserver.package.permission.list{/lang} <span class="badge badgeInverse">{#$items|count}</span></h2>
 		</header>
 		
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="columnTitle">{lang}wcf.acp.packageserver.permission.package{/lang}</th>
-					<th class="columnText">{lang}wcf.acp.packageserver.permission.type{/lang}</th>
+					<th class="columnTitle">{lang}wcf.acp.packageserver.package.identifier{/lang}</th>
+					<th class="columnText">{lang}wcf.acp.packageserver.package.permission.type{/lang}</th>
 					
 					{event name='headColumns'}
 				</tr>
@@ -60,7 +60,7 @@
 					{foreach from=$items item=item}
 						<tr>
 							<td class="columnTitle"><p>{$item.packageIdentifier}</p></td>
-							<td class="columnText "><p>{lang}wcf.acp.packageserver.permission.type.{$item.type}{/lang}</p></td>
+							<td class="columnText "><p>{lang}wcf.acp.packageserver.package.permission.type.{$item.type}{/lang}</p></td>
 							
 							{event name='columns'}
 						</tr>
@@ -71,7 +71,7 @@
 		
 	</div>
 {hascontentelse}
-	<p class="info">{lang}wcf.acp.packageserver.permission.noresults{/lang}</p>
+	<p class="info">{lang}wcf.acp.packageserver.package.permission.noresults{/lang}</p>
 {/hascontent}
 
 <div class="contentNavigation">
@@ -83,21 +83,21 @@
 						<li>
 							<a href="{link controller='PackageGeneralPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.addgeneral{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.package.generalpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageGeneralUserAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.adduser{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageGeneralGroupAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.addgroup{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</span>
 							</a>
 						</li>
 					</ul>

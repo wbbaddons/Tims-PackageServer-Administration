@@ -6,42 +6,42 @@
 			<permissions>admin.packageServer.canAddPackage</permissions>
 		</acpmenuitem>
 		
-		<acpmenuitem name="wcf.acp.menu.link.packageserver.list">
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.package.list">
 			<controller><![CDATA[wcf\acp\page\PackageServerPackageListPage]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPackage</permissions>
 			<showorder>1</showorder>
 		</acpmenuitem>
 		
-		<acpmenuitem name="wcf.acp.menu.link.packageserver.add">
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.package.add">
 			<controller><![CDATA[wcf\acp\form\PackageAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPackage</permissions>
 			<showorder>2</showorder>
 		</acpmenuitem>
 		
-		<acpmenuitem name="wcf.acp.menu.link.packageserver.permissionOverview">
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.package.permissionOverview">
 			<controller><![CDATA[wcf\acp\page\PermissionOverviewPage]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>
 			<showorder>3</showorder>
 		</acpmenuitem>
 		
-		<acpmenuitem name="wcf.acp.menu.link.packageserver.addGeneralPermission">
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.package.addGeneralPermission">
 			<controller><![CDATA[wcf\acp\form\PackageGeneralPermissionAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>
 			<showorder>4</showorder>
 		</acpmenuitem>
 		
-		<acpmenuitem name="wcf.acp.menu.link.packageserver.addUserPermission">
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.package.addUserPermission">
 			<controller><![CDATA[wcf\acp\form\PackageUserPermissionAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>
 			<showorder>5</showorder>
 		</acpmenuitem>
 		
-		<acpmenuitem name="wcf.acp.menu.link.packageserver.addGroupPermission">
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.package.addGroupPermission">
 			<controller><![CDATA[wcf\acp\form\PackageGroupPermissionAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>

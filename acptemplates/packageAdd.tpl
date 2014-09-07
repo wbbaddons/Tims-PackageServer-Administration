@@ -1,9 +1,7 @@
 {include file='header' pageTitle='wcf.acp.packageserver.package.add'}
 
 <header class="boxHeadline">
-	<hgroup>
-		<h1>{lang}wcf.acp.packageserver.package.add{/lang}</h1>
-	</hgroup>
+	<h1>{lang}wcf.acp.packageserver.package.add{/lang}</h1>
 </header>
 
 {include file='formError'}
@@ -12,16 +10,13 @@
 	<p class="success">{lang}wcf.global.success.add{/lang}</p>
 {/if}
 
-<div class="contentNavigation">
-</div>
-
 <form enctype="multipart/form-data" method="post" action="{link controller='PackageAdd'}{/link}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
-			<legend>{lang}wcf.acp.packageserver.package{/lang}</legend>
+			<legend>{lang}wcf.acp.packageserver.package.upload{/lang}</legend>
 			
 			<dl{if $errorField == 'package'} class="formError"{/if}>
-				<dt><label for="package">{lang}wcf.acp.packageserver.package{/lang}</label></dt>
+				<dt><label for="package">{lang}wcf.acp.packageserver.package.upload{/lang}</label></dt>
 				<dd>
 					<input type="file" id="package" name="package" required="required" autofocus="autofocus" class="medium" />
 					{if $errorField == 'package'}

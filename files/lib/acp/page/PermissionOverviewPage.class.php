@@ -15,7 +15,7 @@ class PermissionOverviewPage extends \wcf\page\AbstractPage {
 	/**
 	 * @see	wcf\page\AbstractPage::$activeMenuItem
 	 */
-	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.permissionOverview';
+	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.permissionOverview';
 	
 	/**
 	 * all permission items

@@ -17,7 +17,7 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 	/**
 	 * @see	wcf\page\AbstractPage::$activeMenuItem
 	 */
-	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.list';
+	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.list';
 
 	/**
 	 * all packages with versions
