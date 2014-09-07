@@ -36,7 +36,7 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 		foreach ($files as $file) {
 			$package = $file->getPathInfo()->getBasename();
 			if (!isset($this->items[$package])) $this->items[$package] = array();
-			$this->items[$package][] = $file->getBasename();
+			$this->items[$package][] = substr($file->getBasename(), 0, -4);
 		}
 	}
 

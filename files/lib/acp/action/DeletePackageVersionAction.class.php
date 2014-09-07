@@ -1,6 +1,7 @@
 <?php
 namespace wcf\acp\action;
 use wcf\action\AbstractAction;
+use wcf\util\HeaderUtil; 
 
 class DeletePackageVersionAction extends AbstractAction {
 	/**
