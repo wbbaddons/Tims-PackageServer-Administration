@@ -11,7 +11,7 @@ use wcf\util\PackageServerUtil;
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
  */
-class PackageUserPermissionAddForm extends AbstractForm {
+class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.addUserPermission';
 	
 	public $neededPermissions = array('admin.packageServer.canAddPermissions');

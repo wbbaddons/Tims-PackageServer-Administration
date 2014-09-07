@@ -11,7 +11,7 @@ use wcf\system\WCF;
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
  */
-class PermissionOverviewPage extends \wcf\page\AbstractPage {
+class PackageServerPackagePermissionOverviewPage extends \wcf\page\AbstractPage {
 	/**
 	 * @see	wcf\page\AbstractPage::$activeMenuItem
 	 */

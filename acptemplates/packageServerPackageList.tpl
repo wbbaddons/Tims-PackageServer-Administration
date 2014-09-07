@@ -28,7 +28,7 @@
 {hascontent}
 	<div class="tabularBox tabularBoxTitle marginTop">
 		<header>
-			<h2>{lang}wcf.acp.packageserver.packages{/lang} <span class="badge badgeInverse">{#$items|count}</span></h2>
+			<h2>{lang}wcf.acp.packageserver.packages{/lang} <span class="badge badgeInverse">{#$versionCount}</span></h2>
 		</header>
 		
 		<table class="table">
@@ -47,7 +47,7 @@
 						{foreach from=$versions item=version}
 							<tr>
 								<td class="columnIcon">
-									<a href="{link controller='DeletePackageVersion' package=$package version=$version}{/link}" title="Löschen" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
+									<a href="{link controller='PackageServerDeletePackageVersion' package=$package version=$version}{/link}" title="Löschen" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
 								</td>
 								<td class="columnTitle"><p>{$package}</p></td>
 								<td class="columnText"><p>{$version}</p></td>

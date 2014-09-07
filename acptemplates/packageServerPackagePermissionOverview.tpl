@@ -11,21 +11,21 @@
 				{if $__wcf->session->getPermission('admin.packageServer.canAddPermissions')}
 					<ul>
 						<li>
-							<a href="{link controller='PackageGeneralPermissionAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.generalpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
-							<a href="{link controller='PackageUserPermissionAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
-							<a href="{link controller='PackageGroupPermissionAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</span>
 							</a>
@@ -83,21 +83,21 @@
 				{if $__wcf->session->getPermission('admin.packageServer.canAddPermissions')}
 					<ul>
 						<li>
-							<a href="{link controller='PackageGeneralPermissionAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.generalpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
-							<a href="{link controller='PackageGeneralUserAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageGeneralUserAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
-							<a href="{link controller='PackageGeneralGroupAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageGeneralGroupAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</span>
 							</a>

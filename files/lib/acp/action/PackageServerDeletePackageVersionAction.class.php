@@ -3,7 +3,7 @@ namespace wcf\acp\action;
 use wcf\action\AbstractAction;
 use wcf\util\HeaderUtil;
 
-class DeletePackageVersionAction extends AbstractAction {
+class PackageServerDeletePackageVersionAction extends AbstractAction {
 	/**
 	 * @see	\wcf\action\AbstractAction::$neededPermissions
 	 */
@@ -26,7 +26,7 @@ class DeletePackageVersionAction extends AbstractAction {
 			throw new \wcf\system\exception\SystemException('could not delete package');
 		}
 		
-		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('PackageList'));
+		HeaderUtil::redirect(\wcf\system\request\LinkHandler::getInstance()->getLink('PackageServerPackageList'));
 		exit;
 	}
 }

@@ -10,7 +10,7 @@
 	<p class="success">{lang}wcf.global.success.add{/lang}</p>
 {/if}
 
-<form enctype="multipart/form-data" method="post" action="{link controller='PackageAdd'}{/link}">
+<form enctype="multipart/form-data" method="post" action="{link controller='PackageServerPackageAdd'}{/link}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.package.upload{/lang}</legend>

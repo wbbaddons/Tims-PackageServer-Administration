@@ -23,6 +23,9 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 	 */
 	public $items = array();
 	
+	public $packageCount = 0;
+	public $versionCount = 0;
+	
 	/**
 	 * @see	\wcf\page\IPage::readData()
 	 */
@@ -35,12 +38,16 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 		foreach ($files as $file) {
 			$package = $file->getPathInfo()->getBasename();
 			
-			if (!isset($this->items[$package])) $this->items[$package] = array();
+			if (!isset($this->items[$package])) {
+				$this->items[$package] = array();
+				$this->packageCount++;
+			}
 			
 			$this->items[$package][] = substr($file->getBasename(), 0, -4);
+			$this->versionCount++;
 		}
 	}
-
+	
 	/**
 	 * @see	\wcf\page\IPage::assignVariables()
 	 */
@@ -48,7 +55,9 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 		parent::assignVariables();
 		
 		WCF::getTPL()->assign(array(
-			'items' => $this->items
+			'items' => $this->items,
+			'packageCount' => $this->packageCount,
+			'versionCount' => $this->versionCount
 		));
 	}
 }

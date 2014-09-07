@@ -10,7 +10,7 @@
 	<p class="success">{lang}wcf.global.success.add{/lang}</p>
 {/if}
 
-<form method="post" action="{link controller='PackageUserPermissionAdd'}{/link}">
+<form method="post" action="{link controller='PackageServerPackageUserPermissionAdd'}{/link}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
