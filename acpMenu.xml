@@ -6,39 +6,46 @@
 			<permissions>admin.packageServer.canAddPackage</permissions>
 		</acpmenuitem>
 		
+		<acpmenuitem name="wcf.acp.menu.link.packageserver.list">
+			<controller><![CDATA[wcf\acp\page\PackageServerPackageListPage]]></controller>
+			<parent>wcf.acp.menu.link.packageserver</parent>
+			<permissions>admin.packageServer.canAddPackage</permissions>
+			<showorder>1</showorder>
+		</acpmenuitem>
+		
 		<acpmenuitem name="wcf.acp.menu.link.packageserver.add">
 			<controller><![CDATA[wcf\acp\form\PackageAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPackage</permissions>
-			<showorder>1</showorder>
+			<showorder>2</showorder>
 		</acpmenuitem>
 		
 		<acpmenuitem name="wcf.acp.menu.link.packageserver.permissionOverview">
 			<controller><![CDATA[wcf\acp\page\PermissionOverviewPage]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>
-			<showorder>2</showorder>
+			<showorder>3</showorder>
 		</acpmenuitem>
 		
 		<acpmenuitem name="wcf.acp.menu.link.packageserver.addGeneralPermission">
 			<controller><![CDATA[wcf\acp\form\PackageGeneralPermissionAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>
-			<showorder>3</showorder>
+			<showorder>4</showorder>
 		</acpmenuitem>
 		
 		<acpmenuitem name="wcf.acp.menu.link.packageserver.addUserPermission">
 			<controller><![CDATA[wcf\acp\form\PackageUserPermissionAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>
-			<showorder>4</showorder>
+			<showorder>5</showorder>
 		</acpmenuitem>
 		
 		<acpmenuitem name="wcf.acp.menu.link.packageserver.addGroupPermission">
 			<controller><![CDATA[wcf\acp\form\PackageGroupPermissionAddForm]]></controller>
 			<parent>wcf.acp.menu.link.packageserver</parent>
 			<permissions>admin.packageServer.canAddPermissions</permissions>
-			<showorder>5</showorder>
+			<showorder>6</showorder>
 		</acpmenuitem>
 	</import>
 </data>

@@ -1,8 +1,9 @@
 <?php
+
 namespace wcf\acp\page;
 
 use wcf\system\WCF;
-use wcf\util\PackageServerUtil; 
+use wcf\util\PackageServerUtil;
 
 /**
  * Represents a list of all permissions
@@ -17,52 +18,36 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 	 * @see	wcf\page\AbstractPage::$activeMenuItem
 	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.packageList';
-	
+
 	/**
 	 * all packages with versions
 	 * @var array<mixed> 
 	 */
-	public $items = array(); 
-	
+	public $items = array();
+
 	/**
 	 * @see	\wcf\page\IPage::readData()
 	 */
 	public function readData() {
 		parent::readData();
-		
-		$handle = opendir(PackageServerUtil::getPackageServerPath()); 
-		
-		if (!$handle) {
-			throw new \wcf\system\exception\SystemException('could not open package dir');
-		}
-		
-		while (false !== ($file = readdir($handle))) {
-			if ($file != '.' && $file != '..' && is_dir($file)) {
-				$this->items[$file] = array(); 
-				
-				$versionHandle = opendir(PackageServerUtil::getPackageServerPath().$file); 
-				
-				if (!$versionHandle) {
-					throw new \wcf\system\exception\SystemException('could not open package dir ('.$file.')');
-				}
-				
-				while(false !== ($version = readdir($versionHandle))) {
-					if (!is_dir($version)) {
-						$this->items[$file][] = mb_substr($version, 0, -4); // remove .tar :) 
-					}
-				}
-			}
+
+		$handle = \wcf\util\DirectoryUtil::getInstance(PackageServerUtil::getPackageServerPath());
+		$files = $handle->getFileObjects(SORT_ASC, new \wcf\system\Regex('[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+/.*\.tar'));
+		foreach ($files as $file) {
+			$package = $file->getPathInfo()->getBasename();
+			if (!isset($this->items[$package])) $this->items[$package] = array();
+			$this->items[$package][] = $file->getBasename();
 		}
 	}
-	
+
 	/**
 	 * @see	\wcf\page\IPage::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
-		
+
 		WCF::getTPL()->assign(array(
-			'items' => $this->items
+		    'items' => $this->items
 		));
 	}
 }
