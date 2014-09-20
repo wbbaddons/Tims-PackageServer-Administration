@@ -17,6 +17,8 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\AbstractPage 
 	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.permissionOverview';
 	
+	public $neededPermissions = array('admin.packageServer.canManagePackages');
+	
 	/**
 	 * all permission items
 	 * @var array<mixed>

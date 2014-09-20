@@ -32,6 +32,8 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 	public function readData() {
 		parent::readData();
 		
+		if (!is_dir(PackageServerUtil::getPackageServerPath())) throw new \wcf\system\exception\NamedUserException(WCF::getLanguage()->getDynamicVariable('wcf.acp.packageserver.error.invalidPath'));
+		
 		$handle = \wcf\util\DirectoryUtil::getInstance(PackageServerUtil::getPackageServerPath());
 		$files = $handle->getFileObjects(SORT_ASC, new \wcf\system\Regex('[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+/.*\.tar'));
 		

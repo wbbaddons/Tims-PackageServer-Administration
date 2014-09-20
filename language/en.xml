@@ -40,6 +40,8 @@
 		<item name="wcf.acp.packageserver.package.fail.tar"><![CDATA[Currently only uncompressed tar archives are supported by Tim’s PackageServer.]]></item>
 		<item name="wcf.acp.packageserver.package.fail.validation"><![CDATA[The uploaded archive is invalid.]]></item>
 		<item name="wcf.acp.packageserver.package.fail.double"><![CDATA[The uploaded package is already existing on the server.]]></item>
+		
+		<item name="wcf.acp.packageserver.error.invalidPath"><![CDATA[The entered package directory “{'PACKAGESERVER_DIR'|constant}” could not be found.]]></item>
 	</category>
 	
 	<category name="wcf.acp.option">

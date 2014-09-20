@@ -41,6 +41,15 @@ class PackageServerPackageAddForm extends AbstractForm {
 	/**
 	 * @see	\wcf\page\IPage::readData()
 	 */
+	public function readData() {
+		if (!is_dir(PackageServerUtil::getPackageServerPath())) {
+			throw new \wcf\system\exception\NamedUserException(WCF::getLanguage()->getDynamicVariable('wcf.acp.packageserver.error.invalidPath'));
+		}
+	}
+	
+	/**
+	 * @see	\wcf\form\IForm::readFormParameters()
+	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
@@ -54,7 +63,7 @@ class PackageServerPackageAddForm extends AbstractForm {
 	 */
 	public function validate() {
 		parent::validate();
-
+		
 		if (empty($this->upload['name'])) {
 			throw new UserInputException('package', 'empty');
 		}
