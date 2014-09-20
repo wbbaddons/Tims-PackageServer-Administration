@@ -49,4 +49,11 @@
 		<item name="wcf.acp.option.packageserver_dir"><![CDATA[Pfad zu Tim’s PackageServer]]></item>
 		<item name="wcf.acp.option.packageserver_dir.description"><![CDATA[Geben Sie hier den Pfad zum „packages“-Ordner ihrer „Tim’s PackageServer“-Installation an.]]></item>
 	</category>
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.admin.packageServer"><![CDATA[Paketserver]]></item>
+		<item name="wcf.acp.group.option.admin.packageServer.canAddPackage"><![CDATA[Kann Pakete hinzufügen]]></item>
+		<item name="wcf.acp.group.option.admin.packageServer.canDeletePackage"><![CDATA[Kann Pakete löschen]]></item>
+		<item name="wcf.acp.group.option.admin.packageServer.canAddPermissions"><![CDATA[Kann Rechte hinzufügen]]></item>
+	</category>
 </language>
