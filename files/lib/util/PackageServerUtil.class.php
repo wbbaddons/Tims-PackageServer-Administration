@@ -33,6 +33,8 @@ final class PackageServerUtil {
 	 * @param	array	$content
 	 */
 	public static function writeAuthFile(array $content) {
+		if (!is_dir(self::getPackageServerPath())) return false;
+		
 		// generate temporary auth file
 		$temporaryFile = FileUtil::getTemporaryFilename();
 		file_put_contents($temporaryFile, json_encode($content, JSON_PRETTY_PRINT));
