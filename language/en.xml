@@ -18,6 +18,7 @@
 		<item name="wcf.acp.packageserver.package.list"><![CDATA[Packages]]></item>
 		<item name="wcf.acp.packageserver.package.identifier"><![CDATA[Package Identifier]]></item>
 		<item name="wcf.acp.packageserver.package.version"><![CDATA[Version]]></item>
+		<item name="wcf.acp.packageserver.package.noresults"><![CDATA[No packages found]]></item>
 		
 		<item name="wcf.acp.packageserver.package.add"><![CDATA[Add Package]]></item>
 		<item name="wcf.acp.packageserver.package.permissionOverview"><![CDATA[Permission Overview]]></item>
