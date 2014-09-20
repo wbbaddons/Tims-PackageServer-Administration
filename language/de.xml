@@ -52,8 +52,6 @@
 	
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.category.admin.packageServer"><![CDATA[Paketserver]]></item>
-		<item name="wcf.acp.group.option.admin.packageServer.canAddPackage"><![CDATA[Kann Pakete hinzufügen]]></item>
-		<item name="wcf.acp.group.option.admin.packageServer.canDeletePackage"><![CDATA[Kann Pakete löschen]]></item>
-		<item name="wcf.acp.group.option.admin.packageServer.canAddPermissions"><![CDATA[Kann Rechte hinzufügen]]></item>
+		<item name="wcf.acp.group.option.admin.packageServer.canManagePackages"><![CDATA[Kann Pakete verwalten]]></item>
 	</category>
 </language>

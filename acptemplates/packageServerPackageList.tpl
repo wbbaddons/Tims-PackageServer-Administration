@@ -8,7 +8,7 @@
 	{hascontent}
 		<nav>
 			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canAddPackage')}
+				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
 					<ul>
 						<li>
 							<a href="{link controller='PackageAdd'}{/link}" title="" class="button">
@@ -68,7 +68,7 @@
 	{hascontent}
 		<nav>
 			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canAddPackage')}
+				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
 					<ul>
 						<li>
 							<a href="{link controller='PackageAdd'}{/link}" title="" class="button">

@@ -14,7 +14,7 @@ use wcf\util\PackageServerUtil;
 class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.addGroupPermission';
 	
-	public $neededPermissions = array('admin.packageServer.canAddPermissions');
+	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
 	public $packageIdentifer = '';
 	

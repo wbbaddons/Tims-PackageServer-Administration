@@ -8,7 +8,7 @@
 	{hascontent}
 		<nav>
 			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canAddPermissions')}
+				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
 					<ul>
 						<li>
 							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
@@ -80,7 +80,7 @@
 	{hascontent}
 		<nav>
 			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canAddPermissions')}
+				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
 					<ul>
 						<li>
 							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">

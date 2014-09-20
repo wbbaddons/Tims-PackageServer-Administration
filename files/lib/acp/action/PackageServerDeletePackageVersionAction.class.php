@@ -7,7 +7,7 @@ class PackageServerDeletePackageVersionAction extends AbstractAction {
 	/**
 	 * @see	\wcf\action\AbstractAction::$neededPermissions
 	 */
-	public $neededPermissions = array('admin.packageServer.canDeletePackage');
+	public $neededPermissions = array('admin.packageServer.canManagePackages');
 
 	/**
 	 * @see	\wcf\action\IAction::execute()
