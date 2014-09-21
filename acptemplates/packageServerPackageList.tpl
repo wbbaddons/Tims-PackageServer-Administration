@@ -47,7 +47,7 @@
 						{foreach from=$versions item=version}
 							<tr>
 								<td class="columnIcon">
-									<a href="{link controller='PackageServerDeletePackageVersion' package=$package version=$version}{/link}" title="Löschen" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
+									<a href="{link controller='PackageServerDeletePackageVersion' package=$package version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
 								</td>
 								<td class="columnTitle"><p>{$package}</p></td>
 								<td class="columnText"><p>{$version}</p></td>
