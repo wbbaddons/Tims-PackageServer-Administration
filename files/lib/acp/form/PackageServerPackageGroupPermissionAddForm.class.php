@@ -21,7 +21,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	/**
 	 * @see	\wcf\page\AbstractPage::$neededPermissions
 	 */
-#	public $neededPermissions = array('admin.packageServer.canManagePackages');
+	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
 	public $packageIdentifier = '';
 	public $permissionString = '';
