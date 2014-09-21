@@ -1,42 +1,50 @@
 <?php
 namespace wcf\acp\form;
 use wcf\form\AbstractForm;
+use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
 
 /**
  * A form for add package permissions
  *
- * @author		Joshua Rüsweg
+ * @author		Tim Düsterhus, Joshua Rüsweg
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
  */
 class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
+	/**
+	 * @see	\wcf\page\AbstractPage::$activeMenuItem
+	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.addGroupPermission';
 	
-	public $neededPermissions = array('admin.packageServer.canManagePackages');
+	/**
+	 * @see	\wcf\page\AbstractPage::$neededPermissions
+	 */
+#	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
-	public $packageIdentifer = '';
+	public $packageIdentifier = '';
+	public $permissionString = '';
+	public $groupIDs = array();
+	public $groupList = null;
 	
-	public $permission = '';
-	
-	public $groupIDs = '';
-	
-	public $groups = array();
-	
-	public $groupList = array();
+	/**
+	* @see	\wcf\page\IPage::readParameters()
+	*/
+	public function readParameters() {
+		parent::readParameters();
+		
+		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
+	}
 	
 	/**
 	 * @see	\wcf\page\IPage::readData()
 	 */
 	public function readData() {
-		parent::readData();
-		
-		if (isset($_GET['package'])) {
-			$this->packageIdentifer = $_GET['package'];
-		}
-		
 		$this->groupList = new \wcf\data\user\group\UserGroupList();
+		$this->groupList->getConditionBuilder()->add('groupType NOT IN (?)', array(\wcf\data\user\group\UserGroup::EVERYONE));
+		
+		parent::readData();
 	}
 	
 	/**
@@ -45,42 +53,36 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['permission'])) {
-			$this->permission = $_POST['permission'];
-		}
-		
-		if (isset($_POST['package'])) {
-			$this->packageIdentifer = $_POST['package'];
-		}
-		
-		if (isset($_POST['groups'])) {
-			$this->groupIDs = $_POST['groups'];
-		}
-		
-		foreach ($this->groupIDs as $group) {
-			$this->groups[] = new \wcf\data\user\group\UserGroup($group);
-		}
+		if (isset($_POST['permissionString'])) $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
+		if (isset($_POST['groupsIDs'])) $this->groupIDs = \wcf\util\ArrayUtil::toIntegerArray($_POST['groupIDs']);
 	}
 	
+	/**
+	 * @see	\wcf\form\IForm::validate()
+	 */
 	public function validate() {
 		parent::validate();
 		
+		if (empty($this->packageIdentifier)) {
+			throw new UserInputException('packageIdentifier');
+		}
+		
+		if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
+			throw new UserInputException('packageIdentifier', 'notValid');
+		}
+		
+		if (empty($this->permissionString)) {
+			throw new UserInputException('permissionString');
+		}
+		
 		if (empty($this->groups)) {
-			throw new \wcf\system\exception\UserInputException('group');
+			throw new UserInputException('groupIDs');
 		}
 		
-		foreach ($this->groups as $group) {
-			if ($group->getObjectID() == 0) {
-				throw new \wcf\system\exception\UserInputException('group');
+		foreach ($this->groupsIDs as $groupID) {
+			if ($this->groupList->search($groupID) === null) {
+				throw new UserInputException('groupIDs', 'notValid');
 			}
-		}
-		
-		if (empty($this->packageIdentifer)) {
-			throw new \wcf\system\exception\UserInputException('package');
-		}
-		
-		if (empty($this->permission)) {
-			throw new \wcf\system\exception\UserInputException('permission');
 		}
 	}
 	
@@ -95,23 +97,22 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 			VALUES
 				(?, ?, ?)";
 		$stmt = WCF::getDB()->prepareStatement($sql);
-		foreach ($this->groups as $group) $stmt->execute(array($this->packageIdentifer, $this->permission, $group));
+		foreach ($this->groupIDs as $groupID) {
+			$stmt->execute(array($this->packageIdentifier, $this->permission, $groupID));
+		}
 		
 		// regenerate auth file @TODO, better solution work in progress
 		PackageServerUtil::generateAuthFile();
 		
 		$this->saved();
-	}
-	
-	public function saved() {
-		parent::saved();
 		
-		$this->packageIdentifer = $this->permission = "";
-		
-		$this->groups = array();
+		$this->packageIdentifier = $this->permissionString = "";
+		$this->groupIDs = array();
 		
 		// show success
-		WCF::getTPL()->assign('success', true);
+		WCF::getTPL()->assign(array(
+			'success' => true
+		));
 	}
 	
 	public function assignVariables() {
@@ -120,10 +121,10 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 		$this->groupList->readObjects();
 		
 		WCF::getTPL()->assign(array(
-			'permission' => $this->permission,
-			'package' => $this->packageIdentifer,
-			'group' => $this->groups,
-			'groups' => $this->groupList->getObjects()
+			'permissionString' => $this->permissionString,
+			'packageIdentifier' => $this->packageIdentifier,
+			'groupIDs' => $this->groupIDs,
+			'availableGroups' => $this->groupList
 		));
 	}
 }

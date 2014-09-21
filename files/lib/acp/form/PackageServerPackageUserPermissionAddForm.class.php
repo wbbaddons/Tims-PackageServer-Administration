@@ -34,7 +34,7 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	public function readParameters() {
 		parent::readParameters();
 		
-		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = $_REQUEST['packageIdentifier'];
+		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
 	}
 	
 	/**
@@ -43,7 +43,7 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['permissionString'])) $this->permissionString = $_POST['permissionString'];
+		if (isset($_POST['permissionString'])) $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
 		if (isset($_POST['usernames'])) $this->usernames = array_filter(\wcf\util\ArrayUtil::trim(explode(',', $_POST['usernames'])));
 	}
 	
