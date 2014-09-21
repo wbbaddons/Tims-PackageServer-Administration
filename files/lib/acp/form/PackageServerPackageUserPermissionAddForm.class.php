@@ -1,38 +1,40 @@
 <?php
 namespace wcf\acp\form;
 use wcf\form\AbstractForm;
+use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
 
 /**
  * A form for add package permissions
  *
- * @author		Joshua Rüsweg
+ * @author		Tim Düsterhus, Joshua Rüsweg
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
  */
 class PackageServerPackageUserPermissionAddForm extends AbstractForm {
+	/**
+	 * @see	\wcf\page\AbstractPage::$activeMenuItem
+	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.addUserPermission';
 	
+	/**
+	 * @see	\wcf\page\AbstractPage::$neededPermissions
+	 */
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
-	public $packageIdentifer = '';
-	
-	public $permission = '';
-	
-	public $username = '';
-	
-	public $user = array();
+	public $packageIdentifier = '';
+	public $permissionString = '';
+	public $usernames = array();
+	public $userList = null;
 	
 	/**
-	 * @see	\wcf\page\IPage::readData()
+	 * @see	\wcf\page\IPage::readParameters()
 	 */
-	public function readData() {
-		parent::readData();
+	public function readParameters() {
+		parent::readParameters();
 		
-		if (isset($_GET['package'])) {
-			$this->packageIdentifer = $_GET['package'];
-		}
+		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = $_REQUEST['packageIdentifier'];
 	}
 	
 	/**
@@ -41,61 +43,42 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['package'])) {
-			$this->packageIdentifer = $_POST['package'];
-		}
-		
-		if (isset($_POST['permission'])) {
-			$this->permission = $_POST['permission'];
-		}
-		
-		if (isset($_POST['username'])) {
-			$this->username = $_POST['username'];
-		}
-		
-		if (empty($this->username)) {
-			$this->username = array();
-		} else {
-			$this->username = explode(',', $this->username);
-			
-			$this->username = array_map(function ($name) {
-				return trim($name);
-			}, $this->username);
-		}
-		
-		foreach ($this->username as $user) {
-			$this->user[$user] = \wcf\data\user\User::getUserByUsername($user);
-		}
+		if (isset($_POST['permissionString'])) $this->permissionString = $_POST['permissionString'];
+		if (isset($_POST['usernames'])) $this->usernames = array_filter(\wcf\util\ArrayUtil::trim(explode(',', $_POST['usernames'])));
 	}
 	
+	/**
+	* @see	\wcf\form\IForm::validate()
+	*/
 	public function validate() {
 		parent::validate();
 		
-		try {
-			foreach ($this->user as $username => $object) {
-				if ($object->getObjectID() == 0) {
-					throw new \wcf\system\exception\UserInputException('username', $username);
-				}
-			}
+		if (empty($this->packageIdentifier)) {
+			throw new UserInputException('packageIdentifier');
 		}
-		catch (\wcf\system\exception\UserInputException $e) {
-			// remove all invalid objects for the template
-			foreach ($this->user as $username => $object) {
-				if ($object->getObjectID() == 0) {
-					unset($this->user[$username]);
-				}
-			}
+		
+		if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
+			throw new UserInputException('packageIdentifier', 'notValid');
+		}
+		
+		if (empty($this->permissionString)) {
+			throw new UserInputException('permissionString');
+		}
+		
+		$this->userList = new \wcf\data\user\UserList();
+		$this->userList->getConditionBuilder()->add('username IN (?)', array($this->usernames));
+		$this->userList->readObjects();
+		
+		$tmp = array();
+		foreach ($this->userList as $user) $tmp[mb_strtolower($user->username)] = $user->username;
+		
+		$difference = array_diff_key(array_map('mb_strtolower', $this->usernames), $tmp);
+		if (!empty($difference)) {
+			WCF::getTPL()->assign(array(
+				'unknownUsers' => $difference
+			));
 			
-			// throw up :)
-			throw $e;
-		}
-		
-		if (empty($this->packageIdentifer)) {
-			throw new \wcf\system\exception\UserInputException('package');
-		}
-		
-		if (empty($this->permission)) {
-			throw new \wcf\system\exception\UserInputException('permission');
+			throw new UserInputException('usernames', 'notFound');
 		}
 	}
 	
@@ -110,32 +93,34 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 			VALUES
 				(?, ?, ?)";
 		$stmt = WCF::getDB()->prepareStatement($sql);
-		foreach ($this->user as $user) $stmt->execute(array($this->packageIdentifer, $this->permission, $user->userID));
+		foreach ($this->userList as $user) {
+			$stmt->execute(array($this->packageIdentifier, $this->permissionString, $user->userID));
+		}
 		
 		// regenerate auth file @TODO, better solution work in progress
 		PackageServerUtil::generateAuthFile();
 		
 		$this->saved();
-	}
-	
-	public function saved() {
-		parent::saved();
 		
-		$this->packageIdentifer = $this->permission = "";
-		
-		$this->user = array();
+		$this->packageIdentifier = $this->permissionString = "";
+		$this->usernames = array();
 		
 		// show success
-		WCF::getTPL()->assign('success', true);
+		WCF::getTPL()->assign(array(
+			'success' => true
+		));
 	}
 	
+	/**
+	 * @see	\wcf\form\IForm::assignVariables()
+	 */
 	public function assignVariables() {
 		parent::assignVariables();
 		
 		WCF::getTPL()->assign(array(
-			'permission' => $this->permission,
-			'package' => $this->packageIdentifer,
-			'user' => $this->user
+			'permissionString' => $this->permissionString,
+			'packageIdentifier' => $this->packageIdentifier,
+			'usernames' => $this->usernames
 		));
 	}
 }

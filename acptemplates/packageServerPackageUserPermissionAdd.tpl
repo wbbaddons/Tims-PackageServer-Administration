@@ -15,25 +15,33 @@
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
 
-			<dl{if $errorField == 'package'} class="formError"{/if}>
-				<dt><label for="package">{lang}wcf.acp.packageserver.package.identifier{/lang}</label></dt>
+			<dl{if $errorField == 'packageIdentifier'} class="formError"{/if}>
+				<dt><label for="packageIdentifier">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</label></dt>
 				<dd>
-					<input type="text" id="package" value="{$package}" name="package" required="required" class="medium" />
-					{if $errorField == 'package'}
+					<input type="text" id="packageIdentifier" value="{$packageIdentifier}" name="packageIdentifier" required="required" class="medium" />
+					{if $errorField == 'packageIdentifier'}
 						<small class="innerError">
-							{lang}wcf.global.form.error.empty{/lang}
+							{if $errorType == 'empty'}
+								{lang}wcf.global.form.error.empty{/lang}
+							{else}
+								{lang}wcf.acp.packageserver.packageIdentifier.error.{@$errorType}{/lang}
+							{/if}
 						</small>
 					{/if}
 				</dd>
 			</dl>
 				
-			<dl{if $errorField == 'permission'} class="formError"{/if}>
-				<dt><label for="permission">{lang}wcf.acp.packageserver.package.permission{/lang}</label></dt>
+			<dl{if $errorField == 'permissionString'} class="formError"{/if}>
+				<dt><label for="permissionString">{lang}wcf.acp.packageserver.permissionString{/lang}</label></dt>
 				<dd>
-					<input type="text" id="permission" value="{$permission}" name="permission" required="required" class="medium" />
-					{if $errorField == 'permission'}
+					<input type="text" id="permissionString" value="{$permissionString}" name="permissionString" required="required" class="medium" />
+					{if $errorField == 'permissionString'}
 						<small class="innerError">
-							{lang}wcf.global.form.error.empty{/lang}
+							{if $errorType == 'empty'}
+								{lang}wcf.global.form.error.empty{/lang}
+							{else}
+								{lang}wcf.acp.packageserver.permissionString.error.{@$errorType}{/lang}
+							{/if}
 						</small>
 					{/if}
 				</dd>
@@ -42,10 +50,14 @@
 			<dl{if $errorField == 'username'} class="formError"{/if}>
 				<dt><label for="username">{lang}wcf.user.username{/lang}</label></dt>
 				<dd>
-					<input type="text" id="username" name="username" value="{foreach from=$user item=$u}{$u->username}, {/foreach}" required="required" class="medium" />
-					{if $errorField == 'username'}
+					<input type="text" id="usernames" name="usernames" value="{implode from=$usernames item=$username}{$username}{/implode}" required="required" class="medium" />
+					{if $errorField == 'usernames'}
 						<small class="innerError">
-							{lang}wcf.acp.packageserver.package.userpermission.error.username{/lang}
+							{if $errorType == 'empty'}
+								{lang}wcf.global.form.error.empty{/lang}
+							{else}
+								{lang}wcf.acp.packageserver.usernames.error.{@$errorType}{/lang}
+							{/if}
 						</small>
 					{/if}
 				</dd>
