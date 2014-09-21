@@ -11,7 +11,7 @@
 				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
 					<ul>
 						<li>
-							<a href="{link controller='PackageAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
 							</a>
@@ -71,7 +71,7 @@
 				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
 					<ul>
 						<li>
-							<a href="{link controller='PackageAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
 							</a>
