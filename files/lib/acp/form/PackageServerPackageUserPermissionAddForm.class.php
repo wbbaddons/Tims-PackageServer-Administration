@@ -70,9 +70,9 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 		$this->userList->readObjects();
 		
 		$tmp = array();
-		foreach ($this->userList as $user) $tmp[mb_strtolower($user->username)] = $user->username;
+		foreach ($this->userList as $user) $tmp[] = mb_strtolower($user->username);
+		$difference = array_diff(array_map('mb_strtolower', $this->usernames), $tmp);
 		
-		$difference = array_diff_key(array_map('mb_strtolower', $this->usernames), $tmp);
 		if (!empty($difference)) {
 			WCF::getTPL()->assign(array(
 				'unknownUsers' => $difference
