@@ -17,6 +17,9 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\AbstractPage 
 	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.permissionOverview';
 	
+	/**
+	 * @see	\wcf\page\AbstractPage::$neededPermissions
+	 */
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
 	/**
@@ -32,19 +35,21 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\AbstractPage 
 		parent::readData();
 		
 		// read first all general permissions
-		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'general' as type FROM wcf". WCF_N ."_packageserver_package_permission_general");
-		$stmt->execute();
-		while ($row = $stmt->fetchArray()) {
-			$this->items[] = $row;
-		}
-		
-		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'user' as type FROM wcf". WCF_N ."_packageserver_package_to_user");
-		$stmt->execute();
-		while ($row = $stmt->fetchArray()) {
-			$this->items[] = $row;
-		}
-		
-		$stmt = WCF::getDB()->prepareStatement("SELECT *, 'group' as type FROM wcf". WCF_N ."_packageserver_package_to_group");
+		$sql = "(
+				SELECT	packageIdentifier, permissions, 'general' AS type
+				FROM wcf". WCF_N ."_packageserver_package_permission_general
+			)
+			UNION ALL
+			(
+				SELECT	packageIdentifier, permissions, 'user' AS type
+				FROM wcf". WCF_N ."_packageserver_package_to_user
+			)
+			UNION ALL
+			(
+				SELECT	packageIdentifier, permissions, 'group' AS type
+				FROM wcf". WCF_N ."_packageserver_package_to_group
+			)";
+		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute();
 		while ($row = $stmt->fetchArray()) {
 			$this->items[] = $row;
