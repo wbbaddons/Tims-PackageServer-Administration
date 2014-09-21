@@ -11,7 +11,7 @@ use wcf\system\WCF;
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
  */
-class PackageServerPackagePermissionOverviewPage extends \wcf\page\AbstractPage {
+class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage {
 	/**
 	 * @see	wcf\page\AbstractPage::$activeMenuItem
 	 */
@@ -23,37 +23,91 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\AbstractPage 
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
 	/**
-	 * all permission items
-	 * @var array<mixed>
+	* @see \wcf\page\SortablePage::$defaultSortField
+	*/
+	public $defaultSortField = 'packageIdentifier';
+	
+	/**
+	 * @see \wcf\page\SortablePage::$validSortFields
 	 */
-	public $items = array();
+	public $validSortFields = array(
+		'packageIdentifier',
+		'permissions',
+		'beneficiary',
+		'type'
+	);
+	
+	/**
+	* @see \wcf\page\MultipleLinkPage::$itemsPerPage
+	*/
+	public $itemsPerPage = 50;
+	
+	/**
+	 * List of permissions
+	 * @var array
+	 */
+	public $permissions = array();
 	
 	/**
 	 * @see	\wcf\page\IPage::readData()
 	 */
 	public function readData() {
 		parent::readData();
-		
+	}
+	
+	/**
+	 * @see \wcf\page\MultipleLinkPage::initObjectList()
+	 */
+	public function initObjectList() {}
+	
+	/**
+	 * @see \wcf\page\MultipleLinkPage::readObjects()
+	 */
+	public function readObjects() {
 		// read first all general permissions
 		$sql = "(
-				SELECT	packageIdentifier, permissions, 'general' AS type
-				FROM wcf". WCF_N ."_packageserver_package_permission_general
+				SELECT	packageIdentifier, permissions, NULL AS beneficiaryID, NULL AS beneficiary, 'general' AS type
+				FROM wcf".WCF_N."_packageserver_package_permission_general
 			)
 			UNION ALL
 			(
-				SELECT	packageIdentifier, permissions, 'user' AS type
-				FROM wcf". WCF_N ."_packageserver_package_to_user
+				SELECT	perm_table.packageIdentifier, perm_table.permissions, perm_table.userID AS beneficiaryID, user_table.username AS beneficiary, 'user' AS type
+				FROM wcf".WCF_N."_packageserver_package_to_user perm_table
+				LEFT JOIN wcf".WCF_N."_user user_table ON (user_table.userID = perm_table.userID)
 			)
 			UNION ALL
 			(
-				SELECT	packageIdentifier, permissions, 'group' AS type
-				FROM wcf". WCF_N ."_packageserver_package_to_group
+				SELECT	perm_table.packageIdentifier, perm_table.permissions, perm_table.groupID AS beneficiaryID, group_table.groupName AS beneficiary, 'group' AS type
+				FROM wcf".WCF_N."_packageserver_package_to_group perm_table
+				LEFT JOIN wcf".WCF_N."_user_group group_table ON (group_table.groupID = perm_table.groupID)
+			)
+			ORDER BY ".$this->sortField." ".$this->sortOrder."
+			LIMIT ".$this->sqlOffset.','.$this->sqlLimit;
+			
+		$stmt = WCF::getDB()->prepareStatement($sql);
+		$stmt->execute();
+		
+		while ($row = $stmt->fetchArray()) {
+			$this->permissions[] = $row;
+		}
+	}
+	
+	public function countItems() {
+		$sql = "SELECT (
+				SELECT COUNT(*)
+				FROM wcf".WCF_N."_packageserver_package_permission_general
+			) + (
+				SELECT COUNT(*)
+				FROM wcf".WCF_N."_packageserver_package_to_user
+			) + (
+				SELECT COUNT(*)
+				FROM wcf".WCF_N."_packageserver_package_to_group
 			)";
 		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute();
-		while ($row = $stmt->fetchArray()) {
-			$this->items[] = $row;
-		}
+		
+		$row = $stmt->fetchArray(\PDO::FETCH_BOTH);
+		return $row[0];
 	}
 	
 	/**
@@ -63,7 +117,7 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\AbstractPage 
 		parent::assignVariables();
 		
 		WCF::getTPL()->assign(array(
-			'items' => $this->items
+			'permissions' => $this->permissions
 		));
 	}
 }

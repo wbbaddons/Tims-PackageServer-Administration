@@ -24,6 +24,7 @@
 		<item name="wcf.acp.packageserver.package.permissionOverview"><![CDATA[Berechtigungsübersicht]]></item>
 		
 		<item name="wcf.acp.packageserver.package.permission"><![CDATA[Berechtigung]]></item>
+		<item name="wcf.acp.packageserver.package.permission.beneficiary"><![CDATA[Berechtigter]]></item>
 		<item name="wcf.acp.packageserver.package.permission.list"><![CDATA[Berechtigungen]]></item>
 		<item name="wcf.acp.packageserver.package.permission.type"><![CDATA[Typ]]></item>
 		<item name="wcf.acp.packageserver.package.permission.type.general"><![CDATA[Allgemein]]></item>
