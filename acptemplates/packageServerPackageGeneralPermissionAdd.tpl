@@ -15,25 +15,33 @@
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
 			
-			<dl{if $errorField == 'package'} class="formError"{/if}>
-				<dt><label for="package">{lang}wcf.acp.packageserver.package.identifier{/lang}</label></dt>
+			<dl{if $errorField == 'packageIdentifier'} class="formError"{/if}>
+				<dt><label for="packageIdentifier">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</label></dt>
 				<dd>
-					<input type="text" id="package" name="package" value="{$package}" required="required" class="medium" />
-					{if $errorField == 'package'}
+					<input type="text" id="packageIdentifier" value="{$packageIdentifier}" name="packageIdentifier" required="required" class="medium" />
+					{if $errorField == 'packageIdentifier'}
 						<small class="innerError">
-							{lang}wcf.global.form.error.empty{/lang}
+							{if $errorType == 'empty'}
+								{lang}wcf.global.form.error.empty{/lang}
+							{else}
+								{lang}wcf.acp.packageserver.packageIdentifier.error.{@$errorType}{/lang}
+							{/if}
 						</small>
 					{/if}
 				</dd>
 			</dl>
-			
-			<dl{if $errorField == 'permission'} class="formError"{/if}>
-				<dt><label for="permission">{lang}wcf.acp.packageserver.package.permission{/lang}</label></dt>
+				
+			<dl{if $errorField == 'permissionString'} class="formError"{/if}>
+				<dt><label for="permissionString">{lang}wcf.acp.packageserver.permissionString{/lang}</label></dt>
 				<dd>
-					<input type="text" id="permission" name="permission" value="{$permission}" required="required" class="medium" />
-					{if $errorField == 'permission'}
+					<input type="text" id="permissionString" value="{$permissionString}" name="permissionString" required="required" class="medium" />
+					{if $errorField == 'permissionString'}
 						<small class="innerError">
-							{lang}wcf.global.form.error.empty{/lang}
+							{if $errorType == 'empty'}
+								{lang}wcf.global.form.error.empty{/lang}
+							{else}
+								{lang}wcf.acp.packageserver.permissionString.error.{@$errorType}{/lang}
+							{/if}
 						</small>
 					{/if}
 				</dd>

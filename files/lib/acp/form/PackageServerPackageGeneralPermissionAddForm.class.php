@@ -1,34 +1,38 @@
 <?php
 namespace wcf\acp\form;
 use wcf\form\AbstractForm;
+use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
 
 /**
  * A form for add package permissions
  *
- * @author		Joshua Rüsweg
+ * @author		Tim Düsterhus, Joshua Rüsweg
  * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package		be.bastelstu.josh.ps
  */
 class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
+	/**
+	 * @see	\wcf\page\AbstractPage::$activeMenuItem
+	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.addGeneralPermission';
 	
+	/**
+	 * @see	\wcf\page\AbstractPage::$neededPermissions
+	 */
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
-	public $packageIdentifer = '';
-	
-	public $permission = '';
+	public $packageIdentifier = '';
+	public $permissionString = '';
 	
 	/**
-	 * @see	\wcf\page\IPage::readData()
+	 * @see	\wcf\page\IPage::readParameters()
 	 */
-	public function readData() {
-		parent::readData();
+	public function readParameters() {
+		parent::readParameters();
 		
-		if (isset($_GET['package'])) {
-			$this->packageIdentifer = $_GET['package'];
-		}
+		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = $_REQUEST['packageIdentifier'];
 	}
 	
 	/**
@@ -37,24 +41,25 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['package'])) {
-			$this->packageIdentifer = $_POST['package'];
-		}
-		
-		if (isset($_POST['permission'])) {
-			$this->permission = $_POST['permission'];
-		}
+		if (isset($_POST['permissionString'])) $this->permission = $_POST['permissionString'];
 	}
 	
+	/**
+	 * @see	\wcf\form\IForm::validate()
+	 */
 	public function validate() {
 		parent::validate();
 		
-		if (empty($this->packageIdentifer)) {
-			throw new \wcf\system\exception\UserInputException('package');
+		if (empty($this->packageIdentifier)) {
+			throw new UserInputException('packageIdentifier');
 		}
 		
-		if (empty($this->permission)) {
-			throw new \wcf\system\exception\UserInputException('permission');
+		if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
+			throw new UserInputException('packageIdentifier', 'notValid');
+		}
+		
+		if (empty($this->permissionString)) {
+			throw new UserInputException('permissionString');
 		}
 	}
 	
@@ -69,23 +74,22 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 			VALUES
 				(?, ?)";
 		$stmt = WCF::getDB()->prepareStatement($sql);
-		$stmt->execute(array($this->packageIdentifer, $this->permission));
+		$stmt->execute(array($this->packageIdentifier, $this->permissionString));
 		
 		// regenerate auth file @TODO, better solution work in progress
 		PackageServerUtil::generateAuthFile();
 		
 		$this->saved();
-	}
+		
+		$this->packageIdentifier = $this->permissionString = "";
 	
-	public function saved() {
-		parent::saved();
-		
-		$this->packageIdentifer = $this->permission = "";
-		
 		// show success
 		WCF::getTPL()->assign('success', true);
 	}
 	
+	/**
+	 * @see	\wcf\page\IPage::assignVariables()
+	 */
 	public function assignVariables() {
 		parent::assignVariables();
 		

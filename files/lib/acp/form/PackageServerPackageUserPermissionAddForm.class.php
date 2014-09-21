@@ -112,7 +112,7 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	}
 	
 	/**
-	 * @see	\wcf\form\IForm::assignVariables()
+	 * @see	\wcf\page\IPage::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
