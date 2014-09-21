@@ -106,8 +106,7 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute();
 		
-		$row = $stmt->fetchArray(\PDO::FETCH_BOTH);
-		return $row[0];
+		return $stmt->fetchColumn();
 	}
 	
 	/**
