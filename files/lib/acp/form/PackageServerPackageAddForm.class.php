@@ -42,6 +42,8 @@ class PackageServerPackageAddForm extends AbstractForm {
 	 * @see	\wcf\page\IPage::readData()
 	 */
 	public function readData() {
+		parent::readData();
+		
 		if (!is_dir(PackageServerUtil::getPackageServerPath())) {
 			throw new \wcf\system\exception\NamedUserException(WCF::getLanguage()->getDynamicVariable('wcf.acp.packageserver.error.invalidPath'));
 		}
