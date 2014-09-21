@@ -15,7 +15,7 @@
 		</eventlistener>
 		
 		<eventlistener>
-			<eventclassname>wcf\data\user\UserGroupAction</eventclassname>
+			<eventclassname>wcf\data\user\group\UserGroupAction</eventclassname>
 			<eventname>finalizeAction</eventname>
 			<environment>admin</environment>
 			<listenerclassname>wcf\system\event\listener\PackageServerUserChangeListener</listenerclassname>
