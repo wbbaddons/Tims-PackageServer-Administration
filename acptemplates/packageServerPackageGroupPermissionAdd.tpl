@@ -50,7 +50,7 @@
 			<dl{if $errorField == 'groupIDs'} class="formError"{/if}>
 				<dt><label for="groupIDs">{lang}wcf.user.group{/lang}</label></dt>
 				<dd>
-					<select name="groupsIDs[]" id="groupIDs" multiple="multiple">
+					<select name="groupIDs[]" id="groupIDs" multiple="multiple">
 						{foreach from=$availableGroups item="group"}
 							<option value="{$group->groupID}"{if $group->groupID|in_array:$groupIDs} selected="selected"{/if}>{lang}{$group->groupName}{/lang}</option>
 						{/foreach}

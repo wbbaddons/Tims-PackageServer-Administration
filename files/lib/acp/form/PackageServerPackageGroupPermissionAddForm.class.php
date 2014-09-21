@@ -44,6 +44,8 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 		$this->groupList = new \wcf\data\user\group\UserGroupList();
 		$this->groupList->getConditionBuilder()->add('groupType NOT IN (?)', array(\wcf\data\user\group\UserGroup::EVERYONE));
 		
+		$this->groupList->readObjects();
+		
 		parent::readData();
 	}
 	
@@ -54,7 +56,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 		parent::readFormParameters();
 		
 		if (isset($_POST['permissionString'])) $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
-		if (isset($_POST['groupsIDs'])) $this->groupIDs = \wcf\util\ArrayUtil::toIntegerArray($_POST['groupIDs']);
+		if (isset($_POST['groupIDs'])) $this->groupIDs = \wcf\util\ArrayUtil::toIntegerArray($_POST['groupIDs']);
 	}
 	
 	/**
@@ -75,11 +77,11 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 			throw new UserInputException('permissionString');
 		}
 		
-		if (empty($this->groups)) {
+		if (empty($this->groupIDs)) {
 			throw new UserInputException('groupIDs');
 		}
 		
-		foreach ($this->groupsIDs as $groupID) {
+		foreach ($this->groupIDs as $groupID) {
 			if ($this->groupList->search($groupID) === null) {
 				throw new UserInputException('groupIDs', 'notValid');
 			}
@@ -98,7 +100,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 				(?, ?, ?)";
 		$stmt = WCF::getDB()->prepareStatement($sql);
 		foreach ($this->groupIDs as $groupID) {
-			$stmt->execute(array($this->packageIdentifier, $this->permission, $groupID));
+			$stmt->execute(array($this->packageIdentifier, $this->permissionString, $groupID));
 		}
 		
 		// regenerate auth file @TODO, better solution work in progress
@@ -117,8 +119,6 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	
 	public function assignVariables() {
 		parent::assignVariables();
-		
-		$this->groupList->readObjects();
 		
 		WCF::getTPL()->assign(array(
 			'permissionString' => $this->permissionString,
