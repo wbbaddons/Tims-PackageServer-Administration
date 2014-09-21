@@ -90,14 +90,14 @@
 						</li>
 						
 						<li>
-							<a href="{link controller='PackageServerPackageGeneralUserAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
-							<a href="{link controller='PackageServerPackageGeneralGroupAdd'}{/link}" title="" class="button">
+							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</span>
 							</a>
