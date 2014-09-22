@@ -41,7 +41,7 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
-		if (isset($_POST['permissionString'])) $this->permission = $_POST['permissionString'];
+		if (isset($_POST['permissionString'])) $this->permissionString = $_POST['permissionString'];
 	}
 	
 	/**
@@ -94,8 +94,8 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 		parent::assignVariables();
 		
 		WCF::getTPL()->assign(array(
-			'permission' => $this->permission,
-			'package' => $this->packageIdentifer
+			'permissionString' => $this->permissionString,
+			'packageIdentifier' => $this->packageIdentifier
 		));
 	}
 }
