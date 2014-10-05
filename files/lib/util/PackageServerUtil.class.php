@@ -33,7 +33,13 @@ final class PackageServerUtil {
 	 * @param	array	$content
 	 */
 	public static function writeAuthFile(array $content) {
-		if (!is_dir(self::getPackageServerPath())) return false;
+		// is_dir may throw an exception because of open_basedir restrictions
+		try {
+			if (!is_dir(self::getPackageServerPath())) return false;
+		}
+		catch (\Exception $e) {
+			return false;
+		}
 		
 		// generate temporary auth file
 		$temporaryFile = FileUtil::getTemporaryFilename();
