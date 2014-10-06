@@ -92,7 +92,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	 * @see	\wcf\form\IForm::save()
 	 */
 	public function save() {
-		parent::save();
+		AbstractForm::save();
 		
 		$sql = "INSERT INTO wcf". WCF_N ."_packageserver_package_to_group
 				(packageIdentifier, permissions, groupID)
@@ -127,7 +127,8 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 			'permissionString' => $this->permissionString,
 			'packageIdentifier' => $this->packageIdentifier,
 			'groupIDs' => $this->groupIDs,
-			'availableGroups' => $this->groupList
+			'availableGroups' => $this->groupList,
+			'action' => 'add'
 		));
 	}
 }

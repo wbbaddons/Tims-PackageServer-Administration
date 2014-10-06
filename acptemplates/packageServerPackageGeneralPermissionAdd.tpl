@@ -1,16 +1,16 @@
-{include file='header' pageTitle='wcf.acp.packageserver.package.generalpermission.add'}
+{include file='header' pageTitle='wcf.acp.packageserver.package.generalpermission.'|concat:$action}
 
 <header class="boxHeadline">
-	<h1>{lang}wcf.acp.packageserver.package.generalpermission.add{/lang}</h1>
+	<h1>{lang}wcf.acp.packageserver.package.generalpermission.{$action}{/lang}</h1>
 </header>
 
 {include file='formError'}
 
 {if $success|isset}
-	<p class="success">{lang}wcf.global.success.add{/lang}</p>
+	<p class="success">{lang}wcf.global.success.{$action}{/lang}</p>
 {/if}
 
-<form method="post" action="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}">
+<form method="post" action="{if $action == 'add'}{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}{else}{link controller='PackageServerPackageGeneralPermissionEdit' packageIdentifier=$packageIdentifier}{/link}{/if}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
 			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
@@ -18,7 +18,7 @@
 			<dl{if $errorField == 'packageIdentifier'} class="formError"{/if}>
 				<dt><label for="packageIdentifier">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</label></dt>
 				<dd>
-					<input type="text" id="packageIdentifier" value="{$packageIdentifier}" name="packageIdentifier" required="required" class="medium" />
+					<input type="text" id="packageIdentifier" value="{$packageIdentifier}" name="packageIdentifier" required="required"{if $action != 'add'} disabled="disabled"{/if} class="medium" />
 					{if $errorField == 'packageIdentifier'}
 						<small class="innerError">
 							{if $errorType == 'empty'}
@@ -30,7 +30,7 @@
 					{/if}
 				</dd>
 			</dl>
-				
+			
 			<dl{if $errorField == 'permissionString'} class="formError"{/if}>
 				<dt><label for="permissionString">{lang}wcf.acp.packageserver.permissionString{/lang}</label></dt>
 				<dd>

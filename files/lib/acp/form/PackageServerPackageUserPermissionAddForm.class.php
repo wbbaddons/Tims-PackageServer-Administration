@@ -47,6 +47,10 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 		if (isset($_POST['usernames'])) $this->usernames = array_filter(\wcf\util\ArrayUtil::trim(explode(',', $_POST['usernames'])));
 	}
 	
+	public function readData() {
+		parent::readData();
+	}
+	
 	/**
 	* @see	\wcf\form\IForm::validate()
 	*/
@@ -86,7 +90,7 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	 * @see	\wcf\form\IForm::save()
 	 */
 	public function save() {
-		parent::save();
+		AbstractForm::save();
 		
 		$sql = "INSERT INTO wcf". WCF_N ."_packageserver_package_to_user
 				(packageIdentifier, permissions, userID)
@@ -120,7 +124,8 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 		WCF::getTPL()->assign(array(
 			'permissionString' => $this->permissionString,
 			'packageIdentifier' => $this->packageIdentifier,
-			'usernames' => $this->usernames
+			'usernames' => $this->usernames,
+			'action' => 'add'
 		));
 	}
 }

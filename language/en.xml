@@ -25,6 +25,7 @@
 		
 		<item name="wcf.acp.packageserver.package.permission"><![CDATA[Permission]]></item>
 		<item name="wcf.acp.packageserver.package.permission.beneficiary"><![CDATA[Beneficiary]]></item>
+		<item name="wcf.acp.packageserver.package.permission.noresults"><![CDATA[No permissions found.]]></item>
 		<item name="wcf.acp.packageserver.package.permission.list"><![CDATA[Permissions]]></item>
 		<item name="wcf.acp.packageserver.package.permission.type"><![CDATA[Type]]></item>
 		<item name="wcf.acp.packageserver.package.permission.type.general"><![CDATA[General]]></item>

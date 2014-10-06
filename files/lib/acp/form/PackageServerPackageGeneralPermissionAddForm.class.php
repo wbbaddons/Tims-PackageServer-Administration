@@ -61,13 +61,23 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 		if (empty($this->permissionString)) {
 			throw new UserInputException('permissionString');
 		}
+		
+		$sql = "SELECT COUNT(*) FROM wcf". WCF_N ."_packageserver_package_permission_general
+			WHERE packageIdentifier = ?";
+			
+		$stmt = WCF::getDB()->prepareStatement($sql);
+		$stmt->execute(array($this->packageIdentifier));
+		
+		if ($stmt->fetchColumn()) {
+			throw new UserInputException('packageIdentifier', 'existing');
+		}
 	}
 	
 	/**
 	 * @see	\wcf\form\IForm::save()
 	 */
 	public function save() {
-		parent::save();
+		AbstractForm::save();
 		
 		$sql = "INSERT INTO wcf". WCF_N ."_packageserver_package_permission_general
 				(packageIdentifier, permissions)
@@ -95,7 +105,8 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 		
 		WCF::getTPL()->assign(array(
 			'permissionString' => $this->permissionString,
-			'packageIdentifier' => $this->packageIdentifier
+			'packageIdentifier' => $this->packageIdentifier,
+			'action' => 'add'
 		));
 	}
 }
