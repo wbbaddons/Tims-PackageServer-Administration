@@ -28,21 +28,21 @@ class PackageServerPackageAddForm extends AbstractForm {
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
 	/**
-	 * the temporary package-file
+	 * The temporary package-file
 	 *
-	 * @var String
+	 * @var	String
 	 */
-	public $package = null;
+	public $tempFile = null;
 	
 	/**
-	 * the uploaded file
+	 * The uploaded file
 	 *
-	 * @var array<mixed>
+	 * @var	array<mixed>
 	 */
 	public $upload = null;
 	
 	/**
-	 * @var \wcf\system\package\PackageArchive
+	 * @var	\wcf\system\package\PackageArchive
 	 */
 	public $archive = null;
 	
@@ -87,7 +87,7 @@ class PackageServerPackageAddForm extends AbstractForm {
 			throw new UserInputException('package', 'upload');
 		}
 		
-		$mimeType = \wcf\util\FileUtil::getMimeType($this->upload['tmp_name']);
+		$mimeType = FileUtil::getMimeType($this->upload['tmp_name']);
 		
 		if ($mimeType === '') {
 			// the returned MIME type may be empty if “finfo” is unavailable
@@ -107,13 +107,13 @@ class PackageServerPackageAddForm extends AbstractForm {
 		}
 		
 		// get filename
-		$this->package = FileUtil::getTemporaryFilename('package_', preg_replace('!^.*(?=\.(?:tar\.gz|tgz|tar)$)!i', '', basename($this->upload['name'])));
+		$this->tempFile = FileUtil::getTemporaryFilename('package_', preg_replace('!^.*(?=\.(?:tar\.gz|tgz|tar)$)!i', '', basename($this->upload['name'])));
 		
-		if (!@move_uploaded_file($this->upload['tmp_name'], $this->package)) {
+		if (!@move_uploaded_file($this->upload['tmp_name'], $this->tempFile)) {
 			throw new UserInputException('package', 'upload');
 		}
 		
-		$this->archive = new PackageArchive($this->package, null);
+		$this->archive = new PackageArchive($this->tempFile, null);
 		
 		try {
 			$this->archive->openArchive();
@@ -126,7 +126,7 @@ class PackageServerPackageAddForm extends AbstractForm {
 			throw new UserInputException('package', 'validation');
 		}
 		
-		if (is_file($this->buildPackageLink())) {
+		if (is_file($this->getPackagePath())) {
 			throw new UserInputException('package', 'duplicate');
 		}
 	}
@@ -143,7 +143,7 @@ class PackageServerPackageAddForm extends AbstractForm {
 			}
 		}
 		
-		if (rename($this->package, $this->buildPackageLink()) === false) {
+		if (rename($this->tempFile, $this->getPackagePath()) === false) {
 			throw new SystemException('cannot move package');
 		}
 		
@@ -157,29 +157,33 @@ class PackageServerPackageAddForm extends AbstractForm {
 	}
 	
 	/**
-	 * build the link for the package, if $this->archive
-	 * is null then the method returns null
+	 * Returns the full path of the package.
 	 *
-	 * @return String
+	 * @return	string|null	null is returned if an error arises
 	 */
-	public function buildPackageLink() {
+	public function getPackagePath() {
 		if ($this->archive !== null) {
-			return $this->buildPackageDirLink() . PackageServerUtil::transformPackageVersion($this->archive->getPackageInfo('version')) . '.tar';
+			return $this->getPackageDirectory() . PackageServerUtil::transformPackageVersion($this->archive->getPackageInfo('version')) . '.tar';
 		}
 		
 		return null;
 	}
 	
 	/**
-	 * build the dir-link for the package, if $this->archive
-	 * is null then the method returns null
+	 * Returns the directory in which the package will be saved.
 	 *
-	 * @param boolean $trailingSlash
-	 * @return String
+	 * @param	boolean	$addTrailingSlash
+	 * @return	string|null	null is returned if an error arises
 	 */
-	public function buildPackageDirLink($trailingSlash = true) {
+	public function getPackageDirectory($addTrailingSlash = true) {
 		if ($this->archive !== null) {
-			return PackageServerUtil::getPackageServerPath() . $this->archive->getPackageInfo('name') . (($trailingSlash) ? '/' : '');
+			$path = PackageServerUtil::getPackageServerPath() . $this->archive->getPackageInfo('name');
+			
+			if ($addTrailingSlash) {
+				$path = FileUtil::addTrailingSlash($path);
+			}
+			
+			return $path;
 		}
 		
 		return null;

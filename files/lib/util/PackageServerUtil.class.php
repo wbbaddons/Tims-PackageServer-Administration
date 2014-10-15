@@ -9,9 +9,9 @@ use wcf\util\JSON;
 /**
  * Contains functions, which are related for "Tims-PackageServer".
  *
- * @author		Joshua Rüsweg
- * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- * @package		be.bastelstu.josh.ps
+ * @author	Joshua Rüsweg
+ * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @package	be.bastelstu.josh.ps
  */
 final class PackageServerUtil {
 	const AUTH_FILENAME = 'auth.json';
@@ -21,16 +21,17 @@ final class PackageServerUtil {
 	const PACKAGES_DIR = 'packages';
 	
 	/**
-	 * Generates and save the auth.json-file.
+	 * Generates and saves the auth.json-file.
 	 */
 	public static function generateAuthFile() {
 		self::writeAuthFile(self::buildAuth());
 	}
 	
 	/**
-	 * Performs an atomic write to the authentication file.
+	 * Performs an atomic write of the authentication file.
 	 *
 	 * @param	array	$content
+	 * @return	boolean
 	 */
 	public static function writeAuthFile(array $content) {
 		// is_dir may throw an exception because of open_basedir restrictions
@@ -41,27 +42,35 @@ final class PackageServerUtil {
 			return false;
 		}
 		
-		// generate temporary auth file
+		// generate a temporary auth file
 		$temporaryFile = FileUtil::getTemporaryFilename();
-		file_put_contents($temporaryFile, json_encode($content, JSON_PRETTY_PRINT));
 		
-		rename($temporaryFile, self::getPackageServerPath().self::AUTH_FILENAME);
+		if (defined('JSON_PRETTY_PRINT')) {
+			file_put_contents($temporaryFile, json_encode($content, JSON_PRETTY_PRINT));
+		}
+		else {
+			// Not worth writing a JSON prettify function for PHP versions prior to 5.4.0.
+			// Plain JSON will do it just fine, it’s just less readable.
+			file_put_contents($temporaryFile, json_encode($content));
+		}
+		
+		return rename($temporaryFile, self::getPackageServerPath().self::AUTH_FILENAME);
 	}
 	
 	/**
 	 * Returns the path to the packages folder of the package server.
 	 *
-	 * @return string
+	 * @return	string
 	 */
 	public static function getPackageServerPath() {
 		return FileUtil::addTrailingSlash(PACKAGESERVER_DIR);
 	}
 	
 	/**
-	 * Returns the current authentication information. If
-	 * no authentication file exists yet, this methods returns empty records.
+	 * Returns the current authentication information.
+	 * If no authentication file exists yet, this methods returns empty records.
 	 *
-	 * @return array
+	 * @return	array
 	 */
 	public static function getAuthFileArray() {
 		if (file_exists(self::getPackageServerPath().self::AUTH_FILENAME)) {
@@ -78,7 +87,7 @@ final class PackageServerUtil {
 	/**
 	 * Returns all the authentication information.
 	 *
-	 * @return array
+	 * @return	array
 	 */
 	public static function buildAuth() {
 		return array(
@@ -175,7 +184,7 @@ final class PackageServerUtil {
 	/**
 	 * Updates a user record in auth.json
 	 *
-	 * @param	\wcf\data\user\User $user
+	 * @param	\wcf\data\user\User	$user
 	 */
 	public static function updateUserAuth(\wcf\data\user\User $user) {
 		$auth = self::getAuthFileArray();
@@ -188,7 +197,7 @@ final class PackageServerUtil {
 	/**
 	 * Returns a the internal name for the given user group.
 	 *
-	 * @param	\wcf\data\user\group\UserGroup $group
+	 * @param	\wcf\data\user\group\UserGroup	$group
 	 * @return	string
 	 */
 	public static function getGroupIdentifer(UserGroup $group) {
