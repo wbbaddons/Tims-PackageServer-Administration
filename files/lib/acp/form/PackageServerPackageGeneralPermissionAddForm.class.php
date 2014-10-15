@@ -82,7 +82,7 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 		AbstractForm::save();
 		
 		$sql = "INSERT INTO wcf". WCF_N ."_packageserver_package_permission_general
-				(packageIdentifier, permissions)
+				(packageIdentifier, permissionString)
 			VALUES
 				(?, ?)";
 		$stmt = WCF::getDB()->prepareStatement($sql);

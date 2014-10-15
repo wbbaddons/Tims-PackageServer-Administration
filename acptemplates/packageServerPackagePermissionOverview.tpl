@@ -92,7 +92,7 @@
 						</td>
 						<td class="columnTitle"><p>{$permission.packageIdentifier}</p></td>
 						<td class="columnText "><p>{lang}wcf.acp.packageserver.package.permission.type.{$permission.type}{/lang}</p></td>
-						<td class="columnText"><p>{$permission.permissions}</p></td>
+						<td class="columnText"><p>{$permission.permissionString}</p></td>
 						<td class="columnText"><p>{if $permission.type == 'user'}{$permission.beneficiary}{else if $permission.type == 'group'}{lang}{$permission.beneficiary}{/lang}{else}–{/if}</p></td>
 						
 						{event name='columns'}

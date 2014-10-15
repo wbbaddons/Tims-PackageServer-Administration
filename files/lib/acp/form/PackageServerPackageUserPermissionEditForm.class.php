@@ -93,7 +93,7 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 		parent::readData();
 		
 		if (empty($_POST)) {
-			$this->permissionString = $this->permissionEntry['permissions'];
+			$this->permissionString = $this->permissionEntry['permissionString'];
 		}
 	}
 	
@@ -104,7 +104,7 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 		AbstractForm::save();
 		
 		$sql = "UPDATE	wcf". WCF_N ."_packageserver_package_to_user
-			SET	permissions = ?
+			SET	permissionString = ?
 			WHERE	packageIdentifier = ?
 			AND	userID = ?";
 		$stmt = WCF::getDB()->prepareStatement($sql);

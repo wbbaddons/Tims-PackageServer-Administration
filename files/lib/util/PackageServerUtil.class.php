@@ -128,7 +128,7 @@ final class PackageServerUtil {
 		$groups = array();
 		
 		while ($row = $stmt->fetchArray()) {
-			$groups[self::GROUPID_PREFIX.$row['groupID']][$row['packageIdentifier']] = $row['permissions'];
+			$groups[self::GROUPID_PREFIX.$row['groupID']][$row['packageIdentifier']] = $row['permissionString'];
 		}
 		
 		return $groups;
@@ -148,7 +148,7 @@ final class PackageServerUtil {
 		$general = array();
 		
 		while ($row = $stmt->fetchArray()) {
-			$general[$row['packageIdentifier']] = $row['permissions'];
+			$general[$row['packageIdentifier']] = $row['permissionString'];
 		}
 		
 		return $general;
@@ -169,7 +169,7 @@ final class PackageServerUtil {
 		
 		$permssions = array();
 		while ($row = $stmt->fetchArray()) {
-			$permssions[$row['packageIdentifier']] = $row['permissions'];
+			$permssions[$row['packageIdentifier']] = $row['permissionString'];
 		}
 		
 		return array(

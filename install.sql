@@ -1,20 +1,20 @@
 CREATE TABLE wcf1_packageserver_package_to_group (
 	packageIdentifier VARCHAR(255),
 	groupID INT(10),
-	permissions MEDIUMTEXT,
+	permissionString MEDIUMTEXT,
 	PRIMARY KEY(packageIdentifier,groupID)
 );
 
 CREATE TABLE wcf1_packageserver_package_to_user (
 	packageIdentifier VARCHAR(255),
 	userID INT(10),
-	permissions MEDIUMTEXT,
+	permissionString MEDIUMTEXT,
 	PRIMARY KEY(packageIdentifier,userID)
 );
 
 CREATE TABLE wcf1_packageserver_package_permission_general (
 	packageIdentifier VARCHAR(255) PRIMARY KEY,
-	permissions MEDIUMTEXT
+	permissionString MEDIUMTEXT
 );
 
 -- foreign keys
