@@ -36,6 +36,7 @@
 				<tr>
 					<th class="columnTitle" colspan="2">{lang}wcf.acp.packageserver.package.identifier{/lang}</th>
 					<th class="columnText">{lang}wcf.acp.packageserver.package.version{/lang}</th>
+					<th class="columnText">{lang}wcf.acp.packageserver.package.downloads{/lang}</th>
 					
 					{event name='headColumns'}
 				</tr>
@@ -44,13 +45,14 @@
 			<tbody>
 				{content}
 					{foreach from=$items item=versions key=packageIdentifier}
-						{foreach from=$versions item=version}
+						{foreach from=$versions key=version item=downloads}
 							<tr>
 								<td class="columnIcon">
 									<a href="{link controller='PackageServerDeletePackageVersion' packageIdentifier=$packageIdentifier version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
 								</td>
 								<td class="columnTitle"><p>{$packageIdentifier}</p></td>
 								<td class="columnText"><p>{$version}</p></td>
+								<td class="columnDigits"><p>{$downloads}</p></td>
 								
 								{event name='columns'}
 							</tr>

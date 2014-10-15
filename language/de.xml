@@ -18,6 +18,7 @@
 		<item name="wcf.acp.packageserver.package.list"><![CDATA[Pakete]]></item>
 		<item name="wcf.acp.packageserver.package.identifier"><![CDATA[Paketbezeichner]]></item>
 		<item name="wcf.acp.packageserver.package.version"><![CDATA[Version]]></item>
+		<item name="wcf.acp.packageserver.package.downloads"><![CDATA[Downloads]]></item>
 		<item name="wcf.acp.packageserver.package.noresults"><![CDATA[Keine Pakete gefunden]]></item>
 		
 		<item name="wcf.acp.packageserver.package.add"><![CDATA[Paket hinzufügen]]></item>

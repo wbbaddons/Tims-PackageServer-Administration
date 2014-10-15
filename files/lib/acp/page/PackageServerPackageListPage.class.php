@@ -54,13 +54,22 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 		
 		foreach ($files as $file) {
 			$package = $file->getPathInfo()->getBasename();
+			$downloads = 0;
 			
 			if (!isset($this->items[$package])) {
 				$this->items[$package] = array();
 				$this->packageCount++;
 			}
 			
-			$this->items[$package][] = substr($file->getBasename(), 0, -4);
+			$version = $file->getBasename('.tar');
+			$counterFile = $file->getPath().'/'.$version.'.txt';
+			
+			if (is_file($counterFile)) {
+				$downloads = intval(file_get_contents($counterFile));
+			}
+			
+			$this->items[$package][$version] = $downloads;
+			
 			$this->versionCount++;
 		}
 	}
