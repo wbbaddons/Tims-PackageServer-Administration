@@ -39,9 +39,10 @@
 		
 		<item name="wcf.acp.packageserver.package.fail.upload"><![CDATA[Uploading of specified file has failed.]]></item>
 		<item name="wcf.acp.packageserver.package.fail.empty"><![CDATA[You must specify a file.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.tar"><![CDATA[Currently only uncompressed tar archives are supported by Tim’s PackageServer.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.gzip"><![CDATA[Only uncompressed tar archives are supported by Tim’s PackageServer.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.tar"><![CDATA[The uploaded file could not be detected as a valid tar archive.]]></item>
 		<item name="wcf.acp.packageserver.package.fail.validation"><![CDATA[The uploaded archive is invalid.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.double"><![CDATA[The uploaded package is already existing on the server.]]></item>
+		<item name="wcf.acp.packageserver.package.fail.duplicate"><![CDATA[The uploaded package is already existing on the server.]]></item>
 		
 		<item name="wcf.acp.packageserver.error.invalidPath"><![CDATA[The entered package directory “{'PACKAGESERVER_DIR'|constant}” could not be found.]]></item>
 	</category>

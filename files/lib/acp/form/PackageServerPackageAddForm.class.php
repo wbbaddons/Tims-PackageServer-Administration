@@ -17,8 +17,16 @@ use wcf\util\PackageServerUtil;
  * @package	be.bastelstu.josh.ps
  */
 class PackageServerPackageAddForm extends AbstractForm {
+	/**
+	 * @see	wcf\page\AbstractPage::$activeMenuItem
+	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.add';
+	
+	/**
+	 * @see	\wcf\page\AbstractPage::$neededPermissions
+	 */
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
+	
 	/**
 	 * the temporary package-file
 	 *
@@ -64,7 +72,7 @@ class PackageServerPackageAddForm extends AbstractForm {
 			$this->upload = $_FILES['package'];
 		}
 	}
-
+	
 	/**
 	 * @see	\wcf\form\IForm::validate()
 	 */
@@ -74,45 +82,55 @@ class PackageServerPackageAddForm extends AbstractForm {
 		if (empty($this->upload['name'])) {
 			throw new UserInputException('package', 'empty');
 		}
-
-		if (empty($this->upload['tmp_name'])) {
+		
+		if (empty($this->upload['tmp_name']) || !is_file($this->upload['tmp_name'])) {
 			throw new UserInputException('package', 'upload');
 		}
 		
-		// @TODO validate whether the file is a .tar-file
-		// compressed files are not allowed
-		$extensionPaths = explode('.', $this->upload['name']);
-		$extension = array_pop($extensionPaths); // because php is to stupid :(
+		$mimeType = \wcf\util\FileUtil::getMimeType($this->upload['tmp_name']);
 		
-		if ($extension != 'tar') {
+		if ($mimeType === '') {
+			// the returned MIME type may be empty if “finfo” is unavailable
+			// therefore we will look at the file extension … still better than nothing!
+			
+			$extension = pathinfo($this->upload['name'], PATHINFO_EXTENSION);
+			
+			if (!$extension || mb_strtolower($extension) !== 'tar') {
+				throw new UserInputException('package', 'tar');
+			}
+		}
+		else if ($mimeType === 'application/x-gzip' || $mimeType === 'application/gzip') {
+			throw new UserInputException('package', 'gzip');
+		}
+		else if ($mimeType !== 'application/x-tar' && $mimeType !== 'application/tar') {
 			throw new UserInputException('package', 'tar');
 		}
-
+		
 		// get filename
 		$this->package = FileUtil::getTemporaryFilename('package_', preg_replace('!^.*(?=\.(?:tar\.gz|tgz|tar)$)!i', '', basename($this->upload['name'])));
-
+		
 		if (!@move_uploaded_file($this->upload['tmp_name'], $this->package)) {
 			throw new UserInputException('package', 'upload');
 		}
-
+		
 		$this->archive = new PackageArchive($this->package, null);
-
+		
 		try {
 			$this->archive->openArchive();
 		}
 		catch (SystemException $e) {
 			throw new UserInputException('package', 'validation');
 		}
-
+		
 		if (!Package::isValidVersion($this->archive->getPackageInfo('version'))) {
 			throw new UserInputException('package', 'validation');
 		}
 		
 		if (is_file($this->buildPackageLink())) {
-			throw new UserInputException('package', 'double');
+			throw new UserInputException('package', 'duplicate');
 		}
 	}
-
+	
 	/**
 	 * @see	\wcf\form\IForm::save()
 	 */

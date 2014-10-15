@@ -63,7 +63,7 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	 * @see \wcf\page\MultipleLinkPage::readObjects()
 	 */
 	public function readObjects() {
-		// read first all general permissions
+		// Read all permissions in a single query
 		$sql = "(
 				SELECT	packageIdentifier, permissions, NULL AS beneficiaryID, NULL AS beneficiary, 'general' AS type
 				FROM wcf".WCF_N."_packageserver_package_permission_general
@@ -92,6 +92,7 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	}
 	
 	public function countItems() {
+		// Count every permission and sum them up
 		$sql = "SELECT (
 				SELECT COUNT(*)
 				FROM wcf".WCF_N."_packageserver_package_permission_general
