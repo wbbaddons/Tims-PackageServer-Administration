@@ -43,13 +43,13 @@
 			
 			<tbody>
 				{content}
-					{foreach from=$items item=versions key=package}
+					{foreach from=$items item=versions key=packageIdentifier}
 						{foreach from=$versions item=version}
 							<tr>
 								<td class="columnIcon">
-									<a href="{link controller='PackageServerDeletePackageVersion' package=$package version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
+									<a href="{link controller='PackageServerDeletePackageVersion' packageIdentifier=$packageIdentifier version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
 								</td>
-								<td class="columnTitle"><p>{$package}</p></td>
+								<td class="columnTitle"><p>{$packageIdentifier}</p></td>
 								<td class="columnText"><p>{$version}</p></td>
 								
 								{event name='columns'}
