@@ -34,7 +34,12 @@
 			<dl{if $errorField == 'username'} class="formError"{/if}>
 				<dt><label for="username">{lang}wcf.user.username{/lang}</label></dt>
 				<dd>
-					<input type="text" id="usernames" name="usernames" value="{implode from=$usernames item=$username}{$username}{/implode}" required="required"{if $action != 'add'} disabled="disabled"{/if} class="medium" />
+					{if $action == 'add'}
+						<input type="text" id="usernames" name="usernames" value="{implode from=$usernames item=$username}{$username}{/implode}" required="required"{if $action != 'add'} disabled="disabled"{/if} class="medium" />
+					{else}
+						<input type="text" id="usernames" name="usernames" value="{$user->username}" required="required"{if $action != 'add'} disabled="disabled"{/if} class="medium" />
+					{/if}
+					
 					{if $errorField == 'usernames'}
 						<small class="innerError">
 							{if $errorType == 'empty'}

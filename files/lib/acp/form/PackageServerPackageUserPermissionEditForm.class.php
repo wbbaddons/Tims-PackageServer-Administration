@@ -94,10 +94,6 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 		
 		if (empty($_POST)) {
 			$this->permissionString = $this->permissionEntry['permissions'];
-			
-			$this->usernames = array(
-				$this->user->username
-			);
 		}
 	}
 	

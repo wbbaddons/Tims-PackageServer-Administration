@@ -94,10 +94,6 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
 		
 		if (empty($_POST)) {
 			$this->permissionString = $this->permissionEntry['permissions'];
-			
-			$this->groupIDs = array(
-				$this->userGroup->groupID
-			);
 		}
 	}
 	
