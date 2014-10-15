@@ -1,15 +1,14 @@
 <?php
 namespace wcf\acp\page;
-
 use wcf\data\user\group\UserGroup;
 use wcf\system\WCF;
 
 /**
  * Represents a list of all permissions
  *
- * @author		Joshua Rüsweg
- * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- * @package		be.bastelstu.josh.ps
+ * @author	Joshua Rüsweg
+ * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @package	be.bastelstu.josh.ps
  */
 class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage {
 	/**

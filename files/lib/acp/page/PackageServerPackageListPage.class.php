@@ -1,6 +1,5 @@
 <?php
 namespace wcf\acp\page;
-
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
 

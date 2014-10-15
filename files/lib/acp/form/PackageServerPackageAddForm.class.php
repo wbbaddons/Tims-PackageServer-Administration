@@ -12,9 +12,9 @@ use wcf\util\PackageServerUtil;
 /**
  * A form for uploading packages
  *
- * @author		Joshua Rüsweg
- * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- * @package		be.bastelstu.josh.ps
+ * @author	Joshua Rüsweg
+ * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @package	be.bastelstu.josh.ps
  */
 class PackageServerPackageAddForm extends AbstractForm {
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.add';

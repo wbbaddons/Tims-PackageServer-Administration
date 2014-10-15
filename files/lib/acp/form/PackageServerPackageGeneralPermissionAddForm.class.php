@@ -8,9 +8,9 @@ use wcf\util\PackageServerUtil;
 /**
  * A form for add package permissions
  *
- * @author		Tim Düsterhus, Joshua Rüsweg
- * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- * @package		be.bastelstu.josh.ps
+ * @author	Tim Düsterhus, Joshua Rüsweg
+ * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @package	be.bastelstu.josh.ps
  */
 class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 	/**
