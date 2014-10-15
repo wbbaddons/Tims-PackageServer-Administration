@@ -23,7 +23,16 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 	 */
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
+	/**
+	 * Package identifier
+	 * @var	string
+	 */
 	public $packageIdentifier = '';
+	
+	/**
+	 * Permission string
+	 * @var	string
+	 */
 	public $permissionString = '';
 	
 	/**

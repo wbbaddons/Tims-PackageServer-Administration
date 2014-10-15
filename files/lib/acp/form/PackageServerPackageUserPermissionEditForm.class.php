@@ -20,19 +20,19 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 	
 	/**
 	 * User id
-	 * @var integer
+	 * @var	integer
 	 */
 	public $userID = 0;
 	
 	/**
 	* Benefited user
-	* @var \wcf\data\user\User
+	* @var	\wcf\data\user\User
 	*/
 	public $user = null;
 	
 	/**
 	 * The permission value
-	 * @var string
+	 * @var	string
 	 */
 	public $permissionEntry = null;
 	

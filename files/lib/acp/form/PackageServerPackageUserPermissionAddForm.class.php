@@ -23,9 +23,28 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	 */
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
+	/**
+	 * Package identifier
+	 * @var	string
+	 */
 	public $packageIdentifier = '';
+	
+	/**
+	 * Permission string
+	 * @var	string
+	 */
 	public $permissionString = '';
+	
+	/**
+	 * List of usernames
+	 * @var	array
+	 */
 	public $usernames = array();
+	
+	/**
+	 * Instance of UserList
+	 * @var	\wcf\data\user\UserList
+	 */
 	public $userList = null;
 	
 	/**
@@ -45,10 +64,6 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 		
 		if (isset($_POST['permissionString'])) $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
 		if (isset($_POST['usernames'])) $this->usernames = array_filter(\wcf\util\ArrayUtil::trim(explode(',', $_POST['usernames'])));
-	}
-	
-	public function readData() {
-		parent::readData();
 	}
 	
 	/**

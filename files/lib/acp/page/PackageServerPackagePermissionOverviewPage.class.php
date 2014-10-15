@@ -6,7 +6,7 @@ use wcf\system\WCF;
 /**
  * Represents a list of all permissions
  *
- * @author	Joshua Rüsweg
+ * @author	Tim Düsterhus, Maximilian Mader, Joshua Rüsweg
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	be.bastelstu.josh.ps
  */
@@ -22,12 +22,12 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
 	/**
-	* @see \wcf\page\SortablePage::$defaultSortField
+	* @see	\wcf\page\SortablePage::$defaultSortField
 	*/
 	public $defaultSortField = 'packageIdentifier';
 	
 	/**
-	 * @see \wcf\page\SortablePage::$validSortFields
+	 * @see	\wcf\page\SortablePage::$validSortFields
 	 */
 	public $validSortFields = array(
 		'packageIdentifier',
@@ -37,13 +37,13 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	);
 	
 	/**
-	* @see \wcf\page\MultipleLinkPage::$itemsPerPage
+	* @see	\wcf\page\MultipleLinkPage::$itemsPerPage
 	*/
 	public $itemsPerPage = 50;
 	
 	/**
 	 * List of permissions
-	 * @var array
+	 * @var	array
 	 */
 	public $permissions = array();
 	
@@ -55,12 +55,12 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	}
 	
 	/**
-	 * @see \wcf\page\MultipleLinkPage::initObjectList()
+	 * @see	\wcf\page\MultipleLinkPage::initObjectList()
 	 */
 	public function initObjectList() {}
 	
 	/**
-	 * @see \wcf\page\MultipleLinkPage::readObjects()
+	 * @see	\wcf\page\MultipleLinkPage::readObjects()
 	 */
 	public function readObjects() {
 		// Read all permissions in a single query

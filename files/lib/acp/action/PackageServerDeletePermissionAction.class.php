@@ -20,19 +20,19 @@ class PackageServerDeletePermissionAction extends AbstractAction {
 	
 	/**
 	 * Package identifier
-	 * @var string
+	 * @var	string
 	 */
 	public $packageIdentifier = '';
 	
 	/**
 	 * The type of the permission
-	 * @var string
+	 * @var	string
 	 */
 	public $type = '';
 	
 	/**
 	 * The id of the benefited user or user group
-	 * @var integer
+	 * @var	integer
 	 */
 	public $beneficiaryID = 0;
 	

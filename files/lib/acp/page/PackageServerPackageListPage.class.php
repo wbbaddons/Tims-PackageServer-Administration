@@ -17,12 +17,21 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.list';
 	
 	/**
-	 * all packages with versions
-	 * @var array<mixed>
+	 * Two-dimensional array containing all packages and their versions
+	 * @var	array<mixed>
 	 */
 	public $items = array();
 	
+	/**
+	 * Number of found packages
+	 * @var	integer
+	 */
 	public $packageCount = 0;
+	
+	/**
+	 * Number of found versions
+	 * @var	integer
+	 */
 	public $versionCount = 0;
 	
 	/**

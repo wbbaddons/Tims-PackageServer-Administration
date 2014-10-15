@@ -23,9 +23,28 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	 */
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
+	/**
+	 * Package identifier
+	 * @var	string
+	 */
 	public $packageIdentifier = '';
+	
+	/**
+	 * Permission string
+	 * @var	string
+	 */
 	public $permissionString = '';
+	
+	/**
+	 * List of group IDs
+	 * @var	array
+	 */
 	public $groupIDs = array();
+	
+	/**
+	 * Instance of UserGroupList
+	 * @var	\wcf\data\user\group\UserGroupList
+	 */
 	public $groupList = null;
 	
 	/**

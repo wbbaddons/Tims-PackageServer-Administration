@@ -20,7 +20,7 @@ class PackageServerPackageGeneralPermissionEditForm extends PackageServerPackage
 	
 	/**
 	 * The permission value
-	 * @var string
+	 * @var	string
 	 */
 	public $permissionEntry = null;
 	

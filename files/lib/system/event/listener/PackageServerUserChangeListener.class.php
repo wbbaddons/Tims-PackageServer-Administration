@@ -4,14 +4,13 @@ use wcf\system\event\IEventListener;
 use wcf\util\PackageServerUtil;
 
 /**
- * Ipdates the authentication file of the PackageServer once a users’ information is updated.
+ * Updates the authentication file of the PackageServer once a users’ information is updated.
  *
- * @author		Joshua Rüsweg
- * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- * @package		be.bastelstu.josh.ps
+ * @author	Joshua Rüsweg
+ * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @package	be.bastelstu.josh.ps
  */
 class PackageServerUserChangeListener implements IEventListener {
-
 	/**
 	 * @see	\wcf\system\event\IEventListener::execute()
 	 */
@@ -21,10 +20,10 @@ class PackageServerUserChangeListener implements IEventListener {
 		$parameters = $eventObj->getParameters();
 		switch ($eventObj->getActionName()) {
 			case 'update':
-				// if the user or an administrator change the username
-				// we should replace the whole file so we make sure
-				// that the old username username is invalid
-				// TODO: we should change this in the future to an efficient method
+				// If the user changes its username or if it's changed in the ACP
+				// we should replace the whole auth file to make sure
+				// that the old username is invalid
+				// TODO: Implement a more efficient method
 				if (isset($parameters['data']['username'])) {
 					PackageServerUtil::generateAuthFile();
 				}
@@ -50,5 +49,4 @@ class PackageServerUserChangeListener implements IEventListener {
 			break;
 		}
 	}
-
 }

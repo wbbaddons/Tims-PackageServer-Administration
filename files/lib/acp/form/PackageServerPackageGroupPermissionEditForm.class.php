@@ -20,19 +20,19 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
 	
 	/**
 	 * Group id
-	 * @var integer
+	 * @var	integer
 	 */
 	public $groupID = 0;
 	
 	/**
 	* Benefited user group
-	* @var \wcf\data\user\group\UserGroup
+	* @var	\wcf\data\user\group\UserGroup
 	*/
 	public $userGroup = null;
 	
 	/**
 	 * The permission value
-	 * @var string
+	 * @var	string
 	 */
 	public $permissionEntry = null;
 	

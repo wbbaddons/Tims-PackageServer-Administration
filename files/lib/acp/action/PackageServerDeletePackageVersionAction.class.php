@@ -19,13 +19,13 @@ class PackageServerDeletePackageVersionAction extends AbstractAction {
 	
 	/**
 	 * Package identifier
-	 * @var string
+	 * @var	string
 	 */
 	public $packageIdentifier = '';
 	
 	/**
 	 * The package version string
-	 * @var string
+	 * @var	string
 	 */
 	public $version = '';
 	
