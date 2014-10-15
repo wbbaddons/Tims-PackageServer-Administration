@@ -36,20 +36,12 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 	public $permissionString = '';
 	
 	/**
-	 * @see	\wcf\page\IPage::readParameters()
-	 */
-	public function readParameters() {
-		parent::readParameters();
-		
-		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = $_REQUEST['packageIdentifier'];
-	}
-	
-	/**
 	 * @see	\wcf\page\IPage::readFormParameters()
 	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
 		
+		if (isset($_POST['packageIdentifier'])) $this->packageIdentifier = $_POST['packageIdentifier'];
 		if (isset($_POST['permissionString'])) $this->permissionString = $_POST['permissionString'];
 	}
 	
@@ -71,7 +63,8 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm {
 			throw new UserInputException('permissionString');
 		}
 		
-		$sql = "SELECT COUNT(*) FROM wcf". WCF_N ."_packageserver_package_permission_general
+		$sql = "SELECT COUNT(*)
+			FROM wcf". WCF_N ."_packageserver_package_permission_general
 			WHERE packageIdentifier = ?";
 			
 		$stmt = WCF::getDB()->prepareStatement($sql);

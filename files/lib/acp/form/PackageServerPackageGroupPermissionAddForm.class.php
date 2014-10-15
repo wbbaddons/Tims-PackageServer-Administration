@@ -48,12 +48,14 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	public $groupList = null;
 	
 	/**
-	* @see	\wcf\page\IPage::readParameters()
-	*/
-	public function readParameters() {
-		parent::readParameters();
+	 * @see	\wcf\page\IPage::readFormParameters()
+	 */
+	public function readFormParameters() {
+		parent::readFormParameters();
 		
-		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
+		if (isset($_POST['packageIdentifier'])) $this->packageIdentifier = \wcf\util\StringUtil::trim($_POST['packageIdentifier']);
+		if (isset($_POST['permissionString'])) $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
+		if (isset($_POST['groupIDs'])) $this->groupIDs = \wcf\util\ArrayUtil::toIntegerArray($_POST['groupIDs']);
 	}
 	
 	/**
@@ -66,16 +68,6 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 		$this->groupList->readObjects();
 		
 		parent::readData();
-	}
-	
-	/**
-	 * @see	\wcf\page\IPage::readFormParameters()
-	 */
-	public function readFormParameters() {
-		parent::readFormParameters();
-		
-		if (isset($_POST['permissionString'])) $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
-		if (isset($_POST['groupIDs'])) $this->groupIDs = \wcf\util\ArrayUtil::toIntegerArray($_POST['groupIDs']);
 	}
 	
 	/**
