@@ -63,6 +63,8 @@ final class PackageServerUtil {
 	 * @return	string
 	 */
 	public static function getPackageServerPath() {
+		if (empty(PACKAGESERVER_DIR)) return false;
+		
 		return FileUtil::addTrailingSlash(PACKAGESERVER_DIR);
 	}
 	
