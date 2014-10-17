@@ -13,37 +13,43 @@
 	<category name="wcf.acp.packageserver">
 		<item name="wcf.acp.packageserver.package"><![CDATA[Paket]]></item>
 		<item name="wcf.acp.packageserver.packages"><![CDATA[Pakete]]></item>
-		<item name="wcf.acp.packageserver.package.upload"><![CDATA[Paket hochladen]]></item>
-		
-		<item name="wcf.acp.packageserver.package.list"><![CDATA[Pakete]]></item>
-		<item name="wcf.acp.packageserver.package.identifier"><![CDATA[Paketbezeichner]]></item>
-		<item name="wcf.acp.packageserver.package.version"><![CDATA[Version]]></item>
-		<item name="wcf.acp.packageserver.package.downloads"><![CDATA[Downloads]]></item>
-		<item name="wcf.acp.packageserver.package.noresults"><![CDATA[Keine Pakete gefunden]]></item>
 		
 		<item name="wcf.acp.packageserver.package.add"><![CDATA[Paket hinzufügen]]></item>
+		<item name="wcf.acp.packageserver.package.delete.confirmMessage"><![CDATA[Bitte bestätigen Sie die Löschung des angegebenen Paketes.]]></item>
+		<item name="wcf.acp.packageserver.package.list"><![CDATA[Pakete]]></item>
+		<item name="wcf.acp.packageserver.package.noresults"><![CDATA[Keine Pakete gefunden]]></item>
+		<item name="wcf.acp.packageserver.package.upload"><![CDATA[Paket hochladen]]></item>
+		<item name="wcf.acp.packageserver.package.error.upload"><![CDATA[Beim Hochladen der Datei ist ein Fehler aufgetreten.]]></item>
+		<item name="wcf.acp.packageserver.package.error.empty"><![CDATA[Es wurde keine Datei ausgewählt.]]></item>
+		<item name="wcf.acp.packageserver.package.error.gzip"><![CDATA[Tim’s PackageServer unterstützt nur unkomprimierte tar-Archive.]]></item>
+		<item name="wcf.acp.packageserver.package.error.tar"><![CDATA[Die hochgeladene Datei konnte nicht als gültiges Tar-Archiv erkannt werden.]]></item>
+		<item name="wcf.acp.packageserver.package.error.validation"><![CDATA[Das angegebene Archiv ist kein gültiges Paket.]]></item>
+		<item name="wcf.acp.packageserver.package.error.duplicate"><![CDATA[Das angegebene Paket existiert bereits auf dem Server.]]></item>
+		
+		<item name="wcf.acp.packageserver.packageIdentifier"><![CDATA[Paketbezeichner]]></item>
+		<item name="wcf.acp.packageserver.version"><![CDATA[Version]]></item>
+		<item name="wcf.acp.packageserver.downloads"><![CDATA[Downloads]]></item>
+		
 		<item name="wcf.acp.packageserver.package.permissionOverview"><![CDATA[Berechtigungsübersicht]]></item>
+		<item name="wcf.acp.packageserver.permission"><![CDATA[Berechtigung]]></item>
+		<item name="wcf.acp.packageserver.permission.beneficiary"><![CDATA[Berechtigter]]></item>
+		<item name="wcf.acp.packageserver.permission.noresults"><![CDATA[Keine Berechtigungen gefunden.]]></item>
+		<item name="wcf.acp.packageserver.permission.list"><![CDATA[Berechtigungen]]></item>
+		<item name="wcf.acp.packageserver.permission.type"><![CDATA[Typ]]></item>
+		<item name="wcf.acp.packageserver.permission.type.general"><![CDATA[Allgemein]]></item>
+		<item name="wcf.acp.packageserver.permission.type.user"><![CDATA[Benutzer]]></item>
+		<item name="wcf.acp.packageserver.permission.type.group"><![CDATA[Benutzergruppe]]></item>
+		<item name="wcf.acp.packageserver.permission.value"><![CDATA[Wert]]></item>
 		
-		<item name="wcf.acp.packageserver.package.permission"><![CDATA[Berechtigung]]></item>
-		<item name="wcf.acp.packageserver.package.permission.beneficiary"><![CDATA[Berechtigter]]></item>
-		<item name="wcf.acp.packageserver.package.permission.noresults"><![CDATA[Keine Berechtigungen gefunden.]]></item>
-		<item name="wcf.acp.packageserver.package.permission.list"><![CDATA[Berechtigungen]]></item>
-		<item name="wcf.acp.packageserver.package.permission.type"><![CDATA[Typ]]></item>
-		<item name="wcf.acp.packageserver.package.permission.type.general"><![CDATA[Allgemein]]></item>
-		<item name="wcf.acp.packageserver.package.permission.type.user"><![CDATA[Benutzer]]></item>
-		<item name="wcf.acp.packageserver.package.permission.type.group"><![CDATA[Benutzergruppe]]></item>
-		<item name="wcf.acp.packageserver.package.permission.value"><![CDATA[Wert]]></item>
-		
-		<item name="wcf.acp.packageserver.package.generalpermission.add"><![CDATA[Allgemeine Berechtigung hinzufügen]]></item>
-		<item name="wcf.acp.packageserver.package.userpermission.add"><![CDATA[Benutzerberechtigung hinzufügen]]></item>
-		<item name="wcf.acp.packageserver.package.grouppermission.add"><![CDATA[Gruppenberechtigung hinzufügen]]></item>
-		
-		<item name="wcf.acp.packageserver.package.fail.upload"><![CDATA[Beim Hochladen der Datei ist ein Fehler aufgetreten.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.empty"><![CDATA[Es wurde keine Datei ausgewählt.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.gzip"><![CDATA[Tim’s PackageServer unterstützt nur unkomprimierte tar-Archive.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.tar"><![CDATA[Die hochgeladene Datei konnte nicht als gültiges Tar-Archiv erkannt werden.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.validation"><![CDATA[Das angegebene Archiv ist kein gültiges Paket.]]></item>
-		<item name="wcf.acp.packageserver.package.fail.duplicate"><![CDATA[Das angegebene Paket existiert bereits auf dem Server.]]></item>
+		<item name="wcf.acp.packageserver.permission.general.add"><![CDATA[Allgemeine Berechtigung hinzufügen]]></item>
+		<item name="wcf.acp.packageserver.permission.group.add"><![CDATA[Gruppenberechtigung hinzufügen]]></item>
+		<item name="wcf.acp.packageserver.permission.user.add"><![CDATA[Benutzerberechtigung hinzufügen]]></item>
+		<item name="wcf.acp.packageserver.permission.general.edit"><![CDATA[Allgemeine Berechtigung bearbeiten]]></item>
+		<item name="wcf.acp.packageserver.permission.group.edit"><![CDATA[Gruppenberechtigung bearbeiten]]></item>
+		<item name="wcf.acp.packageserver.permission.user.edit"><![CDATA[Benutzerberechtigung bearbeiten]]></item>
+		<item name="wcf.acp.packageserver.permissionString"><![CDATA[Berechtigung]]></item>
+		<item name="wcf.acp.packageserver.permissionString.description"><![CDATA[Wert der Berechtigung, zum Beispiel „$v < 1.0.0“.]]></item>
+		<item name="wcf.acp.packageserver.permission.delete.confirmMessage"><![CDATA[Bitte bestätigen Sie die Löschung der angegebenen Berechtigung.]]></item>
 		
 		<item name="wcf.acp.packageserver.error.invalidPath"><![CDATA[Der angegebene Paketpfad „{'PACKAGESERVER_DIR'|constant}“ konnte nicht gefunden werden.]]></item>
 	</category>

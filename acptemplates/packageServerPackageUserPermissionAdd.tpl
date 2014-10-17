@@ -1,7 +1,7 @@
-{include file='header' pageTitle='wcf.acp.packageserver.package.userpermission.'|concat:$action}
+{include file='header' pageTitle='wcf.acp.packageserver.permission.user.'|concat:$action}
 
 <header class="boxHeadline">
-	<h1>{lang}wcf.acp.packageserver.package.userpermission.{$action}{/lang}</h1>
+	<h1>{lang}wcf.acp.packageserver.permission.user.{$action}{/lang}</h1>
 </header>
 
 {include file='formError'}
@@ -13,7 +13,7 @@
 <form method="post" action="{if $action == 'add'}{link controller='PackageServerPackageUserPermissionAdd'}{/link}{else}{link controller='PackageServerPackageUserPermissionEdit' packageIdentifier=$packageIdentifier userID=$user->userID}{/link}{/if}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
-			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
+			<legend>{lang}wcf.acp.packageserver.permission{/lang}</legend>
 			
 			<dl{if $errorField == 'packageIdentifier'} class="formError"{/if}>
 				<dt><label for="packageIdentifier">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</label></dt>
@@ -65,6 +65,7 @@
 							{/if}
 						</small>
 					{/if}
+					<small>{lang}wcf.acp.packageserver.permissionString.description{/lang}</small>
 				</dd>
 			</dl>
 		</fieldset>

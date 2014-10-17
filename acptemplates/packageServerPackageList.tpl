@@ -50,8 +50,8 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="columnTitle" colspan="2">{lang}wcf.acp.packageserver.package.identifier{/lang}</th>
-					<th class="columnText">{lang}wcf.acp.packageserver.package.version{/lang}</th>
+					<th class="columnTitle" colspan="2">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</th>
+					<th class="columnText">{lang}wcf.acp.packageserver.version{/lang}</th>
 					<th class="columnText">{lang}wcf.acp.packageserver.package.downloads{/lang}</th>
 					
 					{event name='headColumns'}

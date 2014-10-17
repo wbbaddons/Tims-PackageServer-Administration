@@ -1,7 +1,7 @@
-{include file='header' pageTitle='wcf.acp.packageserver.package.generalpermission.'|concat:$action}
+{include file='header' pageTitle='wcf.acp.packageserver.permission.general.'|concat:$action}
 
 <header class="boxHeadline">
-	<h1>{lang}wcf.acp.packageserver.package.generalpermission.{$action}{/lang}</h1>
+	<h1>{lang}wcf.acp.packageserver.permission.general.{$action}{/lang}</h1>
 </header>
 
 {include file='formError'}
@@ -13,7 +13,7 @@
 <form method="post" action="{if $action == 'add'}{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}{else}{link controller='PackageServerPackageGeneralPermissionEdit' packageIdentifier=$packageIdentifier}{/link}{/if}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
-			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
+			<legend>{lang}wcf.acp.packageserver.permission{/lang}</legend>
 			
 			<dl{if $errorField == 'packageIdentifier'} class="formError"{/if}>
 				<dt><label for="packageIdentifier">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</label></dt>
@@ -44,6 +44,7 @@
 							{/if}
 						</small>
 					{/if}
+					<small>{lang}wcf.acp.packageserver.permissionString.description{/lang}</small>
 				</dd>
 			</dl>
 		</fieldset>

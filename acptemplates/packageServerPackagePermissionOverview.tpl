@@ -32,21 +32,21 @@
 						<li>
 							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.generalpermission.add{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
 							</a>
 						</li>
 					</ul>
@@ -61,16 +61,16 @@
 {if $permissions|count}
 	<div id="permissionTableContainer" class="tabularBox tabularBoxTitle marginTop">
 		<header>
-			<h2>{lang}wcf.acp.packageserver.package.permission.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
+			<h2>{lang}wcf.acp.packageserver.permission.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
 		</header>
 		
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="columnTitle{if $sortField == 'packageIdentifier'} active {@$sortOrder}{/if}" colspan="2"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=packageIdentifier&sortOrder={if $sortField == 'packageIdentifier' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.package.identifier{/lang}</a></th>
-					<th class="columnText{if $sortField == 'type'} active {@$sortOrder}{/if}"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=type&sortOrder={if $sortField == 'type' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.package.permission.type{/lang}</a></th>
-					<th class="columnText{if $sortField == 'permissions'} active {@$sortOrder}{/if}"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=permissions&sortOrder={if $sortField == 'permissions' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.package.permission.value{/lang}</a></th>
-					<th class="columnText{if $sortField == 'beneficiary'} active {@$sortOrder}{/if}"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=beneficiary&sortOrder={if $sortField == 'beneficiary' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.package.permission.beneficiary{/lang}</a></th>
+					<th class="columnTitle{if $sortField == 'packageIdentifier'} active {@$sortOrder}{/if}" colspan="2"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=packageIdentifier&sortOrder={if $sortField == 'packageIdentifier' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</a></th>
+					<th class="columnText{if $sortField == 'type'} active {@$sortOrder}{/if}"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=type&sortOrder={if $sortField == 'type' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.permission.type{/lang}</a></th>
+					<th class="columnText{if $sortField == 'permissions'} active {@$sortOrder}{/if}"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=permissions&sortOrder={if $sortField == 'permissions' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.permission.value{/lang}</a></th>
+					<th class="columnText{if $sortField == 'beneficiary'} active {@$sortOrder}{/if}"><a href="{link controller='PackageServerPackagePermissionOverview'}action={@$encodedAction}&pageNo={@$pageNo}&sortField=beneficiary&sortOrder={if $sortField == 'beneficiary' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.packageserver.permission.beneficiary{/lang}</a></th>
 					
 					{event name='headColumns'}
 				</tr>
@@ -91,7 +91,7 @@
 							<a href="{link controller='PackageServerDeletePermission' packageIdentifier=$permission.packageIdentifier type=$permission.type beneficiaryID=$permission.beneficiaryID}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip"><span class="icon icon16 icon-remove"></span></a>
 						</td>
 						<td class="columnTitle"><p>{$permission.packageIdentifier}</p></td>
-						<td class="columnText "><p>{lang}wcf.acp.packageserver.package.permission.type.{$permission.type}{/lang}</p></td>
+						<td class="columnText "><p>{lang}wcf.acp.packageserver.permission.type.{$permission.type}{/lang}</p></td>
 						<td class="columnText"><p>{$permission.permissionString}</p></td>
 						<td class="columnText"><p>{if $permission.type == 'user'}{$permission.beneficiary}{else if $permission.type == 'group'}{lang}{$permission.beneficiary}{/lang}{else}–{/if}</p></td>
 						
@@ -103,7 +103,7 @@
 		
 	</div>
 {else}
-	<p class="info">{lang}wcf.acp.packageserver.package.permission.noresults{/lang}</p>
+	<p class="info">{lang}wcf.acp.packageserver.permission.noresults{/lang}</p>
 {/if}
 
 <div class="contentNavigation">
@@ -117,21 +117,21 @@
 						<li>
 							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.generalpermission.add{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.userpermission.add{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
 								<span class="icon icon16 icon-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.grouppermission.add{/lang}</span>
+								<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
 							</a>
 						</li>
 					</ul>

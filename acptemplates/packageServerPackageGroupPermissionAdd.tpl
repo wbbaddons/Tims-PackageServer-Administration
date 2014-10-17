@@ -1,7 +1,7 @@
-{include file='header' pageTitle='wcf.acp.packageserver.package.grouppermission.'|concat:$action}
+{include file='header' pageTitle='wcf.acp.packageserver.permission.group.'|concat:$action}
 
 <header class="boxHeadline">
-	<h1>{lang}wcf.acp.packageserver.package.grouppermission.{$action}{/lang}</h1>
+	<h1>{lang}wcf.acp.packageserver.permission.group.{$action}{/lang}</h1>
 </header>
 
 {include file='formError'}
@@ -13,7 +13,7 @@
 <form method="post" action="{if $action == 'add'}{link controller='PackageServerPackageGroupPermissionAdd'}{/link}{else}{link controller='PackageServerPackageGroupPermissionEdit' packageIdentifier=$packageIdentifier groupID=$group->groupID}{/link}{/if}">
 	<div class="container containerPadding marginTop">
 		<fieldset>
-			<legend>{lang}wcf.acp.packageserver.package.permission{/lang}</legend>
+			<legend>{lang}wcf.acp.packageserver.permission{/lang}</legend>
 			
 			<dl{if $errorField == 'packageIdentifier'} class="formError"{/if}>
 				<dt><label for="packageIdentifier">{lang}wcf.acp.packageserver.packageIdentifier{/lang}</label></dt>
@@ -69,6 +69,7 @@
 							{/if}
 						</small>
 					{/if}
+					<small>{lang}wcf.acp.packageserver.permissionString.description{/lang}</small>
 				</dd>
 			</dl>
 		</fieldset>
