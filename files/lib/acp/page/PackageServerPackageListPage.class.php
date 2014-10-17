@@ -2,6 +2,7 @@
 namespace wcf\acp\page;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
+use wcf\system\Regex;
 
 /**
  * Represents a list of all permissions
@@ -50,7 +51,12 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 		}
 		
 		$handle = \wcf\util\DirectoryUtil::getInstance(PackageServerUtil::getPackageServerPath());
-		$files = $handle->getFileObjects(SORT_ASC, new \wcf\system\Regex('[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+/.*\.tar'));
+		
+		$packageIdentifierRegex = '([a-z0-9_-]+\.[a-z0-9_-]+(?:\.[a-z0-9_-]+)+)';
+		$packageVersionRegex = '([0-9]+\.[0-9]+\.[0-9]+(?:_(?:a|alpha|b|beta|d|dev|rc|pl)_[0-9]+)?)';
+		$packageRegex = '^'.PackageServerUtil::getPackageServerPath().$packageIdentifierRegex.'/'.$packageVersionRegex.'\.tar$';
+		
+		$files = $handle->getFileObjects(SORT_ASC, new Regex($packageRegex, Regex::CASE_INSENSITIVE));
 		
 		foreach ($files as $file) {
 			$package = $file->getPathInfo()->getBasename();
