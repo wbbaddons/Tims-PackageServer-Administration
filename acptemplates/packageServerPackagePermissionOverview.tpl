@@ -4,7 +4,7 @@
 	$('#permissionTableContainer').find('.jsDeleteButton').click(function(event) {
 		event.preventDefault();
 		
-		WCF.System.Confirmation.show('{lang}wcf.acp.packageserver.package.delete.confirmMessage{/lang}', function(action, target) {
+		WCF.System.Confirmation.show('{lang}wcf.acp.packageserver.permission.delete.confirmMessage{/lang}', function(action, target) {
 			if (action === 'cancel') {
 				return;
 			}

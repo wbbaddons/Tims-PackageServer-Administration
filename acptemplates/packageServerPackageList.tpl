@@ -1,5 +1,21 @@
 {include file='header' pageTitle='wcf.acp.packageserver.package.list'}
 
+<script data-relocate="true">
+	$('#packageListTableContainer').find('.jsDeleteButton').click(function(event) {
+		event.preventDefault();
+		
+		WCF.System.Confirmation.show('{lang}wcf.acp.packageserver.package.delete.confirmMessage{/lang}', function(action, target) {
+			if (action === 'cancel') {
+				return;
+			}
+			
+			window.location = target.attr('href');
+		}, $(this));
+	});
+</script>
+
+{event name='javascriptInclude'}
+
 <header class="boxHeadline">
 	<h1>{lang}wcf.acp.packageserver.package.list{/lang}</h1>
 </header>
@@ -26,7 +42,7 @@
 </div>
 
 {hascontent}
-	<div class="tabularBox tabularBoxTitle marginTop">
+	<div id="packageListTableContainer" class="tabularBox tabularBoxTitle marginTop">
 		<header>
 			<h2>{lang}wcf.acp.packageserver.packages{/lang} <span class="badge badgeInverse">{#$versionCount}</span></h2>
 		</header>
@@ -48,7 +64,7 @@
 						{foreach from=$versions key=version item=downloads}
 							<tr>
 								<td class="columnIcon">
-									<a href="{link controller='PackageServerDeletePackageVersion' packageIdentifier=$packageIdentifier version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsTooltip"><span class="icon icon16 icon-remove"></span></a>
+									<a href="{link controller='PackageServerDeletePackageVersion' packageIdentifier=$packageIdentifier version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip"><span class="icon icon16 icon-remove"></span></a>
 								</td>
 								<td class="columnTitle"><p>{$packageIdentifier}</p></td>
 								<td class="columnText"><p>{$version}</p></td>
