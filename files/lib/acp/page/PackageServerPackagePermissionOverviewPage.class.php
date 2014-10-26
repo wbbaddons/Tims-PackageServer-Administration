@@ -48,16 +48,11 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	public $permissions = array();
 	
 	/**
-	 * @see	\wcf\page\IPage::readData()
-	 */
-	public function readData() {
-		parent::readData();
-	}
-	
-	/**
 	 * @see	\wcf\page\MultipleLinkPage::initObjectList()
 	 */
-	public function initObjectList() {}
+	protected function initObjectList() {
+		return;
+	}
 	
 	/**
 	 * @see	\wcf\page\MultipleLinkPage::readObjects()
@@ -66,24 +61,24 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 		// Read all permissions in a single query
 		$sql = "(
 				SELECT	packageIdentifier, permissionString, NULL AS beneficiaryID, NULL AS beneficiary, 'general' AS type
-				FROM wcf".WCF_N."_packageserver_package_permission_general
+				FROM	wcf".WCF_N."_packageserver_package_permission_general
 			)
 			UNION ALL
 			(
-				SELECT	perm_table.packageIdentifier, perm_table.permissionString, perm_table.userID AS beneficiaryID, user_table.username AS beneficiary, 'user' AS type
-				FROM wcf".WCF_N."_packageserver_package_to_user perm_table
-				LEFT JOIN wcf".WCF_N."_user user_table ON (user_table.userID = perm_table.userID)
+				SELECT		perm_table.packageIdentifier, perm_table.permissionString, perm_table.userID AS beneficiaryID, user_table.username AS beneficiary, 'user' AS type
+				FROM		wcf".WCF_N."_packageserver_package_to_user perm_table
+				LEFT JOIN	wcf".WCF_N."_user user_table
+				ON		(user_table.userID = perm_table.userID)
 			)
 			UNION ALL
 			(
-				SELECT	perm_table.packageIdentifier, perm_table.permissionString, perm_table.groupID AS beneficiaryID, group_table.groupName AS beneficiary, 'group' AS type
-				FROM wcf".WCF_N."_packageserver_package_to_group perm_table
-				LEFT JOIN wcf".WCF_N."_user_group group_table ON (group_table.groupID = perm_table.groupID)
+				SELECT		perm_table.packageIdentifier, perm_table.permissionString, perm_table.groupID AS beneficiaryID, group_table.groupName AS beneficiary, 'group' AS type
+				FROM		wcf".WCF_N."_packageserver_package_to_group perm_table
+				LEFT JOIN	wcf".WCF_N."_user_group group_table ON (group_table.groupID = perm_table.groupID)
 			)
-			ORDER BY ".$this->sortField." ".$this->sortOrder."
-			LIMIT ".$this->sqlOffset.','.$this->sqlLimit;
+			ORDER BY ".$this->sortField." ".$this->sortOrder;
 			
-		$stmt = WCF::getDB()->prepareStatement($sql);
+		$stmt = WCF::getDB()->prepareStatement($sql, $this->sqlLimit, $this->sqlOffset);
 		$stmt->execute();
 		
 		while ($row = $stmt->fetchArray()) {
