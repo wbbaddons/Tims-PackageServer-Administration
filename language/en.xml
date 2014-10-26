@@ -17,14 +17,13 @@
 		<item name="wcf.acp.packageserver.package.add"><![CDATA[Add Package]]></item>
 		<item name="wcf.acp.packageserver.package.delete.confirmMessage"><![CDATA[Please confirm the deletion of this package.]]></item>
 		<item name="wcf.acp.packageserver.package.list"><![CDATA[Packages]]></item>
-		<item name="wcf.acp.packageserver.package.noresults"><![CDATA[No packages found]]></item>
 		<item name="wcf.acp.packageserver.package.upload"><![CDATA[Upload Package]]></item>
 		<item name="wcf.acp.packageserver.package.error.upload"><![CDATA[Uploading of specified file has failed.]]></item>
 		<item name="wcf.acp.packageserver.package.error.empty"><![CDATA[You must specify a file.]]></item>
 		<item name="wcf.acp.packageserver.package.error.gzip"><![CDATA[Only uncompressed tar archives are supported by Tim’s PackageServer.]]></item>
 		<item name="wcf.acp.packageserver.package.error.tar"><![CDATA[The uploaded file could not be detected as a valid tar archive.]]></item>
 		<item name="wcf.acp.packageserver.package.error.validation"><![CDATA[The uploaded archive is invalid.]]></item>
-		<item name="wcf.acp.packageserver.package.error.duplicate"><![CDATA[The uploaded package is already existing on the server.]]></item>
+		<item name="wcf.acp.packageserver.package.error.duplicate"><![CDATA[The uploaded archive already exists on the server.]]></item>
 		
 		<item name="wcf.acp.packageserver.packageIdentifier"><![CDATA[Package Identifier]]></item>
 		<item name="wcf.acp.packageserver.version"><![CDATA[Version]]></item>
@@ -58,7 +57,7 @@
 		<item name="wcf.acp.option.category.packageserver"><![CDATA[Package Server]]></item>
 		<item name="wcf.acp.option.category.packageserver.general"><![CDATA[General]]></item>
 		<item name="wcf.acp.option.packageserver_buildauth"><![CDATA[Automatically generate “auth.json”]]></item>
-		<item name="wcf.acp.option.packageserver_buildauth.description"><![CDATA[Generates an “auth.json” based on the set package permissions which is used by Tim’s PackageServer for authentication.]]></item>
+		<item name="wcf.acp.option.packageserver_buildauth.description"><![CDATA[Generates an “auth.json” containing the proper permissions and credentials for every user.]]></item>
 		<item name="wcf.acp.option.packageserver_dir"><![CDATA[Path to Tim’s PackageServer]]></item>
 		<item name="wcf.acp.option.packageserver_dir.description"><![CDATA[Enter the path to the “packages” folder of your Tim’s PackageServer installation.]]></item>
 	</category>

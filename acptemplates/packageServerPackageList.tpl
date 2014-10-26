@@ -79,7 +79,7 @@
 		</table>
 	</div>
 {hascontentelse}
-	<p class="info">{lang}wcf.acp.packageserver.package.noresults{/lang}</p>
+	<p class="info">{lang}wcf.global.noItems{/lang}</p>
 {/hascontent}
 
 <div class="contentNavigation">

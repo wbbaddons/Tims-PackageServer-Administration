@@ -17,7 +17,6 @@
 		<item name="wcf.acp.packageserver.package.add"><![CDATA[Paket hinzufügen]]></item>
 		<item name="wcf.acp.packageserver.package.delete.confirmMessage"><![CDATA[Bitte bestätigen Sie die Löschung des angegebenen Paketes.]]></item>
 		<item name="wcf.acp.packageserver.package.list"><![CDATA[Pakete]]></item>
-		<item name="wcf.acp.packageserver.package.noresults"><![CDATA[Keine Pakete gefunden]]></item>
 		<item name="wcf.acp.packageserver.package.upload"><![CDATA[Paket hochladen]]></item>
 		<item name="wcf.acp.packageserver.package.error.upload"><![CDATA[Beim Hochladen der Datei ist ein Fehler aufgetreten.]]></item>
 		<item name="wcf.acp.packageserver.package.error.empty"><![CDATA[Es wurde keine Datei ausgewählt.]]></item>

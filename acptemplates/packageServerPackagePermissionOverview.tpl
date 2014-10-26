@@ -103,7 +103,7 @@
 		
 	</div>
 {else}
-	<p class="info">{lang}wcf.acp.packageserver.permission.noresults{/lang}</p>
+	<p class="info">{lang}wcf.global.noItems{/lang}</p>
 {/if}
 
 <div class="contentNavigation">
