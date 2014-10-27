@@ -3,17 +3,18 @@
 	<packageinformation>
 		<packagename>Tims-PackageServer-Administration</packagename>
 		<packagedescription><![CDATA[A WCF extension for Tim's package server.]]></packagedescription>
-		<version>1.0.0 Beta 13</version>
-		<date>2014-05-02</date>
+		<version>2.0.0 Beta 1</version>
+		<date>2014-10-28</date>
+		<license><![CDATA[GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>]]></license>
 	</packageinformation>
 
 	<authorinformation>
-		<author>Joshua Rüsweg</author>
+		<author><![CDATA[Tim’s Bastelstu.be]]></author>
 		<authorurl>http://tims.bastelstu.be/</authorurl>
 	</authorinformation>
 
 	<requiredpackages>
-		<requiredpackage minversion="2.0.0 ">com.woltlab.wcf</requiredpackage>
+		<requiredpackage minversion="2.0.0">com.woltlab.wcf</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">
