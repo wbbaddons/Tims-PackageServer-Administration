@@ -3,7 +3,7 @@
 	<import>
 		<categories>
 			<category name="admin.packageServer">
-				<parent>admin</parent>
+				<parent>admin.content</parent>
 			</category>
 		</categories>
 		
