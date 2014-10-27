@@ -2,6 +2,7 @@
 namespace wcf\acp\form;
 use wcf\form\AbstractForm;
 use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
 
@@ -35,7 +36,6 @@ class PackageServerPackageGeneralPermissionEditForm extends PackageServerPackage
 		$sql = "SELECT	*
 			FROM	wcf". WCF_N ."_packageserver_package_permission_general
 			WHERE	packageIdentifier = ?";
-			
 		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute(array($this->packageIdentifier));
 		
@@ -51,14 +51,6 @@ class PackageServerPackageGeneralPermissionEditForm extends PackageServerPackage
 	 */
 	public function validate() {
 		AbstractForm::validate();
-		
-		if (empty($this->packageIdentifier)) {
-			throw new UserInputException('packageIdentifier');
-		}
-		
-		if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
-			throw new UserInputException('packageIdentifier', 'notValid');
-		}
 		
 		if (empty($this->permissionString)) {
 			throw new UserInputException('permissionString');

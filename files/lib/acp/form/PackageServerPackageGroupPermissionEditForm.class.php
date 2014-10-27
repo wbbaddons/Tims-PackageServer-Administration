@@ -2,6 +2,7 @@
 namespace wcf\acp\form;
 use wcf\form\AbstractForm;
 use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
 
@@ -43,7 +44,6 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
 		parent::readParameters();
 		
 		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
-		
 		if (isset($_REQUEST['groupID'])) $this->groupID = intval($_REQUEST['groupID']);
 		
 		$this->userGroup = new \wcf\data\user\group\UserGroup($this->groupID);
@@ -54,9 +54,8 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
 		
 		$sql = "SELECT	*
 			FROM	wcf". WCF_N ."_packageserver_package_to_group
-			WHERE	packageIdentifier = ?
-			AND	groupID = ?";
-			
+			WHERE		packageIdentifier = ?
+				AND	groupID = ?";
 		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute(array($this->packageIdentifier, $this->userGroup->groupID));
 		
@@ -73,16 +72,8 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
 	public function validate() {
 		AbstractForm::validate();
 		
-		if (empty($this->packageIdentifier)) {
-			throw new IllegalLinkException();
-		}
-		
-		if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
-			throw new IllegalLinkException();
-		}
-		
 		if (empty($this->permissionString)) {
-			throw new IllegalLinkException();
+			throw new UserInputException('permissionString');
 		}
 	}
 	
@@ -105,8 +96,8 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
 		
 		$sql = "UPDATE	wcf". WCF_N ."_packageserver_package_to_group
 			SET	permissionString = ?
-			WHERE	packageIdentifier = ?
-			AND	groupID = ?";
+			WHERE		packageIdentifier = ?
+				AND	groupID = ?";
 		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute(array($this->permissionString, $this->packageIdentifier, $this->userGroup->groupID));
 		

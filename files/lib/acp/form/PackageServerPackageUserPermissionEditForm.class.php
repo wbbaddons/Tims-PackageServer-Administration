@@ -2,6 +2,7 @@
 namespace wcf\acp\form;
 use wcf\form\AbstractForm;
 use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
 
@@ -43,7 +44,6 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 		parent::readParameters();
 		
 		if (isset($_REQUEST['packageIdentifier'])) $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
-		
 		if (isset($_REQUEST['userID'])) $this->userID = intval($_REQUEST['userID']);
 		
 		$this->user = new \wcf\data\user\User($this->userID);
@@ -54,10 +54,9 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 		
 		$sql = "SELECT	*
 			FROM	wcf". WCF_N ."_packageserver_package_to_user
-			WHERE	packageIdentifier = ?
-			AND	userID = ?";
-			
-		$stmt = WCF::getDB()->prepareStatement($sql);
+			WHERE		packageIdentifier = ?
+				AND	userID = ?";
+		$stmt = WCF::getDB()->prepareStatement($sql, 1);
 		$stmt->execute(array($this->packageIdentifier, $this->user->userID));
 		
 		$this->permissionEntry = $stmt->fetchArray();
@@ -73,16 +72,8 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 	public function validate() {
 		AbstractForm::validate();
 		
-		if (empty($this->packageIdentifier)) {
-			throw new IllegalLinkException();
-		}
-		
-		if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
-			throw new IllegalLinkException();
-		}
-		
 		if (empty($this->permissionString)) {
-			throw new IllegalLinkException();
+			throw new UserInputException('permissionString');
 		}
 	}
 	
@@ -105,8 +96,8 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
 		
 		$sql = "UPDATE	wcf". WCF_N ."_packageserver_package_to_user
 			SET	permissionString = ?
-			WHERE	packageIdentifier = ?
-			AND	userID = ?";
+			WHERE		packageIdentifier = ?
+				AND	userID = ?";
 		$stmt = WCF::getDB()->prepareStatement($sql);
 		$stmt->execute(array($this->permissionString, $this->packageIdentifier, $this->user->userID));
 		

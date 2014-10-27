@@ -13,7 +13,7 @@ use wcf\system\Regex;
  */
 class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 	/**
-	 * @see	wcf\page\AbstractPage::$activeMenuItem
+	 * @see	\wcf\page\AbstractPage::$activeMenuItem
 	 */
 	public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.list';
 	

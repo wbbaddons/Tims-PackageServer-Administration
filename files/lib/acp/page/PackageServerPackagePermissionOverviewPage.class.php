@@ -86,6 +86,9 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 		}
 	}
 	
+	/**
+	 * @see	\wcf\page\MultipleLinkPage::countItems()
+	 */
 	public function countItems() {
 		// Count every permission and sum them up
 		$sql = "SELECT (
