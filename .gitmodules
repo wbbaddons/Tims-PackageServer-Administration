@@ -1,0 +1,3 @@
+[submodule "files/acp/be.bastelstu.josh.ps/Tims-PackageServer"]
+	path = files/acp/be.bastelstu.josh.ps/Tims-PackageServer
+	url = git://github.com/wbbaddons/Tims-PackageServer.git
