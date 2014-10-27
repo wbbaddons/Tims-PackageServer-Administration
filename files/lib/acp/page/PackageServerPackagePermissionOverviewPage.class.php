@@ -22,8 +22,8 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	public $neededPermissions = array('admin.packageServer.canManagePackages');
 	
 	/**
-	* @see	\wcf\page\SortablePage::$defaultSortField
-	*/
+	 * @see	\wcf\page\SortablePage::$defaultSortField
+	 */
 	public $defaultSortField = 'packageIdentifier';
 	
 	/**
@@ -37,8 +37,8 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage 
 	);
 	
 	/**
-	* @see	\wcf\page\MultipleLinkPage::$itemsPerPage
-	*/
+	 * @see	\wcf\page\MultipleLinkPage::$itemsPerPage
+	 */
 	public $itemsPerPage = 50;
 	
 	/**

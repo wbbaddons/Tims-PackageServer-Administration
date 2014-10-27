@@ -64,7 +64,6 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm {
 	public function readData() {
 		$this->groupList = new \wcf\data\user\group\UserGroupList();
 		$this->groupList->getConditionBuilder()->add('groupType NOT IN (?)', array(\wcf\data\user\group\UserGroup::EVERYONE));
-		
 		$this->groupList->readObjects();
 		
 		parent::readData();

@@ -59,8 +59,8 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm {
 	}
 	
 	/**
-	* @see	\wcf\form\IForm::validate()
-	*/
+	 * @see	\wcf\form\IForm::validate()
+	 */
 	public function validate() {
 		parent::validate();
 		

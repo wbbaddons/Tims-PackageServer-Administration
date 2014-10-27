@@ -148,7 +148,6 @@ final class PackageServerUtil {
 		$stmt->execute();
 		
 		$general = array();
-		
 		while ($row = $stmt->fetchArray()) {
 			$general[$row['packageIdentifier']] = $row['permissionString'];
 		}

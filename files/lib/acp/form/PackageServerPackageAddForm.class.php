@@ -172,8 +172,8 @@ class PackageServerPackageAddForm extends AbstractForm {
 	/**
 	 * Returns the directory in which the package will be saved.
 	 *
-	 * @param	boolean	$addTrailingSlash
-	 * @return	string|null	null is returned if an error arises
+	 * @param	boolean		$addTrailingSlash
+	 * @return	string|null				null is returned if an error arises
 	 */
 	public function getPackageDirectory($addTrailingSlash = true) {
 		if ($this->archive !== null) {

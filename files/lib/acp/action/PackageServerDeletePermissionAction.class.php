@@ -46,51 +46,44 @@ class PackageServerDeletePermissionAction extends AbstractAction {
 		if (isset($_GET['type'])) $this->type = \wcf\util\StringUtil::trim($_GET['type']);
 		if (isset($_GET['beneficiaryID'])) $this->beneficiaryID = intval($_GET['beneficiaryID']);
 		
-		if ($this->packageIdentifier === null || $this->beneficiaryID === null) {
-			throw new \wcf\system\exception\IllegalLinkException();
-		}
-		
 		switch ($this->type) {
 			case 'general':
-				$sqlData = array(
-					$this->packageIdentifier
-				);
-				
 				$sql = "SELECT	COUNT(*)
 					FROM	wcf".WCF_N."_packageserver_package_permission_general
 					WHERE	packageIdentifier = ?";
+				$stmt = WCF::getDB()->prepareStatement($sql);
+				$stmt->execute(array(
+					$this->packageIdentifier
+				));
 			break;
 			
 			case 'user':
-				$sqlData = array(
-					$this->packageIdentifier,
-					$this->beneficiaryID
-				);
-				
 				$sql = "SELECT	COUNT(*)
 					FROM	wcf".WCF_N."_packageserver_package_to_user
-					WHERE	packageIdentifier = ?
-					AND	userID = ?";
+					WHERE		packageIdentifier = ?
+						AND	userID = ?";
+				$stmt = WCF::getDB()->prepareStatement($sql);
+				$stmt->execute(array(
+					$this->packageIdentifier,
+					$this->beneficiaryID
+				));
 			break;
 			
 			case 'group':
-				$sqlData = array(
-					$this->packageIdentifier,
-					$this->beneficiaryID
-				);
-				
 				$sql = "SELECT	COUNT(*)
 					FROM	wcf".WCF_N."_packageserver_package_to_group
-					WHERE	packageIdentifier = ?
-					AND	groupID = ?";
+					WHERE		packageIdentifier = ?
+						AND	groupID = ?";
+				$stmt = WCF::getDB()->prepareStatement($sql);
+				$stmt->execute(array(
+					$this->packageIdentifier,
+					$this->beneficiaryID
+				));
 			break;
 			
 			default:
 				throw new \wcf\system\exception\IllegalLinkException();
 		}
-		
-		$stmt = WCF::getDB()->prepareStatement($sql);
-		$stmt->execute($sqlData);
 		
 		if (!$stmt->fetchColumn()) {
 			throw new \wcf\system\exception\IllegalLinkException();
@@ -105,42 +98,39 @@ class PackageServerDeletePermissionAction extends AbstractAction {
 		
 		switch ($this->type) {
 			case 'general':
-				$sqlData = array(
+				$sql = "DELETE FROM	wcf".WCF_N."_packageserver_package_permission_general
+					WHERE		packageIdentifier = ?";
+				$stmt = WCF::getDB()->prepareStatement($sql);
+				$stmt->execute(array(
 					$this->packageIdentifier
-				);
-				
-				$sql = "DELETE FROM wcf".WCF_N."_packageserver_package_permission_general
-					WHERE	packageIdentifier = ?";
+				));
 			break;
 			
 			case 'user':
-				$sqlData = array(
+				$sql = "DELETE FROM	wcf".WCF_N."_packageserver_package_to_user
+					WHERE		packageIdentifier = ?
+						AND	userID = ?";
+				$stmt = WCF::getDB()->prepareStatement($sql);
+				$stmt->execute(array(
 					$this->packageIdentifier,
 					$this->beneficiaryID
-				);
-				
-				$sql = "DELETE FROM wcf".WCF_N."_packageserver_package_to_user
-					WHERE	packageIdentifier = ?
-					AND	userID = ?";
+				));
 			break;
 			
 			case 'group':
-				$sqlData = array(
+				$sql = "DELETE FROM	wcf".WCF_N."_packageserver_package_to_group
+					WHERE		packageIdentifier = ?
+						AND	groupID = ?";
+				$stmt = WCF::getDB()->prepareStatement($sql);
+				$stmt->execute(array(
 					$this->packageIdentifier,
 					$this->beneficiaryID
-				);
-				
-				$sql = "DELETE FROM wcf".WCF_N."_packageserver_package_to_group
-					WHERE	packageIdentifier = ?
-					AND	groupID = ?";
+				));
 			break;
 			
 			default:
 				throw new \wcf\system\exception\IllegalLinkException();
 		}
-		
-		$stmt = WCF::getDB()->prepareStatement($sql);
-		$stmt->execute($sqlData);
 		
 		HeaderUtil::redirect(\wcf\system\request\LinkHandler::getInstance()->getLink('PackageServerPackagePermissionOverview'));
 		exit;
