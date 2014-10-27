@@ -25,6 +25,7 @@
 		<instruction type="eventListener">eventListener.xml</instruction>
 		<instruction type="acpMenu">acpMenu.xml</instruction>
 		<instruction type="userGroupOption">userGroupOption.xml</instruction>
+		<instruction type="script" run="standalone">acp/be.bastelstu.josh.ps.install.php</instruction>
 	</instructions>
 	
 	<instructions type="update" fromversion="*">
