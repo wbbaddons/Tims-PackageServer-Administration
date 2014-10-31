@@ -18,7 +18,7 @@
 			<dl{if $errorField == 'package'} class="formError"{/if}>
 				<dt><label for="package">{lang}wcf.acp.packageserver.package.upload{/lang}</label></dt>
 				<dd>
-					<input type="file" id="package" name="package" required="required" autofocus="autofocus" class="medium" />
+					<input type="file" id="package" name="package" required="required" autofocus="autofocus" class="long" />
 					{if $errorField == 'package'}
 						<small class="innerError">
 							{lang}wcf.acp.packageserver.package.fail.{$errorType}{/lang}
