@@ -5,8 +5,8 @@
 		<packagename language="de">Tims PackageServer-Administration</packagename>
 		<packagedescription><![CDATA[Community Framework integration for Tim’s PackageServer. It automatically builds the auth.json based upon your settings and allows you to easily add and remove versions.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[Community Framework-Integration für Tims PackageServer. Das Plugin verwaltet automatisch die auth.json basierend auf Ihren Einstellungen und erlaubt es einfach Versionen hinzuzufügen und zu entfernen.]]></packagedescription>
-		<version>2.0.0 Beta 1</version>
-		<date>2014-10-29</date>
+		<version>2.0.0 Beta 2</version>
+		<date>2014-10-31</date>
 		<license><![CDATA[GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>]]></license>
 	</packageinformation>
 
