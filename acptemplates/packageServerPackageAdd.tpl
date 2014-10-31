@@ -21,7 +21,7 @@
 					<input type="file" id="package" name="package" required="required" autofocus="autofocus" class="long" />
 					{if $errorField == 'package'}
 						<small class="innerError">
-							{lang}wcf.acp.packageserver.package.fail.{$errorType}{/lang}
+							{lang}wcf.acp.packageserver.package.error.{$errorType}{/lang}
 						</small>
 					{/if}
 				</dd>
