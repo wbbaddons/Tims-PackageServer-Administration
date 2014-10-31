@@ -74,7 +74,7 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage {
 				$downloads = intval(file_get_contents($counterFile));
 			}
 			
-			$this->items[$package][$version] = $downloads;
+			$this->items[$package][str_replace('_', ' ', $version)] = $downloads;
 			
 			$this->versionCount++;
 		}
