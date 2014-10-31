@@ -20,31 +20,8 @@ class PackageServerUserChangeListener implements IEventListener {
 		$parameters = $eventObj->getParameters();
 		switch ($eventObj->getActionName()) {
 			case 'update':
-				// If the user changes its username or if it's changed in the ACP
-				// we should replace the whole auth file to make sure
-				// that the old username is invalid
-				// TODO: Implement a more efficient method
-				if (isset($parameters['data']['username'])) {
-					PackageServerUtil::generateAuthFile();
-				}
-				else if (isset($parameters['data']['removeGroups']) || isset($parameters['data']['password'])) {
-					// Update authentication information for the affected users.
-					foreach ($eventObj->getObjects() as $user) {
-						PackageServerUtil::updateUserAuth($user->getDecoratedObject());
-					}
-				}
-			break;
-				
 			case 'create':
 			case 'addToGroups':
-				// Update authentication information for the affected users.
-				foreach ($eventObj->getObjects() as $user) {
-					PackageServerUtil::updateUserAuth($user->getDecoratedObject());
-				}
-			break;
-			case 'delete':
-				// Generating a completely new file
-				// TODO: We should improve this in the future
 				PackageServerUtil::generateAuthFile();
 			break;
 		}
