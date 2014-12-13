@@ -2,14 +2,16 @@ CREATE TABLE wcf1_packageserver_package_to_group (
 	packageIdentifier VARCHAR(255),
 	groupID INT(10),
 	permissionString MEDIUMTEXT,
-	PRIMARY KEY(packageIdentifier,groupID)
+	PRIMARY KEY(packageIdentifier, groupID),
+	KEY (groupID)
 );
 
 CREATE TABLE wcf1_packageserver_package_to_user (
 	packageIdentifier VARCHAR(255),
 	userID INT(10),
 	permissionString MEDIUMTEXT,
-	PRIMARY KEY(packageIdentifier,userID)
+	PRIMARY KEY(packageIdentifier, userID),
+	KEY (userID)
 );
 
 CREATE TABLE wcf1_packageserver_package_permission_general (
