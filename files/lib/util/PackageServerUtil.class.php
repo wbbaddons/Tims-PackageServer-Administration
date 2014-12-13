@@ -53,7 +53,10 @@ final class PackageServerUtil {
 		$userStatement = WCF::getDB()->prepareStatement($sql);
 		$userStatement->execute();
 		while ($row = $userStatement->fetchArray()) {
-			$groups = array_map(function ($item) { return 'group-'.$item; }, explode(',', $row['groupIDs']));
+			$groups = array_map(function ($item) {
+				return 'group-'.$item;
+			}, explode(',', $row['groupIDs']));
+			
 			$userData = array(
 				'passwd' => $row['banned'] ? '-' : $row['password'],
 				'groups' => $groups,
