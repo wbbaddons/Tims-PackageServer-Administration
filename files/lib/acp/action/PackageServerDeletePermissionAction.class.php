@@ -1,9 +1,9 @@
 <?php
 namespace wcf\acp\action;
-
 use wcf\action\AbstractAction;
-use wcf\util\HeaderUtil;
 use wcf\system\WCF;
+use wcf\util\HeaderUtil;
+use wcf\util\PackageServerUtil;
 
 /**
  * Deletes package permissions.
