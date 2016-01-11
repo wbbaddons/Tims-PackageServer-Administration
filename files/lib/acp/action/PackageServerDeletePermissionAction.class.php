@@ -132,6 +132,8 @@ class PackageServerDeletePermissionAction extends AbstractAction {
 				throw new \wcf\system\exception\IllegalLinkException();
 		}
 		
+		PackageServerUtil::generateAuthFile();
+		
 		HeaderUtil::redirect(\wcf\system\request\LinkHandler::getInstance()->getLink('PackageServerPackagePermissionOverview'));
 		exit;
 	}
