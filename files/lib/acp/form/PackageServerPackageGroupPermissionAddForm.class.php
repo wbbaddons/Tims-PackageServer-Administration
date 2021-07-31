@@ -121,9 +121,9 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm
                     (packageIdentifier, permissionString, groupID)
                 VALUES
                     (?, ?, ?)";
-        $stmt = WCF::getDB()->prepareStatement($sql);
+        $statement = WCF::getDB()->prepareStatement($sql);
         foreach ($this->groupIDs as $groupID) {
-            $stmt->execute([
+            $statement->execute([
                 $this->packageIdentifier,
                 $this->permissionString,
                 $groupID,

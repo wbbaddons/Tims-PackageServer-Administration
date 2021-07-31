@@ -20,9 +20,9 @@ final class Installation
                 FROM    wcf" . WCF_N . "_option
                 WHERE   packageID = ?
                     AND optionName = ?";
-        $stmt = \wcf\system\WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([$packageID, 'packageserver_dir']);
-        $this->optionID = $stmt->fetchColumn();
+        $statement = \wcf\system\WCF::getDB()->prepareStatement($sql);
+        $statement->execute([$packageID, 'packageserver_dir']);
+        $this->optionID = $statement->fetchColumn();
     }
     
     public function execute()
@@ -30,8 +30,8 @@ final class Installation
         $sql = "UPDATE  wcf" . WCF_N . "_option
                 SET     optionValue = ?
                 WHERE   optionID = ?";
-        $stmt = \wcf\system\WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([WCF_DIR . 'acp/be.bastelstu.josh.ps/Tims-PackageServer/packages/', $this->optionID]);
+        $statement = \wcf\system\WCF::getDB()->prepareStatement($sql);
+        $statement->execute([WCF_DIR . 'acp/be.bastelstu.josh.ps/Tims-PackageServer/packages/', $this->optionID]);
         \wcf\data\option\OptionEditor::resetCache();
     }
 }

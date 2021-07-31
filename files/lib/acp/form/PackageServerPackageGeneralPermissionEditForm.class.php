@@ -42,12 +42,12 @@ class PackageServerPackageGeneralPermissionEditForm extends PackageServerPackage
         $sql = "SELECT  *
                 FROM    wcf" . WCF_N . "_packageserver_package_permission_general
                 WHERE   packageIdentifier = ?";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([
             $this->packageIdentifier,
         ]);
 
-        $this->permissionEntry = $stmt->fetchArray();
+        $this->permissionEntry = $statement->fetchArray();
 
         if (!$this->permissionEntry) {
             throw new IllegalLinkException();
@@ -88,8 +88,8 @@ class PackageServerPackageGeneralPermissionEditForm extends PackageServerPackage
         $sql = "UPDATE  wcf" . WCF_N . "_packageserver_package_permission_general
                 SET     permissionString = ?
                 WHERE   packageIdentifier = ?";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([
             $this->permissionString,
             $this->packageIdentifier,
         ]);

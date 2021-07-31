@@ -60,8 +60,8 @@ class PackageServerDeletePermissionAction extends AbstractAction
                 $sql = "SELECT  COUNT(*)
                         FROM    wcf" . WCF_N . "_packageserver_package_permission_general
                         WHERE   packageIdentifier = ?";
-                $stmt = WCF::getDB()->prepareStatement($sql);
-                $stmt->execute([
+                $statement = WCF::getDB()->prepareStatement($sql);
+                $statement->execute([
                     $this->packageIdentifier,
                 ]);
                 break;
@@ -71,8 +71,8 @@ class PackageServerDeletePermissionAction extends AbstractAction
                         FROM    wcf" . WCF_N . "_packageserver_package_to_user
                         WHERE   packageIdentifier = ?
                             AND userID = ?";
-                $stmt = WCF::getDB()->prepareStatement($sql);
-                $stmt->execute([
+                $statement = WCF::getDB()->prepareStatement($sql);
+                $statement->execute([
                     $this->packageIdentifier,
                     $this->beneficiaryID,
                 ]);
@@ -83,8 +83,8 @@ class PackageServerDeletePermissionAction extends AbstractAction
                         FROM    wcf" . WCF_N . "_packageserver_package_to_group
                         WHERE   packageIdentifier = ?
                             AND groupID = ?";
-                $stmt = WCF::getDB()->prepareStatement($sql);
-                $stmt->execute([
+                $statement = WCF::getDB()->prepareStatement($sql);
+                $statement->execute([
                     $this->packageIdentifier,
                     $this->beneficiaryID,
                 ]);
@@ -94,7 +94,7 @@ class PackageServerDeletePermissionAction extends AbstractAction
                 throw new \wcf\system\exception\IllegalLinkException();
         }
 
-        if (!$stmt->fetchColumn()) {
+        if (!$statement->fetchColumn()) {
             throw new \wcf\system\exception\IllegalLinkException();
         }
     }
@@ -110,8 +110,8 @@ class PackageServerDeletePermissionAction extends AbstractAction
             case 'general':
                 $sql = "DELETE FROM wcf" . WCF_N . "_packageserver_package_permission_general
                         WHERE       packageIdentifier = ?";
-                $stmt = WCF::getDB()->prepareStatement($sql);
-                $stmt->execute([
+                $statement = WCF::getDB()->prepareStatement($sql);
+                $statement->execute([
                     $this->packageIdentifier,
                 ]);
                 break;
@@ -120,8 +120,8 @@ class PackageServerDeletePermissionAction extends AbstractAction
                 $sql = "DELETE FROM wcf" . WCF_N . "_packageserver_package_to_user
                         WHERE       packageIdentifier = ?
                                 AND userID = ?";
-                $stmt = WCF::getDB()->prepareStatement($sql);
-                $stmt->execute([
+                $statement = WCF::getDB()->prepareStatement($sql);
+                $statement->execute([
                     $this->packageIdentifier,
                     $this->beneficiaryID,
                 ]);
@@ -131,8 +131,8 @@ class PackageServerDeletePermissionAction extends AbstractAction
                 $sql = "DELETE FROM wcf" . WCF_N . "_packageserver_package_to_group
                         WHERE       packageIdentifier = ?
                                 AND groupID = ?";
-                $stmt = WCF::getDB()->prepareStatement($sql);
-                $stmt->execute([
+                $statement = WCF::getDB()->prepareStatement($sql);
+                $statement->execute([
                     $this->packageIdentifier,
                     $this->beneficiaryID,
                 ]);

@@ -64,13 +64,13 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
                 FROM    wcf" . WCF_N . "_packageserver_package_to_group
                 WHERE   packageIdentifier = ?
                     AND groupID = ?";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([
             $this->packageIdentifier,
             $this->userGroup->groupID,
         ]);
 
-        $this->permissionEntry = $stmt->fetchArray();
+        $this->permissionEntry = $statement->fetchArray();
 
         if (!$this->permissionEntry) {
             throw new IllegalLinkException();
@@ -112,8 +112,8 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
                 SET     permissionString = ?
                 WHERE   packageIdentifier = ?
                     AND groupID = ?";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([
             $this->permissionString,
             $this->packageIdentifier,
             $this->userGroup->groupID,

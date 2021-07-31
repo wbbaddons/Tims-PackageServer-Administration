@@ -64,10 +64,10 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
                 FROM    wcf" . WCF_N . "_packageserver_package_to_user
                 WHERE   packageIdentifier = ?
                     AND userID = ?";
-        $stmt = WCF::getDB()->prepareStatement($sql, 1);
-        $stmt->execute([$this->packageIdentifier, $this->user->userID]);
+        $statement = WCF::getDB()->prepareStatement($sql, 1);
+        $statement->execute([$this->packageIdentifier, $this->user->userID]);
 
-        $this->permissionEntry = $stmt->fetchArray();
+        $this->permissionEntry = $statement->fetchArray();
 
         if (!$this->permissionEntry) {
             throw new IllegalLinkException();
@@ -109,8 +109,8 @@ class PackageServerPackageUserPermissionEditForm extends PackageServerPackageUse
                 SET     permissionString = ?
                 WHERE   packageIdentifier = ?
                     AND userID = ?";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([
             $this->permissionString,
             $this->packageIdentifier,
             $this->user->userID,

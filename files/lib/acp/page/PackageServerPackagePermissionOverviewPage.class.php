@@ -93,10 +93,10 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
                 )
                 ORDER BY {$this->sortField} {$this->sortOrder}";
 
-        $stmt = WCF::getDB()->prepareStatement($sql, $this->sqlLimit, $this->sqlOffset);
-        $stmt->execute();
+        $statement = WCF::getDB()->prepareStatement($sql, $this->sqlLimit, $this->sqlOffset);
+        $statement->execute();
 
-        while ($row = $stmt->fetchArray()) {
+        while ($row = $statement->fetchArray()) {
             $this->permissions[] = $row;
         }
     }
@@ -117,10 +117,10 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
                     SELECT  COUNT(*)
                     FROM    wcf" . WCF_N . "_packageserver_package_to_group
                 )";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute();
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute();
 
-        return $stmt->fetchColumn();
+        return $statement->fetchColumn();
     }
 
     /**

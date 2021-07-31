@@ -117,9 +117,9 @@ class PackageServerPackageUserPermissionAddForm extends AbstractForm
                     (packageIdentifier, permissionString, userID)
                 VALUES
                     (?, ?, ?)";
-        $stmt = WCF::getDB()->prepareStatement($sql);
+        $statement = WCF::getDB()->prepareStatement($sql);
         foreach ($this->userList as $user) {
-            $stmt->execute([
+            $statement->execute([
                 $this->packageIdentifier,
                 $this->permissionString,
                 $user->userID,

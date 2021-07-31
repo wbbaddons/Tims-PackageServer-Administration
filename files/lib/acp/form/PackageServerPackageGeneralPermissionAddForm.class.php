@@ -75,12 +75,12 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
         $sql = "SELECT  COUNT(*)
                 FROM    wcf" . WCF_N . "_packageserver_package_permission_general
                 WHERE   packageIdentifier = ?";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([
             $this->packageIdentifier,
         ]);
 
-        if ($stmt->fetchColumn()) {
+        if ($statement->fetchColumn()) {
             throw new UserInputException('packageIdentifier', 'existing');
         }
     }
@@ -96,8 +96,8 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
                     (packageIdentifier, permissionString)
                 VALUES
                     (?, ?)";
-        $stmt = WCF::getDB()->prepareStatement($sql);
-        $stmt->execute([
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([
             $this->packageIdentifier,
             $this->permissionString,
         ]);
