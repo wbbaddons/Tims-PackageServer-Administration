@@ -15,7 +15,7 @@ use wcf\util\PackageServerUtil;
 class PackageServerUserChangeListener implements IEventListener
 {
     /**
-     * @see \wcf\system\event\IEventListener::execute()
+     * @inheritDoc
      */
     public function execute($eventObj, $className, $eventName)
     {

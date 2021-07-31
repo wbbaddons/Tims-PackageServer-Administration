@@ -18,7 +18,7 @@ use wcf\util\StringUtil;
 class PackageServerDeletePackageVersionAction extends AbstractAction
 {
     /**
-     * @see \wcf\action\AbstractAction::$neededPermissions
+     * * @inheritDoc
      */
     public $neededPermissions = ['admin.packageServer.canManagePackages'];
 
@@ -35,7 +35,7 @@ class PackageServerDeletePackageVersionAction extends AbstractAction
     public $version = '';
 
     /**
-     * @see \wcf\page\IAction::readParameters()
+     * @inheritDoc
      */
     public function readParameters()
     {
@@ -58,7 +58,7 @@ class PackageServerDeletePackageVersionAction extends AbstractAction
     }
 
     /**
-     * @see \wcf\action\IAction::execute()
+     * @inheritDoc
      */
     public function execute()
     {

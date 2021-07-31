@@ -16,7 +16,7 @@ use wcf\util\HeaderUtil;
 class PackageServerDeletePermissionAction extends AbstractAction
 {
     /**
-     * @see \wcf\action\AbstractAction::$neededPermissions
+     * @inheritDoc
      */
     public $neededPermissions = ['admin.packageServer.canManagePackages'];
 
@@ -39,7 +39,7 @@ class PackageServerDeletePermissionAction extends AbstractAction
     public $beneficiaryID = 0;
 
     /**
-     * @see \wcf\page\IAction::readParameters()
+     * @inheritDoc
      */
     public function readParameters()
     {
@@ -100,7 +100,7 @@ class PackageServerDeletePermissionAction extends AbstractAction
     }
 
     /**
-     * @see \wcf\action\IAction::execute()
+     * @inheritDoc
      */
     public function execute()
     {

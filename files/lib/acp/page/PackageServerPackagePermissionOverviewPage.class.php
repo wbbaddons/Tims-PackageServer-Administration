@@ -14,22 +14,22 @@ use wcf\system\WCF;
 class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
 {
     /**
-     * @see wcf\page\AbstractPage::$activeMenuItem
+     * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.permissionOverview';
 
     /**
-     * @see \wcf\page\AbstractPage::$neededPermissions
+     * @inheritDoc
      */
     public $neededPermissions = ['admin.packageServer.canManagePackages'];
 
     /**
-     * @see \wcf\page\SortablePage::$defaultSortField
+     * @inheritDoc
      */
     public $defaultSortField = 'packageIdentifier';
 
     /**
-     * @see \wcf\page\SortablePage::$validSortFields
+     * @inheritDoc
      */
     public $validSortFields = [
         'packageIdentifier',
@@ -39,7 +39,7 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
     ];
 
     /**
-     * @see \wcf\page\MultipleLinkPage::$itemsPerPage
+     * @inheritDoc
      */
     public $itemsPerPage = 50;
 
@@ -50,14 +50,14 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
     public $permissions = [];
 
     /**
-     * @see \wcf\page\MultipleLinkPage::initObjectList()
+     * @inheritDoc
      */
     protected function initObjectList()
     {
     }
 
     /**
-     * @see \wcf\page\MultipleLinkPage::readObjects()
+     * @inheritDoc
      */
     public function readObjects()
     {
@@ -102,7 +102,7 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
     }
 
     /**
-     * @see \wcf\page\MultipleLinkPage::countItems()
+     * @inheritDoc
      */
     public function countItems()
     {
@@ -124,7 +124,7 @@ class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
     }
 
     /**
-     * @see \wcf\page\IPage::assignVariables()
+     * @inheritDoc
      */
     public function assignVariables()
     {

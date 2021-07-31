@@ -18,7 +18,7 @@ use wcf\util\PackageServerUtil;
 class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGroupPermissionAddForm
 {
     /**
-     * @see \wcf\page\AbstractPage::$activeMenuItem
+     * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.packageserver';
 
@@ -41,7 +41,7 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
     public $permissionEntry;
 
     /**
-     * @see \wcf\page\IPage::readParameters()
+     * @inheritDoc
      */
     public function readParameters()
     {
@@ -78,7 +78,7 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
     }
 
     /**
-     * @see \wcf\form\IForm::validate()
+     * @inheritDoc
      */
     public function validate()
     {
@@ -90,7 +90,7 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
     }
 
     /**
-     * @see \wcf\page\IPage::readData()
+     * @inheritDoc
      */
     public function readData()
     {
@@ -102,7 +102,7 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
     }
 
     /**
-     * @see \wcf\form\IForm::save()
+     * @inheritDoc
      */
     public function save()
     {
@@ -130,7 +130,7 @@ class PackageServerPackageGroupPermissionEditForm extends PackageServerPackageGr
     }
 
     /**
-     * @see \wcf\page\IPage::assignVariables()
+     * @inheritDoc
      */
     public function assignVariables()
     {

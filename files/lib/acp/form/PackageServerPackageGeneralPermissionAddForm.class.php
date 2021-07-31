@@ -17,12 +17,12 @@ use wcf\util\PackageServerUtil;
 class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
 {
     /**
-     * @see \wcf\page\AbstractPage::$activeMenuItem
+     * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.addGeneralPermission';
 
     /**
-     * @see \wcf\page\AbstractPage::$neededPermissions
+     * @inheritDoc
      */
     public $neededPermissions = ['admin.packageServer.canManagePackages'];
 
@@ -39,7 +39,7 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
     public $permissionString = '';
 
     /**
-     * @see \wcf\page\IPage::readFormParameters()
+     * @inheritDoc
      */
     public function readFormParameters()
     {
@@ -54,7 +54,7 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\form\IForm::validate()
+     * @inheritDoc
      */
     public function validate()
     {
@@ -86,7 +86,7 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\form\IForm::save()
+     * @inheritDoc
      */
     public function save()
     {
@@ -114,7 +114,7 @@ class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\page\IPage::assignVariables()
+     * @inheritDoc
      */
     public function assignVariables()
     {

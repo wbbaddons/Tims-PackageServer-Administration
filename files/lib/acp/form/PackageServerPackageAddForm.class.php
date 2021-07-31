@@ -21,12 +21,12 @@ use wcf\util\PackageServerUtil;
 class PackageServerPackageAddForm extends AbstractForm
 {
     /**
-     * @see wcf\page\AbstractPage::$activeMenuItem
+     * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.add';
 
     /**
-     * @see \wcf\page\AbstractPage::$neededPermissions
+     * @inheritDoc
      */
     public $neededPermissions = ['admin.packageServer.canManagePackages'];
 
@@ -50,7 +50,7 @@ class PackageServerPackageAddForm extends AbstractForm
     public $archive;
 
     /**
-     * @see \wcf\page\IPage::readData()
+     * @inheritDoc
      */
     public function readData()
     {
@@ -70,7 +70,7 @@ class PackageServerPackageAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\form\IForm::readFormParameters()
+     * @inheritDoc
      */
     public function readFormParameters()
     {
@@ -82,7 +82,7 @@ class PackageServerPackageAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\form\IForm::validate()
+     * @inheritDoc
      */
     public function validate()
     {
@@ -141,7 +141,7 @@ class PackageServerPackageAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\form\IForm::save()
+     * @inheritDoc
      */
     public function save()
     {

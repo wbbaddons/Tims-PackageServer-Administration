@@ -17,12 +17,12 @@ use wcf\util\PackageServerUtil;
 class PackageServerPackageGroupPermissionAddForm extends AbstractForm
 {
     /**
-     * @see \wcf\page\AbstractPage::$activeMenuItem
+     * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.addGroupPermission';
 
     /**
-     * @see \wcf\page\AbstractPage::$neededPermissions
+     * @inheritDoc
      */
     public $neededPermissions = ['admin.packageServer.canManagePackages'];
 
@@ -51,7 +51,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm
     public $groupList;
 
     /**
-     * @see \wcf\page\IPage::readFormParameters()
+     * @inheritDoc
      */
     public function readFormParameters()
     {
@@ -69,7 +69,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\page\IPage::readData()
+     * @inheritDoc
      */
     public function readData()
     {
@@ -81,7 +81,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\form\IForm::validate()
+     * @inheritDoc
      */
     public function validate()
     {
@@ -111,7 +111,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\form\IForm::save()
+     * @inheritDoc
      */
     public function save()
     {
@@ -145,7 +145,7 @@ class PackageServerPackageGroupPermissionAddForm extends AbstractForm
     }
 
     /**
-     * @see \wcf\page\IPage::assignVariables()
+     * @inheritDoc
      */
     public function assignVariables()
     {

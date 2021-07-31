@@ -16,7 +16,7 @@ use wcf\util\PackageServerUtil;
 class PackageServerPackageListPage extends \wcf\page\AbstractPage
 {
     /**
-     * @see \wcf\page\AbstractPage::$activeMenuItem
+     * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.list';
 
@@ -39,7 +39,7 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage
     public $versionCount = 0;
 
     /**
-     * @see \wcf\page\IPage::readData()
+     * @inheritDoc
      */
     public function readData()
     {
@@ -91,7 +91,7 @@ class PackageServerPackageListPage extends \wcf\page\AbstractPage
     }
 
     /**
-     * @see \wcf\page\IPage::assignVariables()
+     * @inheritDoc
      */
     public function assignVariables()
     {
