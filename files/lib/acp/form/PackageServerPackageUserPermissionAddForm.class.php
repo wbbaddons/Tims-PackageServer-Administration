@@ -14,7 +14,7 @@ use wcf\util\PackageServerUtil;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package be.bastelstu.josh.ps
  */
-class PackageServerPackageUserPermissionAddForm extends AbstractForm
+final class PackageServerPackageUserPermissionAddForm extends AbstractForm
 {
     /**
      * @inheritDoc

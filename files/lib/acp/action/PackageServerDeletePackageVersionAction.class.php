@@ -15,7 +15,7 @@ use wcf\util\StringUtil;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package be.bastelstu.josh.ps
  */
-class PackageServerDeletePackageVersionAction extends AbstractAction
+final class PackageServerDeletePackageVersionAction extends AbstractAction
 {
     /**
      * * @inheritDoc

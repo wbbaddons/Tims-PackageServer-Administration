@@ -13,7 +13,7 @@ use wcf\util\PackageServerUtil;
  * @package be.bastelstu.josh.ps
  * @subpackage  acp.page
  */
-class PackageServerPackageListPage extends \wcf\page\AbstractPage
+final class PackageServerPackageListPage extends \wcf\page\AbstractPage
 {
     /**
      * @inheritDoc

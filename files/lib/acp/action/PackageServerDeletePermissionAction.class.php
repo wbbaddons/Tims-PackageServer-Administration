@@ -13,7 +13,7 @@ use wcf\util\HeaderUtil;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package be.bastelstu.josh.ps
  */
-class PackageServerDeletePermissionAction extends AbstractAction
+final class PackageServerDeletePermissionAction extends AbstractAction
 {
     /**
      * @inheritDoc

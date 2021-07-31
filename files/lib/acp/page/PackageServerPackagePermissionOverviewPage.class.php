@@ -11,7 +11,7 @@ use wcf\system\WCF;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package be.bastelstu.josh.ps
  */
-class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
+final class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
 {
     /**
      * @inheritDoc
