@@ -4,11 +4,7 @@
 	<h1>{lang}wcf.acp.packageserver.package.add{/lang}</h1>
 </header>
 
-{include file='formError'}
-
-{if $success|isset}
-	<p class="success">{lang}wcf.global.success.add{/lang}</p>
-{/if}
+{include file='formNotice'}
 
 <form enctype="multipart/form-data" method="post" action="{link controller='PackageServerPackageAdd'}{/link}">
 	<div class="container containerPadding marginTop">

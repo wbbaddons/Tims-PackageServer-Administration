@@ -4,11 +4,7 @@
 	<h1>{lang}wcf.acp.packageserver.permission.general.{$action}{/lang}</h1>
 </header>
 
-{include file='formError'}
-
-{if $success|isset}
-	<p class="success">{lang}wcf.global.success.{$action}{/lang}</p>
-{/if}
+{include file='formNotice'}
 
 <form method="post" action="{if $action == 'add'}{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}{else}{link controller='PackageServerPackageGeneralPermissionEdit' packageIdentifier=$packageIdentifier}{/link}{/if}">
 	<div class="container containerPadding marginTop">
