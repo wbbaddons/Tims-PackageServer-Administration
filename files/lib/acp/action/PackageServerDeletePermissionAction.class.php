@@ -2,6 +2,7 @@
 
 namespace wcf\acp\action;
 
+use wcf\acp\page\PackageServerPackagePermissionOverviewPage;
 use wcf\action\AbstractAction;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\request\LinkHandler;
@@ -145,7 +146,9 @@ final class PackageServerDeletePermissionAction extends AbstractAction
                 throw new IllegalLinkException();
         }
 
-        HeaderUtil::redirect(LinkHandler::getInstance()->getLink('PackageServerPackagePermissionOverview'));
+        HeaderUtil::redirect(
+            LinkHandler::getInstance()->getControllerLink(PackageServerPackagePermissionOverviewPage::class)
+        );
 
         exit;
     }

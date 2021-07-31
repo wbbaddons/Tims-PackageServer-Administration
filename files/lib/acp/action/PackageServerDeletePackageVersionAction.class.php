@@ -2,6 +2,7 @@
 
 namespace wcf\acp\action;
 
+use wcf\acp\page\PackageServerPackageListPage;
 use wcf\action\AbstractAction;
 use wcf\data\package\Package;
 use wcf\system\exception\IllegalLinkException;
@@ -70,7 +71,7 @@ final class PackageServerDeletePackageVersionAction extends AbstractAction
             throw new \RuntimeException('could not delete package');
         }
 
-        HeaderUtil::redirect(LinkHandler::getInstance()->getLink('PackageServerPackageList'));
+        HeaderUtil::redirect(LinkHandler::getInstance()->getControllerLink(PackageServerPackageListPage::class));
 
         exit;
     }
