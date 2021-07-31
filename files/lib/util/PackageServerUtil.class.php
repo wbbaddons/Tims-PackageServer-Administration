@@ -16,8 +16,6 @@ final class PackageServerUtil
 {
     const AUTH_FILENAME = 'auth.json';
 
-    const PACKAGES_DIR = 'packages';
-
     /**
      * Generates and saves the auth.json-file.
      */
