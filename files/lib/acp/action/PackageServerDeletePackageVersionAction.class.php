@@ -65,7 +65,7 @@ final class PackageServerDeletePackageVersionAction extends AbstractAction
         parent::execute();
 
         if (@\unlink(PackageServerUtil::getPackageServerPath() . $this->packageIdentifier . '/' . PackageServerUtil::transformPackageVersion($this->version) . '.tar') === false) {
-            throw new \wcf\system\exception\SystemException('could not delete package');
+            throw new \RuntimeException('could not delete package');
         }
 
         HeaderUtil::redirect(\wcf\system\request\LinkHandler::getInstance()->getLink('PackageServerPackageList'));

@@ -4,7 +4,6 @@ namespace wcf\acp\form;
 
 use wcf\data\package\Package;
 use wcf\form\AbstractForm;
-use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
 use wcf\system\package\PackageArchive;
 use wcf\system\WCF;
@@ -127,7 +126,7 @@ final class PackageServerPackageAddForm extends AbstractForm
 
         try {
             $this->archive->openArchive();
-        } catch (SystemException $e) {
+        } catch (\Exception $e) {
             throw new UserInputException('package', 'validation');
         }
 
@@ -149,12 +148,12 @@ final class PackageServerPackageAddForm extends AbstractForm
 
         if (!\file_exists(PackageServerUtil::getPackageServerPath() . $this->archive->getPackageInfo('name'))) {
             if (FileUtil::makePath(PackageServerUtil::getPackageServerPath() . $this->archive->getPackageInfo('name')) === false) {
-                throw new SystemException('cannot create package-dir');
+                throw new \RuntimeException('cannot create package-dir');
             }
         }
 
         if (\rename($this->tempFile, $this->getPackagePath()) === false) {
-            throw new SystemException('cannot move package');
+            throw new \RuntimeException('cannot move package');
         }
 
         $this->saved();
