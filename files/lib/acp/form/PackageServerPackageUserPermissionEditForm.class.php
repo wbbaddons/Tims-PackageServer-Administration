@@ -2,11 +2,13 @@
 
 namespace wcf\acp\form;
 
+use wcf\data\user\User;
 use wcf\form\AbstractForm;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
+use wcf\util\StringUtil;
 
 /**
  * Shows the package user permission edit form.
@@ -30,7 +32,7 @@ final class PackageServerPackageUserPermissionEditForm extends PackageServerPack
 
     /**
      * Benefited user
-     * @var \wcf\data\user\User
+     * @var User
      */
     public $user;
 
@@ -48,13 +50,13 @@ final class PackageServerPackageUserPermissionEditForm extends PackageServerPack
         parent::readParameters();
 
         if (isset($_REQUEST['packageIdentifier'])) {
-            $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
+            $this->packageIdentifier = StringUtil::trim($_REQUEST['packageIdentifier']);
         }
         if (isset($_REQUEST['userID'])) {
             $this->userID = \intval($_REQUEST['userID']);
         }
 
-        $this->user = new \wcf\data\user\User($this->userID);
+        $this->user = new User($this->userID);
 
         if (!$this->user->userID) {
             throw new IllegalLinkException();

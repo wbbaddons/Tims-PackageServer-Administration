@@ -2,8 +2,11 @@
 
 namespace wcf\acp\page;
 
+use wcf\page\AbstractPage;
+use wcf\system\exception\NamedUserException;
 use wcf\system\Regex;
 use wcf\system\WCF;
+use wcf\util\DirectoryUtil;
 use wcf\util\PackageServerUtil;
 
 /**
@@ -13,7 +16,7 @@ use wcf\util\PackageServerUtil;
  * @package be.bastelstu.josh.ps
  * @subpackage  acp.page
  */
-final class PackageServerPackageListPage extends \wcf\page\AbstractPage
+final class PackageServerPackageListPage extends AbstractPage
 {
     /**
      * @inheritDoc
@@ -52,12 +55,12 @@ final class PackageServerPackageListPage extends \wcf\page\AbstractPage
                 throw new \Exception();
             }
         } catch (\Exception $e) {
-            throw new \wcf\system\exception\NamedUserException(
+            throw new NamedUserException(
                 WCF::getLanguage()->getDynamicVariable('wcf.acp.packageserver.error.invalidPath')
             );
         }
 
-        $handle = \wcf\util\DirectoryUtil::getInstance(PackageServerUtil::getPackageServerPath());
+        $handle = DirectoryUtil::getInstance(PackageServerUtil::getPackageServerPath());
 
         $packageIdentifierRegex = '([a-z0-9_-]+\.[a-z0-9_-]+(?:\.[a-z0-9_-]+)+)';
         $packageVersionRegex = '([0-9]+\.[0-9]+\.[0-9]+(?:_(?:a|alpha|b|beta|d|dev|rc|pl)_[0-9]+)?)';

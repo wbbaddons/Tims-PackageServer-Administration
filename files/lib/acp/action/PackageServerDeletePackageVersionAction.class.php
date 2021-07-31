@@ -4,6 +4,8 @@ namespace wcf\acp\action;
 
 use wcf\action\AbstractAction;
 use wcf\data\package\Package;
+use wcf\system\exception\IllegalLinkException;
+use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 use wcf\util\PackageServerUtil;
 use wcf\util\StringUtil;
@@ -53,7 +55,7 @@ final class PackageServerDeletePackageVersionAction extends AbstractAction
             || !Package::isValidVersion($this->version)
             || !\is_file(PackageServerUtil::getPackageServerPath() . $this->packageIdentifier . '/' . PackageServerUtil::transformPackageVersion($this->version) . '.tar')
         ) {
-            throw new \wcf\system\exception\IllegalLinkException();
+            throw new IllegalLinkException();
         }
     }
 
@@ -68,7 +70,7 @@ final class PackageServerDeletePackageVersionAction extends AbstractAction
             throw new \RuntimeException('could not delete package');
         }
 
-        HeaderUtil::redirect(\wcf\system\request\LinkHandler::getInstance()->getLink('PackageServerPackageList'));
+        HeaderUtil::redirect(LinkHandler::getInstance()->getLink('PackageServerPackageList'));
 
         exit;
     }

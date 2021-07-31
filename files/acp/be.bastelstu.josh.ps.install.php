@@ -2,6 +2,9 @@
 
 namespace be\bastelstu\josh\ps;
 
+use wcf\data\option\OptionEditor;
+use wcf\system\WCF;
+
 /**
  * Sets the PACKAGESERVER_DIR option to this installation’s package server path
  *
@@ -20,7 +23,7 @@ final class Installation
                 FROM    wcf" . WCF_N . "_option
                 WHERE   packageID = ?
                     AND optionName = ?";
-        $statement = \wcf\system\WCF::getDB()->prepareStatement($sql);
+        $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$packageID, 'packageserver_dir']);
         $this->optionID = $statement->fetchColumn();
     }
@@ -30,9 +33,9 @@ final class Installation
         $sql = "UPDATE  wcf" . WCF_N . "_option
                 SET     optionValue = ?
                 WHERE   optionID = ?";
-        $statement = \wcf\system\WCF::getDB()->prepareStatement($sql);
+        $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([WCF_DIR . 'acp/be.bastelstu.josh.ps/Tims-PackageServer/packages/', $this->optionID]);
-        \wcf\data\option\OptionEditor::resetCache();
+        OptionEditor::resetCache();
     }
 }
 

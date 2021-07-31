@@ -2,10 +2,15 @@
 
 namespace wcf\acp\form;
 
+use wcf\data\package\Package;
+use wcf\data\user\group\UserGroup;
+use wcf\data\user\group\UserGroupList;
 use wcf\form\AbstractForm;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
+use wcf\util\ArrayUtil;
 use wcf\util\PackageServerUtil;
+use wcf\util\StringUtil;
 
 /**
  * A form for add package permissions
@@ -46,7 +51,7 @@ final class PackageServerPackageGroupPermissionAddForm extends AbstractForm
 
     /**
      * Instance of UserGroupList
-     * @var \wcf\data\user\group\UserGroupList
+     * @var UserGroupList
      */
     public $groupList;
 
@@ -58,13 +63,13 @@ final class PackageServerPackageGroupPermissionAddForm extends AbstractForm
         parent::readFormParameters();
 
         if (isset($_POST['packageIdentifier'])) {
-            $this->packageIdentifier = \wcf\util\StringUtil::trim($_POST['packageIdentifier']);
+            $this->packageIdentifier = StringUtil::trim($_POST['packageIdentifier']);
         }
         if (isset($_POST['permissionString'])) {
-            $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
+            $this->permissionString = StringUtil::trim($_POST['permissionString']);
         }
         if (isset($_POST['groupIDs'])) {
-            $this->groupIDs = \wcf\util\ArrayUtil::toIntegerArray($_POST['groupIDs']);
+            $this->groupIDs = ArrayUtil::toIntegerArray($_POST['groupIDs']);
         }
     }
 
@@ -73,8 +78,8 @@ final class PackageServerPackageGroupPermissionAddForm extends AbstractForm
      */
     public function readData()
     {
-        $this->groupList = new \wcf\data\user\group\UserGroupList();
-        $this->groupList->getConditionBuilder()->add('groupType NOT IN (?)', [\wcf\data\user\group\UserGroup::EVERYONE]);
+        $this->groupList = new UserGroupList();
+        $this->groupList->getConditionBuilder()->add('groupType NOT IN (?)', [UserGroup::EVERYONE]);
         $this->groupList->readObjects();
 
         parent::readData();
@@ -91,7 +96,7 @@ final class PackageServerPackageGroupPermissionAddForm extends AbstractForm
             throw new UserInputException('packageIdentifier');
         }
 
-        if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
+        if (!Package::isValidPackageName($this->packageIdentifier)) {
             throw new UserInputException('packageIdentifier', 'notValid');
         }
 

@@ -3,8 +3,11 @@
 namespace wcf\acp\action;
 
 use wcf\action\AbstractAction;
+use wcf\system\exception\IllegalLinkException;
+use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 use wcf\util\HeaderUtil;
+use wcf\util\StringUtil;
 
 /**
  * Deletes package permissions.
@@ -46,10 +49,10 @@ final class PackageServerDeletePermissionAction extends AbstractAction
         parent::readParameters();
 
         if (isset($_GET['packageIdentifier'])) {
-            $this->packageIdentifier = \wcf\util\StringUtil::trim($_GET['packageIdentifier']);
+            $this->packageIdentifier = StringUtil::trim($_GET['packageIdentifier']);
         }
         if (isset($_GET['type'])) {
-            $this->type = \wcf\util\StringUtil::trim($_GET['type']);
+            $this->type = StringUtil::trim($_GET['type']);
         }
         if (isset($_GET['beneficiaryID'])) {
             $this->beneficiaryID = \intval($_GET['beneficiaryID']);
@@ -91,11 +94,11 @@ final class PackageServerDeletePermissionAction extends AbstractAction
                 break;
 
             default:
-                throw new \wcf\system\exception\IllegalLinkException();
+                throw new IllegalLinkException();
         }
 
         if (!$statement->fetchColumn()) {
-            throw new \wcf\system\exception\IllegalLinkException();
+            throw new IllegalLinkException();
         }
     }
 
@@ -139,10 +142,10 @@ final class PackageServerDeletePermissionAction extends AbstractAction
                 break;
 
             default:
-                throw new \wcf\system\exception\IllegalLinkException();
+                throw new IllegalLinkException();
         }
 
-        HeaderUtil::redirect(\wcf\system\request\LinkHandler::getInstance()->getLink('PackageServerPackagePermissionOverview'));
+        HeaderUtil::redirect(LinkHandler::getInstance()->getLink('PackageServerPackagePermissionOverview'));
 
         exit;
     }

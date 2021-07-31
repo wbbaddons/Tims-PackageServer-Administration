@@ -2,11 +2,13 @@
 
 namespace wcf\acp\form;
 
+use wcf\data\user\group\UserGroup;
 use wcf\form\AbstractForm;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
+use wcf\util\StringUtil;
 
 /**
  * Shows the package group permission edit form.
@@ -30,7 +32,7 @@ final class PackageServerPackageGroupPermissionEditForm extends PackageServerPac
 
     /**
      * Benefited user group
-     * @var \wcf\data\user\group\UserGroup
+     * @var UserGroup
      */
     public $userGroup;
 
@@ -48,13 +50,13 @@ final class PackageServerPackageGroupPermissionEditForm extends PackageServerPac
         parent::readParameters();
 
         if (isset($_REQUEST['packageIdentifier'])) {
-            $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
+            $this->packageIdentifier = StringUtil::trim($_REQUEST['packageIdentifier']);
         }
         if (isset($_REQUEST['groupID'])) {
             $this->groupID = \intval($_REQUEST['groupID']);
         }
 
-        $this->userGroup = new \wcf\data\user\group\UserGroup($this->groupID);
+        $this->userGroup = new UserGroup($this->groupID);
 
         if (!$this->userGroup->groupID) {
             throw new IllegalLinkException();

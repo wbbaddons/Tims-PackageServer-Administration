@@ -2,6 +2,7 @@
 
 namespace wcf\acp\page;
 
+use wcf\page\SortablePage;
 use wcf\system\WCF;
 
 /**
@@ -11,7 +12,7 @@ use wcf\system\WCF;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package be.bastelstu.josh.ps
  */
-final class PackageServerPackagePermissionOverviewPage extends \wcf\page\SortablePage
+final class PackageServerPackagePermissionOverviewPage extends SortablePage
 {
     /**
      * @inheritDoc

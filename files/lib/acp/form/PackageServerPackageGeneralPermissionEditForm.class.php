@@ -7,6 +7,7 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\PackageServerUtil;
+use wcf\util\StringUtil;
 
 /**
  * Shows the general package permission edit form.
@@ -36,7 +37,7 @@ final class PackageServerPackageGeneralPermissionEditForm extends PackageServerP
         parent::readParameters();
 
         if (isset($_REQUEST['packageIdentifier'])) {
-            $this->packageIdentifier = \wcf\util\StringUtil::trim($_REQUEST['packageIdentifier']);
+            $this->packageIdentifier = StringUtil::trim($_REQUEST['packageIdentifier']);
         }
 
         $sql = "SELECT  *

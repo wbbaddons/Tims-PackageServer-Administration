@@ -4,6 +4,7 @@ namespace wcf\acp\form;
 
 use wcf\data\package\Package;
 use wcf\form\AbstractForm;
+use wcf\system\exception\NamedUserException;
 use wcf\system\exception\UserInputException;
 use wcf\system\package\PackageArchive;
 use wcf\system\WCF;
@@ -44,7 +45,7 @@ final class PackageServerPackageAddForm extends AbstractForm
     public $upload;
 
     /**
-     * @var \wcf\system\package\PackageArchive
+     * @var PackageArchive
      */
     public $archive;
 
@@ -62,7 +63,7 @@ final class PackageServerPackageAddForm extends AbstractForm
                 throw new \Exception();
             }
         } catch (\Exception $e) {
-            throw new \wcf\system\exception\NamedUserException(
+            throw new NamedUserException(
                 WCF::getLanguage()->getDynamicVariable('wcf.acp.packageserver.error.invalidPath')
             );
         }

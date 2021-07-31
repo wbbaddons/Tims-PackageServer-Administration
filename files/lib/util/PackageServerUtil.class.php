@@ -2,6 +2,7 @@
 
 namespace wcf\util;
 
+use wcf\system\io\File;
 use wcf\system\WCF;
 
 /**
@@ -34,7 +35,7 @@ final class PackageServerUtil
         // generate a temporary auth file
         $temporaryFile = FileUtil::getTemporaryFilename();
 
-        $file = new \wcf\system\io\File($temporaryFile);
+        $file = new File($temporaryFile);
         $file->write("{\n");
 
         $file->write("\t\"users\": {\n");

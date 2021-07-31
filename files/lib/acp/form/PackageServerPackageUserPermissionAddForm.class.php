@@ -2,10 +2,14 @@
 
 namespace wcf\acp\form;
 
+use wcf\data\package\Package;
+use wcf\data\user\UserList;
 use wcf\form\AbstractForm;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
+use wcf\util\ArrayUtil;
 use wcf\util\PackageServerUtil;
+use wcf\util\StringUtil;
 
 /**
  * A form for add package permissions
@@ -46,7 +50,7 @@ final class PackageServerPackageUserPermissionAddForm extends AbstractForm
 
     /**
      * Instance of UserList
-     * @var \wcf\data\user\UserList
+     * @var UserList
      */
     public $userList;
 
@@ -58,13 +62,13 @@ final class PackageServerPackageUserPermissionAddForm extends AbstractForm
         parent::readFormParameters();
 
         if (isset($_POST['packageIdentifier'])) {
-            $this->packageIdentifier = \wcf\util\StringUtil::trim($_POST['packageIdentifier']);
+            $this->packageIdentifier = StringUtil::trim($_POST['packageIdentifier']);
         }
         if (isset($_POST['permissionString'])) {
-            $this->permissionString = \wcf\util\StringUtil::trim($_POST['permissionString']);
+            $this->permissionString = StringUtil::trim($_POST['permissionString']);
         }
         if (isset($_POST['usernames'])) {
-            $this->usernames = \array_filter(\wcf\util\ArrayUtil::trim(\explode(',', $_POST['usernames'])));
+            $this->usernames = \array_filter(ArrayUtil::trim(\explode(',', $_POST['usernames'])));
         }
     }
 
@@ -79,7 +83,7 @@ final class PackageServerPackageUserPermissionAddForm extends AbstractForm
             throw new UserInputException('packageIdentifier');
         }
 
-        if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
+        if (!Package::isValidPackageName($this->packageIdentifier)) {
             throw new UserInputException('packageIdentifier', 'notValid');
         }
 
@@ -87,7 +91,7 @@ final class PackageServerPackageUserPermissionAddForm extends AbstractForm
             throw new UserInputException('permissionString');
         }
 
-        $this->userList = new \wcf\data\user\UserList();
+        $this->userList = new UserList();
         $this->userList->getConditionBuilder()->add('username IN (?)', [$this->usernames]);
         $this->userList->readObjects();
 

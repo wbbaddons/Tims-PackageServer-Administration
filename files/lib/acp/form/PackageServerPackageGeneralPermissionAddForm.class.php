@@ -2,6 +2,7 @@
 
 namespace wcf\acp\form;
 
+use wcf\data\package\Package;
 use wcf\form\AbstractForm;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
@@ -64,7 +65,7 @@ final class PackageServerPackageGeneralPermissionAddForm extends AbstractForm
             throw new UserInputException('packageIdentifier');
         }
 
-        if (!\wcf\data\package\Package::isValidPackageName($this->packageIdentifier)) {
+        if (!Package::isValidPackageName($this->packageIdentifier)) {
             throw new UserInputException('packageIdentifier', 'notValid');
         }
 
