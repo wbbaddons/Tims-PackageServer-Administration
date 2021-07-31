@@ -14,7 +14,7 @@ use wcf\system\WCF;
  */
 final class PackageServerUtil
 {
-    const AUTH_FILENAME = 'auth.json';
+    private const AUTH_FILENAME = 'auth.json';
 
     /**
      * Generates and saves the auth.json-file.
