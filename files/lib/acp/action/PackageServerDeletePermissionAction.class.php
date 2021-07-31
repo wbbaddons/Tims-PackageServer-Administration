@@ -8,6 +8,7 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 use wcf\util\HeaderUtil;
+use wcf\util\PackageServerUtil;
 use wcf\util\StringUtil;
 
 /**
@@ -145,6 +146,8 @@ final class PackageServerDeletePermissionAction extends AbstractAction
             default:
                 throw new IllegalLinkException();
         }
+
+        PackageServerUtil::generateAuthFile();
 
         HeaderUtil::redirect(
             LinkHandler::getInstance()->getControllerLink(PackageServerPackagePermissionOverviewPage::class)
