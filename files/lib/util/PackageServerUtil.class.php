@@ -69,7 +69,7 @@ final class PackageServerUtil
             $userData = [
                 'passwd' => $row['banned'] ? '-' : $row['password'],
                 'groups' => $groups,
-                'packages' => $userPackages[$row['userID']] ?? [],
+                'packages' => $userPackages[$row['userID']] ?? new \stdClass(),
             ];
             $file->write("\t\t" . \json_encode($row['username']) . ": " . \json_encode($userData) . ",\n");
         }
