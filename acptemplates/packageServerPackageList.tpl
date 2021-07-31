@@ -68,7 +68,7 @@
 								</td>
 								<td class="columnTitle"><p>{$packageIdentifier}</p></td>
 								<td class="columnText"><p>{$version}</p></td>
-								<td class="columnDigits"><p>{$downloads}</p></td>
+								<td class="columnDigits"><p>{#$downloads}</p></td>
 								
 								{event name='columns'}
 							</tr>
