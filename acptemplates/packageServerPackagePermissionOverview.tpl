@@ -31,21 +31,21 @@
 					<ul>
 						<li>
 							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
 							</a>
 						</li>
@@ -81,14 +81,14 @@
 					<tr>
 						<td class="columnIcon">
 							{if $permission.type == "general"}
-								<a href="{link controller='PackageServerPackageGeneralPermissionEdit' packageIdentifier=$permission.packageIdentifier}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon16 icon-pencil"></span></a>
+								<a href="{link controller='PackageServerPackageGeneralPermissionEdit' packageIdentifier=$permission.packageIdentifier}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon16 fa-pencil"></span></a>
 							{else if $permission.type == "user"}
-								<a href="{link controller='PackageServerPackageUserPermissionEdit' packageIdentifier=$permission.packageIdentifier userID=$permission.beneficiaryID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon16 icon-pencil"></span></a>
+								<a href="{link controller='PackageServerPackageUserPermissionEdit' packageIdentifier=$permission.packageIdentifier userID=$permission.beneficiaryID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon16 fa-pencil"></span></a>
 							{else if $permission.type == "group"}
-								<a href="{link controller='PackageServerPackageGroupPermissionEdit' packageIdentifier=$permission.packageIdentifier groupID=$permission.beneficiaryID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon16 icon-pencil"></span></a>
+								<a href="{link controller='PackageServerPackageGroupPermissionEdit' packageIdentifier=$permission.packageIdentifier groupID=$permission.beneficiaryID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon16 fa-pencil"></span></a>
 							{/if}
 							
-							<a href="{link controller='PackageServerDeletePermission' packageIdentifier=$permission.packageIdentifier type=$permission.type beneficiaryID=$permission.beneficiaryID}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip"><span class="icon icon16 icon-remove"></span></a>
+							<a href="{link controller='PackageServerDeletePermission' packageIdentifier=$permission.packageIdentifier type=$permission.type beneficiaryID=$permission.beneficiaryID}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip"><span class="icon icon16 fa-times"></span></a>
 						</td>
 						<td class="columnTitle"><p>{$permission.packageIdentifier}</p></td>
 						<td class="columnText "><p>{lang}wcf.acp.packageserver.permission.type.{$permission.type}{/lang}</p></td>
@@ -116,21 +116,21 @@
 					<ul>
 						<li>
 							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
 							</a>
 						</li>

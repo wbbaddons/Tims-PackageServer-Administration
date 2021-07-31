@@ -28,7 +28,7 @@
 					<ul>
 						<li>
 							<a href="{link controller='PackageServerPackageAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
 							</a>
 						</li>
@@ -64,7 +64,7 @@
 						{foreach from=$versions key=version item=downloads}
 							<tr>
 								<td class="columnIcon">
-									<a href="{link controller='PackageServerDeletePackageVersion' packageIdentifier=$packageIdentifier version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip"><span class="icon icon16 icon-remove"></span></a>
+									<a href="{link controller='PackageServerDeletePackageVersion' packageIdentifier=$packageIdentifier version=$version}{/link}" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip"><span class="icon icon16 fa-times"></span></a>
 								</td>
 								<td class="columnTitle"><p>{$packageIdentifier}</p></td>
 								<td class="columnText"><p>{$version}</p></td>
@@ -90,7 +90,7 @@
 					<ul>
 						<li>
 							<a href="{link controller='PackageServerPackageAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 icon-plus"></span>
+								<span class="icon icon16 fa-plus"></span>
 								<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
 							</a>
 						</li>
