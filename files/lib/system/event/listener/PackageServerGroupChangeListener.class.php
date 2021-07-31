@@ -2,7 +2,6 @@
 
 namespace wcf\system\event\listener;
 
-use wcf\system\event\IEventListener;
 use wcf\util\PackageServerUtil;
 
 /**
@@ -12,12 +11,12 @@ use wcf\util\PackageServerUtil;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package be.bastelstu.josh.ps
  */
-class PackageServerGroupChangeListener implements IEventListener
+class PackageServerGroupChangeListener implements IParameterizedEventListener
 {
     /**
      * @inheritDoc
      */
-    public function execute($eventObj, $className, $eventName)
+    public function execute($eventObj, $className, $eventName, array &$parameters)
     {
         if (!PACKAGESERVER_BUILDAUTH) {
             return;
