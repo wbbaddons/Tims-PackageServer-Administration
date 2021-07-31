@@ -24,6 +24,11 @@ final class PackageServerPackageListPage extends AbstractPage
     public $activeMenuItem = 'wcf.acp.menu.link.packageserver.package.list';
 
     /**
+     * @inheritDoc
+     */
+    public $neededPermissions = ['admin.packageServer.canManagePackages'];
+
+    /**
      * Two-dimensional array containing all packages and their versions
      * @var array<mixed>
      */
