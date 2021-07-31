@@ -16,54 +16,52 @@
 
 {event name='javascriptInclude'}
 
-<header class="boxHeadline">
-	<h1>{lang}wcf.acp.packageserver.package.permissionOverview{/lang}</h1>
+<header class="contentHeader">
+	<div class="contentHeaderTitle">
+		<h1 class="contentTitle">
+			{lang}wcf.acp.packageserver.package.permissionOverview{/lang} <span class="badge badgeInverse">{#$items}</span>
+		</h1>
+	</div>
+
+	<nav class="contentHeaderNavigation">
+		<ul>
+			<li>
+				<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
+					<span class="icon icon16 fa-plus"></span>
+					<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
+				</a>
+			</li>
+			
+			<li>
+				<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
+					<span class="icon icon16 fa-plus"></span>
+					<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
+				</a>
+			</li>
+			
+			<li>
+				<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
+					<span class="icon icon16 fa-plus"></span>
+					<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
+				</a>
+			</li>
+		</ul>
+		
+		{event name='additonalNavigationLinks'}
+	</nav>
 </header>
 
-{assign var=encodedAction value=$action|rawurlencode}
-<div class="contentNavigation">
-	{pages print=true assign=pagesLinks controller="PackageServerPackagePermissionOverview" link="pageNo=%d&action=$encodedAction&sortField=$sortField&sortOrder=$sortOrder"}
-	
-	{hascontent}
-		<nav>
-			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
-					<ul>
-						<li>
-							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
-							</a>
-						</li>
-					</ul>
-				{/if}
-				
-				{event name='additonalNavigationLinks'}
-			{/content}
-		</nav>
-	{/hascontent}
-</div>
+{hascontent}
+	<div class="paginationTop">
+		{content}
+			{assign var=encodedAction value=$action|rawurlencode}
+			{pages print=true assign=pagesLinks controller="PackageServerPackagePermissionOverview" link="pageNo=%d&action=$encodedAction&sortField=$sortField&sortOrder=$sortOrder"}
+		{/content}
+	</div>
+{/hascontent}
 
 {if $permissions|count}
-	<div id="permissionTableContainer" class="tabularBox tabularBoxTitle marginTop">
-		<header>
-			<h2>{lang}wcf.acp.packageserver.permission.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
-		</header>
-		
+	<div id="permissionTableContainer" class="section tabularBox">
 		<table class="table">
 			<thead>
 				<tr>
@@ -100,47 +98,44 @@
 				{/foreach}
 			</tbody>
 		</table>
-		
 	</div>
+
+	<footer class="contentFooter">
+		{hascontent}
+			<div class="paginationBottom">
+				{content}{@$pagesLinks}{/content}
+			</div>
+		{/hascontent}
+		
+		<nav class="contentFooterNavigation">
+			<ul>
+				<li>
+					<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
+						<span class="icon icon16 fa-plus"></span>
+						<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
+					</a>
+				</li>
+				
+				<li>
+					<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
+						<span class="icon icon16 fa-plus"></span>
+						<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
+					</a>
+				</li>
+				
+				<li>
+					<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
+						<span class="icon icon16 fa-plus"></span>
+						<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
+					</a>
+				</li>
+				
+				{event name='additonalNavigationLinks'}
+			</ul>
+		</nav>
+	</footer>
 {else}
 	<p class="info">{lang}wcf.global.noItems{/lang}</p>
 {/if}
-
-<div class="contentNavigation">
-	{@$pagesLinks}
-	
-	{hascontent}
-		<nav>
-			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
-					<ul>
-						<li>
-							<a href="{link controller='PackageServerPackageGeneralPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.general.add{/lang}</span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="{link controller='PackageServerPackageUserPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.user.add{/lang}</span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="{link controller='PackageServerPackageGroupPermissionAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.permission.group.add{/lang}</span>
-							</a>
-						</li>
-					</ul>
-				{/if}
-				
-				{event name='additonalNavigationLinks'}
-			{/content}
-		</nav>
-	{/hascontent}
-</div>
 
 {include file='footer'}

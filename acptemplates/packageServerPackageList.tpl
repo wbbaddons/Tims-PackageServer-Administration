@@ -16,37 +16,29 @@
 
 {event name='javascriptInclude'}
 
-<header class="boxHeadline">
-	<h1>{lang}wcf.acp.packageserver.package.list{/lang}</h1>
+<header class="contentHeader">
+	<div class="contentHeaderTitle">
+		<h1 class="contentTitle">
+			{lang}wcf.acp.packageserver.package.list{/lang} <span class="badge badgeInverse">{#$versionCount}</span>
+		</h1>
+	</div>
+
+	<nav class="contentHeaderNavigation">
+		<ul>
+			<li>
+				<a href="{link controller='PackageServerPackageAdd'}{/link}" title="" class="button">
+					<span class="icon icon16 fa-plus"></span>
+					<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
+				</a>
+			</li>
+			
+			{event name='additonalNavigationLinks'}
+		</ul>
+	</nav>
 </header>
 
-<div class="contentNavigation">
-	{hascontent}
-		<nav>
-			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
-					<ul>
-						<li>
-							<a href="{link controller='PackageServerPackageAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
-							</a>
-						</li>
-					</ul>
-				{/if}
-				
-				{event name='additonalNavigationLinks'}
-			{/content}
-		</nav>
-	{/hascontent}
-</div>
-
 {hascontent}
-	<div id="packageListTableContainer" class="tabularBox tabularBoxTitle marginTop">
-		<header>
-			<h2>{lang}wcf.acp.packageserver.packages{/lang} <span class="badge badgeInverse">{#$versionCount}</span></h2>
-		</header>
-		
+	<div id="packageListTableContainer" class="section tabularBox">
 		<table class="table">
 			<thead>
 				<tr>
@@ -81,26 +73,5 @@
 {hascontentelse}
 	<p class="info">{lang}wcf.global.noItems{/lang}</p>
 {/hascontent}
-
-<div class="contentNavigation">
-	{hascontent}
-		<nav>
-			{content}
-				{if $__wcf->session->getPermission('admin.packageServer.canManagePackages')}
-					<ul>
-						<li>
-							<a href="{link controller='PackageServerPackageAdd'}{/link}" title="" class="button">
-								<span class="icon icon16 fa-plus"></span>
-								<span>{lang}wcf.acp.packageserver.package.add{/lang}</span>
-							</a>
-						</li>
-					</ul>
-				{/if}
-				
-				{event name='additonalNavigationLinks'}
-			{/content}
-		</nav>
-	{/hascontent}
-</div>
 
 {include file='footer'}
