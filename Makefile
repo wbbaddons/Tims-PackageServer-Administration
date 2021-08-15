@@ -1,6 +1,5 @@
 FILES = $(shell find files -type f)
 WCF_FILES = $(shell find files_wcf -type f)
-JS_MODULE_FILES = $(shell find files_wcf/js/Bastelstu.be -type f)
 
 all: be.bastelstu.josh.ps.tar be.bastelstu.josh.ps.tar.gz
 
