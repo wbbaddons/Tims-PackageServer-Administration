@@ -19,7 +19,7 @@ use wcf\util\StringUtil;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package be.bastelstu.josh.ps
  */
-final class PackageServerPackageGroupPermissionAddForm extends AbstractForm
+class PackageServerPackageGroupPermissionAddForm extends AbstractForm
 {
     /**
      * @inheritDoc
